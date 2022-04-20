@@ -1,6 +1,3 @@
-//
-// Created by Utilisateur on 19/04/2022.
-//
 
 #include <stdio.h>
 #include <allegro5/allegro.h>
@@ -10,6 +7,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+#include <assert.h>
 
 #define OR al_map_rgb(255,251,14)
 #define ORfonce al_map_rgb(238,225,32)
@@ -99,33 +97,34 @@ Rect initialisationInterface1(Rect *r){
     r[0].x = (float)LARGEUR / 2 - r[0].largeur / 2;
     r[0].y = 200;
 
-    r[0].color = BLANC;
+    r[0].color = OR;
     r[1].largeur = 50;
     r[1].hauteur = 50;
     r[1].x = ((float)LARGEUR / 2 - r[1].largeur / 2) - 55;
     r[1].y = 200;
-    r[1].color = BLANC;
+    r[1].color = OR;
 
     r[2].largeur = 50;
     r[2].hauteur = 50;
     r[2].x = ((float)LARGEUR / 2 - r[2].largeur / 2) + 55;
     r[2].y = 200;
-    r[2].color = BLANC;
+    r[2].color = OR;
 }
 
-void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
+void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, ALLEGRO_FONT *fontInterface1, Rect r[]){
     al_draw_bitmap(imagePrincipale, 0, 0, 0);
 
     dessinerFilledRectangle(r[0].x, r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
     dessinerFilledRectangle(r[1].x, r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
     dessinerFilledRectangle(r[2].x, r[2].y,r[2].x + r[2].largeur, r[2].y + r[2].hauteur, r[2].color);
+    al_draw_text(fontInterface1, NOIR, r[2].x, r[2].y, 0, "+");
 
     al_flip_display();
 }
 
 void fenetre(){
     //Déclarations
-    ALLEGRO_DISPLAY *display = NULL;
+    ALLEGRO_DISPLAY* display = NULL;
     ALLEGRO_EVENT_QUEUE* queue = NULL;
     ALLEGRO_EVENT event;
 
@@ -175,6 +174,8 @@ void fenetre(){
     ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
 
     ALLEGRO_FONT *fontInterface0 = al_load_font("../Polices/Achafont.ttf", 30, 0);
+    ALLEGRO_FONT *fontInterface1 = al_load_font("../Polices/Achafont.ttf", 60, 0);
+
 
     al_reserve_samples(2);
 
@@ -247,7 +248,7 @@ void fenetre(){
                 break;
             }
             case 2:{
-                dessinerInterface1(imagePrincipale, rectangleInterface1);
+                dessinerInterface1(imagePrincipale, fontInterface1 ,rectangleInterface1);
                 break;
             }
         }
