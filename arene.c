@@ -7,3 +7,11 @@
 void initialierArene(){
 
 }
+
+void dessinerChargement(){
+
+}
+
+void dessinerArene(){
+
+}
