@@ -71,6 +71,7 @@ int main(){
     al_register_event_source(queue, al_get_mouse_event_source());
 
     ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
+    ALLEGRO_BITMAP *map1 = al_load_bitmap("../Image/map1.jpeg");
 
     ALLEGRO_FONT *nbJoueurs1 = al_load_font("../Polices/Achafont.ttf", 60, 0);
     ALLEGRO_FONT *nbJoueurs2 = al_load_font("../Polices/Achafont.ttf", 60, 0);
@@ -202,7 +203,9 @@ int main(){
                 break;
             }
             case ARENE:{
-
+                al_clear_to_color(NOIR);
+                al_draw_bitmap(map1, 0, 0, 0);
+                al_flip_display();
                 break;
             }
             case ECHAP:{
