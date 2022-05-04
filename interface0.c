@@ -5,7 +5,6 @@
 #include "interface0.h"
 
 Rect initialisationInterface0(Rect r[]){
-
     r[0].largeur = 200;
     r[0].hauteur = 50;
     r[0].x = (float)LARGEUR / 2 - r[0].largeur / 2;
@@ -32,13 +31,11 @@ Rect initialisationInterface0(Rect r[]){
     r[2].thickness = 5;
     r[2].colorThickness = ORfonce;
     r[2].font = al_load_font("../Polices/Achafont.ttf", 30, 0);
-
 }
 
 
 
 void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
-
     al_draw_bitmap(imagePrincipale, 0, 0, 0);
     for (int i = 0; i < 3; i++) {
         al_draw_filled_rectangle(r[i].x, r[i].y, r[i].x + r[i].largeur, r[i].y + r[i].hauteur, r[i].color);

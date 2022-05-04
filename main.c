@@ -12,6 +12,8 @@
 #include "menu.h"
 #include "interface0.h"
 #include "echap.h"
+#include "classe.h"
+
 
 #define LARGEUR 1400
 #define HAUTEUR 807
@@ -22,9 +24,13 @@ int main(){
     ALLEGRO_EVENT_QUEUE* queue = NULL;
     ALLEGRO_EVENT event;
 
+    enum historiquePage{INTERFACE0, INTERFACE1, INTERFACE2, ARENE, INTERFACE4, ECHAP};
+
     Rect rectangleAccueil[5]; // Cases de la premiere page accueil
     Rect rectangleMenuEchap;
     Rect rectangleInterfaceChoixJoueurs[5];
+
+    Classe classes[3];
 
     int historiquePageActive[1000] = {0}; // faire un malloc (tableau dynamique) !!!!
     int tailleLogique = 0;
@@ -48,6 +54,7 @@ int main(){
     initialisationInterface1(rectangleInterfaceChoixJoueurs);
     rectangleMenuEchap = initialisationMenuEchap();
 
+    initialisationClasses(classes);
 
     //Création des éléments/données
     display = al_create_display(LARGEUR, HAUTEUR);
@@ -96,7 +103,7 @@ int main(){
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_AXES:{
                 for (int i = 0; i < 3 ;i++) {
-                    if(historiquePageActive[tailleLogique] == 0 && surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[i])){
+                    if(historiquePageActive[tailleLogique] == INTERFACE0 && surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[i])){
                         rectangleAccueil[i].color = rectangleAccueil[i].colorThickness;
                     }
                     else{
@@ -104,7 +111,7 @@ int main(){
                     }
                 }
                 for (int i = 0; i < 5; i++) {
-                    if(historiquePageActive[tailleLogique] == 1 && surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[i])){
+                    if(historiquePageActive[tailleLogique] == INTERFACE1 && surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[i])){
                         rectangleInterfaceChoixJoueurs[i].color = rectangleInterfaceChoixJoueurs[i].colorThickness;
                     }
                     else{
@@ -115,11 +122,11 @@ int main(){
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 for (int i = 0; i < 3; i++) {
-                    if(historiquePageActive[tailleLogique] == 0){
+                    if(historiquePageActive[tailleLogique] == INTERFACE0){
                         if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[0])){
                             al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                             tailleLogique++;
-                            historiquePageActive[tailleLogique] = 1;
+                            historiquePageActive[tailleLogique] = INTERFACE1;
                         }
                         else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1])){
                             //charger un ancienne partie
@@ -129,34 +136,34 @@ int main(){
                         }
                     }
                 }
-                if(historiquePageActive[tailleLogique] == 1){
+                if(historiquePageActive[tailleLogique] == INTERFACE1){
                     if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[0])){
                         al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                         tailleLogique++;
-                        historiquePageActive[tailleLogique] = 2;
+                        historiquePageActive[tailleLogique] = INTERFACE2;
                         nbJoueurs = 2;
                     }
                     else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[1])){
                         al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                         tailleLogique++;
-                        historiquePageActive[tailleLogique] = 2;
+                        historiquePageActive[tailleLogique] = INTERFACE2;
                         nbJoueurs = 2;
                     }
                     else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[2])){
                         al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                         tailleLogique++;
-                        historiquePageActive[tailleLogique] = 2;
+                        historiquePageActive[tailleLogique] = INTERFACE2;
                         nbJoueurs = 4;
                     }
                     else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[3])){
                         al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                         tailleLogique++;
-                        historiquePageActive[tailleLogique] = 2;
+                        historiquePageActive[tailleLogique] = INTERFACE2;
                         nbJoueurs = 1;
                     }
                 }
 
-                if(historiquePageActive[tailleLogique] == 6 && clicExterneRectangle(event.mouse.x, event.mouse.y, rectangleMenuEchap)){
+                if(historiquePageActive[tailleLogique] == ECHAP && clicExterneRectangle(event.mouse.x, event.mouse.y, rectangleMenuEchap)){
                     tailleLogique++;
                     historiquePageActive[tailleLogique] = historiquePageActive[tailleLogique - 2];
                 }
@@ -166,9 +173,9 @@ int main(){
             case ALLEGRO_EVENT_KEY_DOWN:{
                 switch (event.keyboard.keycode) {
                     case ALLEGRO_KEY_ESCAPE:{
-                        if (historiquePageActive[tailleLogique] != 6) {
+                        if (historiquePageActive[tailleLogique] != ECHAP) {
                             tailleLogique++;
-                            historiquePageActive[tailleLogique] = 6;
+                            historiquePageActive[tailleLogique] = ECHAP;
                         }
                         break;
                     }
@@ -182,23 +189,25 @@ int main(){
         }
 
         switch(historiquePageActive[tailleLogique]){
-            case 0:{
+            case INTERFACE0:{
                 dessinerInterface0(imagePrincipale, rectangleAccueil);
                 break;
             }
-            case 1:{
+            case INTERFACE1:{
                 dessinerInterface1(imagePrincipale, nbJoueurs1, nbJoueurs2, nbJoueurs3, nbJoueurs4 ,rectangleInterfaceChoixJoueurs);
                 break;
             }
-            case 2:{
-                //dessinerInterface2(imagePrincipale);
+            case INTERFACE2:{
+                dessinerInterfaceClasses(classes);
                 break;
             }
-            case 3:{
+            case ARENE:{
+
                 break;
             }
-            case 6:{
+            case ECHAP:{
                 dessierMenuEchap(rectangleMenuEchap);
+                break;
             }
         }
     }
@@ -208,6 +217,7 @@ int main(){
 
     //Bitmap
     al_destroy_bitmap(imagePrincipale);
+    al_destroy_bitmap(classes[0].fondEcran);
 
     //Font
     al_destroy_font(rectangleAccueil[0].font);

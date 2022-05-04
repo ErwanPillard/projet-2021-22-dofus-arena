@@ -35,7 +35,6 @@ Rect initialisationInterface1(Rect *r){
     r[1].color = OR;
     r[1].colorThickness = ORfonce;
 
-
     r[0].largeur = 50;
     r[0].hauteur = 50;
     r[0].x = ((float)LARGEUR / 2 - r[0].largeur / 2) - 55;
@@ -56,7 +55,6 @@ Rect initialisationInterface1(Rect *r){
     r[3].y = y;
     r[3].color = OR;
     r[3].colorThickness = ORfonce;
-
 }
 
 void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, ALLEGRO_FONT *nbJoueurs1,ALLEGRO_FONT *nbJoueurs2,ALLEGRO_FONT *nbJoueurs3, ALLEGRO_FONT *nbJoueurs4, Rect r[]){
