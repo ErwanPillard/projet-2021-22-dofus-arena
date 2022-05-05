@@ -13,6 +13,8 @@
 #include "interface0.h"
 #include "echap.h"
 #include "classe.h"
+#include "joueur.h"
+#include "partie.h"
 
 
 #define LARGEUR 1400
@@ -35,7 +37,8 @@ int main(){
     int historiquePageActive[1000] = {0}; // faire un malloc (tableau dynamique) !!!!
     int tailleLogique = 0;
 
-    int nbJoueurs;
+    Partie donneePartie;
+    Joueur joueur[donneePartie.nbJoueurs];
 
     bool end = false;
 
@@ -73,16 +76,9 @@ int main(){
     ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
     ALLEGRO_BITMAP *map1 = al_load_bitmap("../Image/map1.jpeg");
 
-    ALLEGRO_FONT *nbJoueurs1 = al_load_font("../Polices/Achafont.ttf", 60, 0);
-    ALLEGRO_FONT *nbJoueurs2 = al_load_font("../Polices/Achafont.ttf", 60, 0);
-    ALLEGRO_FONT *nbJoueurs3 = al_load_font("../Polices/Achafont.ttf", 60, 0);
-    ALLEGRO_FONT *nbJoueurs4 = al_load_font("../Polices/Achafont.ttf", 60, 0);
-
-
-
-
     al_reserve_samples(2);
 
+            //Musique
     ALLEGRO_SAMPLE *music_Accueil = al_load_sample("../Sound/musique1.ogg");
     ALLEGRO_SAMPLE *whoosh = al_load_sample("../Sound/whoosh.ogg");
 
@@ -103,72 +99,84 @@ int main(){
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_AXES:{
-                for (int i = 0; i < 3 ;i++) {
-                    if(historiquePageActive[tailleLogique] == INTERFACE0 && surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[i])){
-                        rectangleAccueil[i].color = rectangleAccueil[i].colorThickness;
+                switch (historiquePageActive[tailleLogique]) {
+                    case INTERFACE0:{
+                        for (int i = 0; i < 3 ;i++) {
+                            if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[i])){
+                                rectangleAccueil[i].color = rectangleAccueil[i].colorThickness;
+                            }
+                            else{
+                                rectangleAccueil[i].color = OR;
+                            }
+                        }
+                        break;
                     }
-                    else{
-                        rectangleAccueil[i].color = OR;
-                    }
-                }
-                for (int i = 0; i < 5; i++) {
-                    if(historiquePageActive[tailleLogique] == INTERFACE1 && surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[i])){
-                        rectangleInterfaceChoixJoueurs[i].color = rectangleInterfaceChoixJoueurs[i].colorThickness;
-                    }
-                    else{
-                        rectangleInterfaceChoixJoueurs[i].color = OR;
+                    case INTERFACE1:{
+                        for (int i = 0; i < 5; i++) {
+                            if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[i])){
+                                rectangleInterfaceChoixJoueurs[i].color = rectangleInterfaceChoixJoueurs[i].colorThickness;
+                            }
+                            else{
+                                rectangleInterfaceChoixJoueurs[i].color = OR;
+                            }
+                        }
+                        break;
                     }
                 }
                 break;
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
-                for (int i = 0; i < 3; i++) {
-                    if(historiquePageActive[tailleLogique] == INTERFACE0){
-                        if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[0])){
+                switch (historiquePageActive[tailleLogique]) {
+                    case INTERFACE0:{
+                        for (int i = 0; i < 3; i++) {
+                            if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[0])){
+                                al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                                tailleLogique++;
+                                historiquePageActive[tailleLogique] = INTERFACE1;
+                            }
+                            else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1])){
+                                //charger un ancienne partie
+                            }
+                            else if (surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[2])){
+                                end = true;
+                            }
+                        }
+                        break;
+                    }
+                    case INTERFACE1:{
+                        if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[0])){
                             al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                             tailleLogique++;
-                            historiquePageActive[tailleLogique] = INTERFACE1;
+                            historiquePageActive[tailleLogique] = INTERFACE2;
+                            donneePartie.nbJoueurs = 2;
                         }
-                        else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1])){
-                            //charger un ancienne partie
+                        else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[1])){
+                            al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                            tailleLogique++;
+                            historiquePageActive[tailleLogique] = INTERFACE2;
+                            donneePartie.nbJoueurs = 2;
                         }
-                        else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[2])){
-                            end = true;
+                        else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[2])){
+                            al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                            tailleLogique++;
+                            historiquePageActive[tailleLogique] = INTERFACE2;
+                            donneePartie.nbJoueurs = 4;
                         }
+                        else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[3])){
+                            al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                            tailleLogique++;
+                            historiquePageActive[tailleLogique] = INTERFACE2;
+                            donneePartie.nbJoueurs = 1;
+                        }
+                        break;
                     }
                 }
-                if(historiquePageActive[tailleLogique] == INTERFACE1){
-                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[0])){
-                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                case ECHAP:{
+                    if(clicExterneRectangle(event.mouse.x, event.mouse.y, rectangleMenuEchap)){
                         tailleLogique++;
-                        historiquePageActive[tailleLogique] = INTERFACE2;
-                        nbJoueurs = 2;
-                    }
-                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[1])){
-                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
-                        tailleLogique++;
-                        historiquePageActive[tailleLogique] = INTERFACE2;
-                        nbJoueurs = 2;
-                    }
-                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[2])){
-                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
-                        tailleLogique++;
-                        historiquePageActive[tailleLogique] = INTERFACE2;
-                        nbJoueurs = 4;
-                    }
-                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[3])){
-                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
-                        tailleLogique++;
-                        historiquePageActive[tailleLogique] = INTERFACE2;
-                        nbJoueurs = 1;
+                        historiquePageActive[tailleLogique] = historiquePageActive[tailleLogique - 2];
                     }
                 }
-
-                if(historiquePageActive[tailleLogique] == ECHAP && clicExterneRectangle(event.mouse.x, event.mouse.y, rectangleMenuEchap)){
-                    tailleLogique++;
-                    historiquePageActive[tailleLogique] = historiquePageActive[tailleLogique - 2];
-                }
-
                 break;
             }
             case ALLEGRO_EVENT_KEY_DOWN:{
@@ -195,7 +203,7 @@ int main(){
                 break;
             }
             case INTERFACE1:{
-                dessinerInterface1(imagePrincipale, nbJoueurs1, nbJoueurs2, nbJoueurs3, nbJoueurs4 ,rectangleInterfaceChoixJoueurs);
+                dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs);
                 break;
             }
             case INTERFACE2:{
@@ -227,10 +235,10 @@ int main(){
     al_destroy_font(rectangleAccueil[1].font);
     al_destroy_font(rectangleAccueil[2].font);
 
-    al_destroy_font(nbJoueurs1);
-    al_destroy_font(nbJoueurs2);
-    al_destroy_font(nbJoueurs3);
-    al_destroy_font(nbJoueurs4);
+    al_destroy_font(rectangleInterfaceChoixJoueurs[0].font);
+    al_destroy_font(rectangleInterfaceChoixJoueurs[1].font);
+    al_destroy_font(rectangleInterfaceChoixJoueurs[2].font);
+    al_destroy_font(rectangleInterfaceChoixJoueurs[3].font);
 
     //Sample
     al_destroy_sample(music_Accueil);
