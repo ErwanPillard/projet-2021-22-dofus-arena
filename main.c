@@ -55,7 +55,8 @@ int main(){
     al_register_event_source(queue, al_get_mouse_event_source());
 
     while(!end){
-        //dessinerInterface0();
+        interface0(event, queue);
+        end = true;
         //dessinerInterface1();
         //dessinerInterfaceClasses();
         //dessinerArene();
