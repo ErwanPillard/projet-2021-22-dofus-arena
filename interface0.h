@@ -25,7 +25,7 @@
 
 void initialisationInterface0(Rect *r);
 void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]);
-void interface0();
+void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event);
 
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_INTERFACE0_H

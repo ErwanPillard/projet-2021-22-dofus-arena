@@ -37,6 +37,7 @@ Rect initialisationInterface1(Rect *r){
     r[1].y = y;
     r[1].color = OR;
     r[1].colorThickness = ORfonce;
+    r[1].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
 
     r[0].largeur = 50;
     r[0].hauteur = 50;
@@ -44,6 +45,7 @@ Rect initialisationInterface1(Rect *r){
     r[0].y = y;
     r[0].color = OR;
     r[0].colorThickness = ORfonce;
+    r[0].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
 
     r[2].largeur = 50;
     r[2].hauteur = 50;
@@ -51,6 +53,7 @@ Rect initialisationInterface1(Rect *r){
     r[2].y = y;
     r[2].color = OR;
     r[2].colorThickness = ORfonce;
+    r[2].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
 
     r[3].largeur = 50;
     r[3].hauteur = 50;
@@ -58,19 +61,20 @@ Rect initialisationInterface1(Rect *r){
     r[3].y = y;
     r[3].color = OR;
     r[3].colorThickness = ORfonce;
+    r[3].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
 }
 
-void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, ALLEGRO_FONT *nbJoueurs1,ALLEGRO_FONT *nbJoueurs2,ALLEGRO_FONT *nbJoueurs3, ALLEGRO_FONT *nbJoueurs4, Rect r[]){
+void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     al_draw_bitmap(imagePrincipale, 0, 0, 0);
 
     dessinerFilledRectangle(r[0].x, r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
     dessinerFilledRectangle(r[1].x, r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
     dessinerFilledRectangle(r[2].x, r[2].y,r[2].x + r[2].largeur, r[2].y + r[2].hauteur, r[2].color);
     dessinerFilledRectangle(r[3].x, r[3].y,r[3].x + r[3].largeur, r[3].y + r[3].hauteur, r[3].color);
-    al_draw_text(nbJoueurs1, NOIR, r[0].x + 10, r[0].y - 10, 0, "2");
-    al_draw_text(nbJoueurs1, NOIR, r[1].x + 10, r[1].y - 10, 0, "3");
-    al_draw_text(nbJoueurs1, NOIR, r[2].x + 10, r[2].y - 10, 0, "4");
-    al_draw_text(nbJoueurs1, NOIR, r[3].x + 10, r[3].y - 10, 0, "1");
+    al_draw_text(r[0].font, NOIR, r[0].x + 10, r[0].y - 10, 0, "2");
+    al_draw_text(r[1].font, NOIR, r[1].x + 10, r[1].y - 10, 0, "3");
+    al_draw_text(r[2].font, NOIR, r[2].x + 10, r[2].y - 10, 0, "4");
+    al_draw_text(r[3].font, NOIR, r[3].x + 10, r[3].y - 10, 0, "1");
 
     al_flip_display();
 }

@@ -42,26 +42,19 @@ void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     al_flip_display();
 }
 
-void interface0(){
-    ALLEGRO_EVENT_QUEUE* queue = NULL;
-    ALLEGRO_EVENT event;
-
+void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
     bool end = false;
-
-    ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
 
     Rect rectangleAccueil[5];
     initialisationInterface0(rectangleAccueil);
 
+    ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
     ALLEGRO_SAMPLE *whoosh = al_load_sample("../Sound/whoosh.ogg");
 
-    queue = al_create_event_queue();
-    assert(queue != NULL);
+    dessinerInterface0(imagePrincipale, rectangleAccueil);
 
-    al_register_event_source(queue, al_get_mouse_event_source());
-
-    al_wait_for_event(queue, &event);
     while(!end){
+        al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_AXES:{
                 for (int i = 0; i < 3 ;i++) {
@@ -87,10 +80,11 @@ void interface0(){
                         //Liberation
                     }
                 }
+                break;
             }
         }
         dessinerInterface0(imagePrincipale, rectangleAccueil);
     }
-
-    al_destroy_event_queue(queue);
+    al_destroy_bitmap(imagePrincipale);
+    al_destroy_sample(whoosh);
 }
