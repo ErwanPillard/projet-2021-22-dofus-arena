@@ -7,8 +7,8 @@
 Rect initialisationInterface0(Rect r[]){
     r[0].largeur = 200;
     r[0].hauteur = 50;
-    r[0].x = (float)LARGEUR / 2 - r[0].largeur / 2;
-    r[0].y = (float)HAUTEUR / 2 - r[0].hauteur / 2;
+    r[0].x = (float)LARGEUR / 2- r[0].largeur / 2;
+    r[0].y = ((float)HAUTEUR / 2-100)- r[0].hauteur / 2;
     r[0].color = OR;
     r[0].thickness = 5;
     r[0].colorThickness = ORfonce;
