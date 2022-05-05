@@ -6,7 +6,7 @@
 #define ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_PARTIE_H
 
 typedef struct{
-    int nbJoueurs
+    int nbJoueurs;
 }Partie;
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_PARTIE_H

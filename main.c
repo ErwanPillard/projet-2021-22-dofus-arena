@@ -37,7 +37,7 @@ int main(){
     int historiquePageActive[1000] = {0}; // faire un malloc (tableau dynamique) !!!!
     int tailleLogique = 0;
 
-    Partie donneePartie;
+    Partie donneePartie = {0};
     Joueur joueur[donneePartie.nbJoueurs];
 
     bool end = false;
@@ -56,8 +56,8 @@ int main(){
     initialisationInterface0(rectangleAccueil);
     initialisationInterface1(rectangleInterfaceChoixJoueurs);
     rectangleMenuEchap = initialisationMenuEchap();
-
     initialisationClasses(classes);
+    initialiserJoueur(joueur);
 
     //Création des éléments/données
     display = al_create_display(LARGEUR, HAUTEUR);
@@ -154,7 +154,7 @@ int main(){
                             al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                             tailleLogique++;
                             historiquePageActive[tailleLogique] = INTERFACE2;
-                            donneePartie.nbJoueurs = 2;
+                            donneePartie.nbJoueurs = 3;
                         }
                         else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[2])){
                             al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
@@ -170,11 +170,11 @@ int main(){
                         }
                         break;
                     }
-                }
-                case ECHAP:{
-                    if(clicExterneRectangle(event.mouse.x, event.mouse.y, rectangleMenuEchap)){
-                        tailleLogique++;
-                        historiquePageActive[tailleLogique] = historiquePageActive[tailleLogique - 2];
+                    case ECHAP:{
+                        if(clicExterneRectangle(event.mouse.x, event.mouse.y, rectangleMenuEchap)){
+                            tailleLogique++;
+                            historiquePageActive[tailleLogique] = historiquePageActive[tailleLogique - 2];
+                        }
                     }
                 }
                 break;
@@ -207,7 +207,15 @@ int main(){
                 break;
             }
             case INTERFACE2:{
-                dessinerInterfaceClasses(classes);
+                int classeEnCours = 0; // lorsque qu'on arrive sur l'interface ou a une premiere classe par default a l'ecran
+                int posJoueur = 0;
+
+                for (int i = 0; i < donneePartie.nbJoueurs; i++) {
+                    while(joueur[i].classe == 5) {
+                        dessinerInterfaceClasses(classes, classeEnCours, posJoueur);
+                        classe(event, queue, joueur, classes, i, classeEnCours, posJoueur);
+                    }
+                }
                 break;
             }
             case ARENE:{

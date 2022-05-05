@@ -9,4 +9,6 @@ typedef struct{
     int classe;
 }Joueur;
 
+void initialiserJoueur(Joueur *joueur);
+
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_JOUEUR_H

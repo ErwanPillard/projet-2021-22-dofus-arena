@@ -10,13 +10,14 @@
 #include "joueur.h"
 
 #define NB_POSITION 8
-#define NB_RECT 5
+#define NB_RECT 8
 
-enum bouton{VALIDER};
+enum bouton{VALIDER, CLASSE1, CLASSE2, CLASSE3, CLASSE4, FLECHEGAUCHE, FLECHEDROITE};
 
 typedef struct {
-    int x, y;
+    int x, y, largeur, hauteur;
     ALLEGRO_BITMAP *image;
+    ALLEGRO_COLOR color;
 }Perso;
 
 typedef struct {
@@ -26,8 +27,10 @@ typedef struct {
 }Classe;
 
 
-Classe initialisationClasses(Classe classe[]);
-void dessinerInterfaceClasses(Classe c[]);
+void initialisationClasses(Classe *classe);
+void dessinerInterfaceClasses(Classe c[], int classeEnCours, int posJoueur);
+
+void classe(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *joueur, Classe *classe, int indiceJoueur, int classeEnCours, int posJoueur);
 
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_CLASSE_H
