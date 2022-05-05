@@ -47,3 +47,17 @@ void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
 
     al_flip_display();
 }
+
+void afficherInterface0(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue){
+    bool end = false;
+
+    al_wait_for_event(queue, &event);
+    while(!end){
+        switch (event.type) {
+            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
+
+                break;
+            }
+        }
+    }
+}

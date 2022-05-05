@@ -28,6 +28,47 @@ int main(){
     ALLEGRO_EVENT_QUEUE* queue = NULL;
     ALLEGRO_EVENT event;
 
+    bool end = false;
+
+    //Initialisation / installation addons
+    assert(al_init());
+    assert(al_init_image_addon());
+    assert(al_install_mouse());
+    assert(al_install_keyboard());
+    assert(al_init_primitives_addon());
+    al_init_font_addon();
+    assert(al_init_ttf_addon());
+    assert(al_install_audio());
+    assert(al_init_acodec_addon());
+
+    display = al_create_display(LARGEUR, HAUTEUR);
+    assert(display != NULL);
+
+    al_set_window_title(display, "Dofus");
+    al_set_window_position(display, 10, 0);
+
+    queue = al_create_event_queue();
+    assert(queue != NULL);
+
+    al_register_event_source(queue, al_get_display_event_source(display));
+    al_register_event_source(queue, al_get_keyboard_event_source());
+    al_register_event_source(queue, al_get_mouse_event_source());
+
+    while(!end){
+        //dessinerInterface0();
+        //dessinerInterface1();
+        //dessinerInterfaceClasses();
+        //dessinerArene();
+    }
+
+}
+
+int zebi(){
+    //Déclarations
+    ALLEGRO_DISPLAY* display = NULL;
+    ALLEGRO_EVENT_QUEUE* queue = NULL;
+    ALLEGRO_EVENT event;
+
     enum historiquePage{INTERFACE0, INTERFACE1, INTERFACE2, ARENE, INTERFACE4, ECHAP, CHARGEMENT};
 
     Rect rectangleAccueil[5]; // Cases de la premiere page accueil
@@ -124,7 +165,7 @@ int main(){
     sleep(1);
     al_draw_bitmap(ecranChargement, 0, 0, 0);
     dessinerFilledRectangle2(30, HAUTEUR-80, LARGEUR-60, 40, OR);
-    al_draw_text(chargement1, NOIR,  698, 723, 0, "lancement...");
+    al_draw_text(chargement1, NOIR,  696, 723, 0, "lancement...");
     al_draw_text(chargement2, NOIR,  760, 728, 0, "100%");
     al_flip_display();
     sleep(1.5);
