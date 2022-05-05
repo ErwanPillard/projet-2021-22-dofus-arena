@@ -29,7 +29,7 @@ typedef struct{
 }Rect;
 
 unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled);
-
+void dessinerFilledRectangle2(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color);
 void dessinerFilledRectangle(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color);
 
 void dessinerRectangle(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color, float thickness);

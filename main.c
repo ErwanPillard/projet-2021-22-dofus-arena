@@ -8,6 +8,10 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <assert.h>
+#include <unistd.h>
+#include "time.h"
+
+
 
 #include "menu.h"
 #include "interface0.h"
@@ -24,7 +28,7 @@ int main(){
     ALLEGRO_EVENT_QUEUE* queue = NULL;
     ALLEGRO_EVENT event;
 
-    enum historiquePage{INTERFACE0, INTERFACE1, INTERFACE2, ARENE, INTERFACE4, ECHAP};
+    enum historiquePage{INTERFACE0, INTERFACE1, INTERFACE2, ARENE, INTERFACE4, ECHAP, CHARGEMENT};
 
     Rect rectangleAccueil[5]; // Cases de la premiere page accueil
     Rect rectangleMenuEchap;
@@ -72,11 +76,15 @@ int main(){
 
     ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
     ALLEGRO_BITMAP *map1 = al_load_bitmap("../Image/map1.jpeg");
+    ALLEGRO_BITMAP *ecranChargement = al_load_bitmap("../Image/FondEcran.jpeg");
 
     ALLEGRO_FONT *nbJoueurs1 = al_load_font("../Polices/Achafont.ttf", 60, 0);
     ALLEGRO_FONT *nbJoueurs2 = al_load_font("../Polices/Achafont.ttf", 60, 0);
     ALLEGRO_FONT *nbJoueurs3 = al_load_font("../Polices/Achafont.ttf", 60, 0);
     ALLEGRO_FONT *nbJoueurs4 = al_load_font("../Polices/Achafont.ttf", 60, 0);
+    ALLEGRO_FONT *chargement = al_load_font("../Polices/Achafont.ttf", 30, 0);
+    ALLEGRO_FONT *chargement1 = al_load_font("../Polices/Achafont.ttf", 35, 0);
+    ALLEGRO_FONT *chargement2 = al_load_font("../Polices/Achafont.ttf", 30, 0);
 
 
 
@@ -94,6 +102,33 @@ int main(){
     al_attach_sample_instance_to_mixer(musicInstance, al_get_default_mixer());
 
     //Premier affichage
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, 50, 40, OR);
+    al_flip_display();
+    sleep(1);
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, 400, 40, OR);
+    al_flip_display();
+    sleep(1);
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, 1000, 40, OR);
+    al_draw_text(chargement, NOIR,  642, 725, 0, "chargement des mondes...");
+    al_draw_text(chargement2, NOIR,  762, 728, 0, "65%");
+    al_flip_display();
+    sleep(1);
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, LARGEUR-90, 40, OR);
+    al_draw_text(chargement, NOIR,  644, 725, 0, "chargement des packages...");
+    al_draw_text(chargement2, NOIR,  772, 728, 0, "90%");
+    al_flip_display();
+    sleep(1);
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, LARGEUR-60, 40, OR);
+    al_draw_text(chargement1, NOIR,  698, 723, 0, "lancement...");
+    al_draw_text(chargement2, NOIR,  760, 728, 0, "100%");
+    al_flip_display();
+    sleep(1.5);
+
 
     dessinerInterface0(imagePrincipale, rectangleAccueil);
 
@@ -211,6 +246,8 @@ int main(){
             case ECHAP:{
                 dessierMenuEchap(rectangleMenuEchap);
                 break;
+            }
+            case CHARGEMENT:{
             }
         }
     }

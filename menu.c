@@ -14,6 +14,9 @@ unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled){
 void dessinerFilledRectangle(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color){
     al_draw_filled_rectangle(x, y, largeur, hauteur, color);
 }
+void dessinerFilledRectangle2(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color){
+    al_draw_filled_rectangle(x, y, x+largeur, y+hauteur, color);
+}
 
 void dessinerRectangle(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color, float thickness){
     al_draw_rectangle(x, y, largeur, hauteur, color, thickness);
