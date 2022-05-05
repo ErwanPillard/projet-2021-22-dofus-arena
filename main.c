@@ -8,13 +8,15 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <assert.h>
+#include <unistd.h>
+#include "time.h"
+
+
 
 #include "menu.h"
 #include "interface0.h"
 #include "echap.h"
 #include "classe.h"
-#include "joueur.h"
-#include "partie.h"
 
 
 #define LARGEUR 1400
@@ -26,7 +28,49 @@ int main(){
     ALLEGRO_EVENT_QUEUE* queue = NULL;
     ALLEGRO_EVENT event;
 
-    enum historiquePage{INTERFACE0, INTERFACE1, INTERFACE2, ARENE, INTERFACE4, ECHAP};
+    bool end = false;
+
+    //Initialisation / installation addons
+    assert(al_init());
+    assert(al_init_image_addon());
+    assert(al_install_mouse());
+    assert(al_install_keyboard());
+    assert(al_init_primitives_addon());
+    al_init_font_addon();
+    assert(al_init_ttf_addon());
+    assert(al_install_audio());
+    assert(al_init_acodec_addon());
+
+    display = al_create_display(LARGEUR, HAUTEUR);
+    assert(display != NULL);
+
+    al_set_window_title(display, "Dofus");
+    al_set_window_position(display, 10, 0);
+
+    queue = al_create_event_queue();
+    assert(queue != NULL);
+
+    al_register_event_source(queue, al_get_display_event_source(display));
+    al_register_event_source(queue, al_get_keyboard_event_source());
+    al_register_event_source(queue, al_get_mouse_event_source());
+
+    while(!end){
+        interface0(event, queue);
+        end = true;
+        //dessinerInterface1();
+        //dessinerInterfaceClasses();
+        //dessinerArene();
+    }
+
+}
+
+int zebi(){
+    //Déclarations
+    ALLEGRO_DISPLAY* display = NULL;
+    ALLEGRO_EVENT_QUEUE* queue = NULL;
+    ALLEGRO_EVENT event;
+
+    enum historiquePage{INTERFACE0, INTERFACE1, INTERFACE2, ARENE, INTERFACE4, ECHAP, CHARGEMENT};
 
     Rect rectangleAccueil[5]; // Cases de la premiere page accueil
     Rect rectangleMenuEchap;
@@ -75,6 +119,18 @@ int main(){
 
     ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
     ALLEGRO_BITMAP *map1 = al_load_bitmap("../Image/map1.jpeg");
+    ALLEGRO_BITMAP *ecranChargement = al_load_bitmap("../Image/FondEcran.jpeg");
+
+    ALLEGRO_FONT *nbJoueurs1 = al_load_font("../Polices/Achafont.ttf", 60, 0);
+    ALLEGRO_FONT *nbJoueurs2 = al_load_font("../Polices/Achafont.ttf", 60, 0);
+    ALLEGRO_FONT *nbJoueurs3 = al_load_font("../Polices/Achafont.ttf", 60, 0);
+    ALLEGRO_FONT *nbJoueurs4 = al_load_font("../Polices/Achafont.ttf", 60, 0);
+    ALLEGRO_FONT *chargement = al_load_font("../Polices/Achafont.ttf", 30, 0);
+    ALLEGRO_FONT *chargement1 = al_load_font("../Polices/Achafont.ttf", 35, 0);
+    ALLEGRO_FONT *chargement2 = al_load_font("../Polices/Achafont.ttf", 30, 0);
+
+
+
 
     al_reserve_samples(2);
 
@@ -90,6 +146,33 @@ int main(){
     al_attach_sample_instance_to_mixer(musicInstance, al_get_default_mixer());
 
     //Premier affichage
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, 50, 40, OR);
+    al_flip_display();
+    sleep(1);
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, 400, 40, OR);
+    al_flip_display();
+    sleep(1);
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, 1000, 40, OR);
+    al_draw_text(chargement, NOIR,  642, 725, 0, "chargement des mondes...");
+    al_draw_text(chargement2, NOIR,  762, 728, 0, "65%");
+    al_flip_display();
+    sleep(1);
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, LARGEUR-90, 40, OR);
+    al_draw_text(chargement, NOIR,  644, 725, 0, "chargement des packages...");
+    al_draw_text(chargement2, NOIR,  772, 728, 0, "90%");
+    al_flip_display();
+    sleep(1);
+    al_draw_bitmap(ecranChargement, 0, 0, 0);
+    dessinerFilledRectangle2(30, HAUTEUR-80, LARGEUR-60, 40, OR);
+    al_draw_text(chargement1, NOIR,  696, 723, 0, "lancement...");
+    al_draw_text(chargement2, NOIR,  760, 728, 0, "100%");
+    al_flip_display();
+    sleep(1.5);
+
 
     dessinerInterface0(imagePrincipale, rectangleAccueil);
 
@@ -169,7 +252,51 @@ int main(){
                             donneePartie.nbJoueurs = 1;
                         }
                         break;
+                for (int i = 0; i < 3; i++) {
+                    if(historiquePageActive[tailleLogique] == INTERFACE0){
+                        if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[0])){
+                            al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                            tailleLogique++;
+                            historiquePageActive[tailleLogique] = INTERFACE1;
+                        }
+                        else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1])){
+                            //charger un ancienne partie
+                        }
+                        else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[2])){
+                            end = true;
+                        }
                     }
+                }
+                if(historiquePageActive[tailleLogique] == INTERFACE1){
+                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[0])){
+                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                        tailleLogique++;
+                        historiquePageActive[tailleLogique] = INTERFACE2;
+                        nbJoueurs = 2;
+                    }
+                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[1])){
+                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                        tailleLogique++;
+                        historiquePageActive[tailleLogique] = INTERFACE2;
+                        nbJoueurs = 2;
+                    }
+                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[2])){
+                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                        tailleLogique++;
+                        historiquePageActive[tailleLogique] = INTERFACE2;
+                        nbJoueurs = 4;
+                    }
+                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[3])){
+                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                        tailleLogique++;
+                        historiquePageActive[tailleLogique] = INTERFACE2;
+                        nbJoueurs = 1;
+                    }
+                }
+
+                if(historiquePageActive[tailleLogique] == ECHAP && clicExterneRectangle(event.mouse.x, event.mouse.y, rectangleMenuEchap)){
+                    tailleLogique++;
+                    historiquePageActive[tailleLogique] = historiquePageActive[tailleLogique - 2];
                     case ECHAP:{
                         if(clicExterneRectangle(event.mouse.x, event.mouse.y, rectangleMenuEchap)){
                             tailleLogique++;
@@ -177,6 +304,7 @@ int main(){
                         }
                     }
                 }
+
                 break;
             }
             case ALLEGRO_EVENT_KEY_DOWN:{
@@ -203,7 +331,7 @@ int main(){
                 break;
             }
             case INTERFACE1:{
-                dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs);
+                dessinerInterface1(imagePrincipale, nbJoueurs1, nbJoueurs2, nbJoueurs3, nbJoueurs4 ,rectangleInterfaceChoixJoueurs);
                 break;
             }
             case INTERFACE2:{
@@ -227,6 +355,8 @@ int main(){
             case ECHAP:{
                 dessierMenuEchap(rectangleMenuEchap);
                 break;
+            }
+            case CHARGEMENT:{
             }
         }
     }

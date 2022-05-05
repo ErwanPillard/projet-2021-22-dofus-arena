@@ -23,9 +23,9 @@
 #define NOIR al_map_rgb(0,0,0)
 
 
-Rect initialisationInterface0(Rect r[]);
+void initialisationInterface0(Rect *r);
 void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]);
-
+void interface0();
 
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_INTERFACE0_H

@@ -29,7 +29,7 @@ typedef struct{
 }Rect;
 
 unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled);
-
+void dessinerFilledRectangle2(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color);
 void dessinerFilledRectangle(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color);
 
 void dessinerRectangle(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color, float thickness);
@@ -38,7 +38,7 @@ unsigned char clicExterneRectangle( int mouse_x, int mouse_y, Rect r);
 
 Rect initialisationInterface1(Rect *r);
 
-void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]);
+void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, ALLEGRO_FONT *nbJoueurs1,ALLEGRO_FONT *nbJoueurs2,ALLEGRO_FONT *nbJoueurs3, ALLEGRO_FONT *nbJoueurs4, Rect r[]);
 
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_MENU_H
