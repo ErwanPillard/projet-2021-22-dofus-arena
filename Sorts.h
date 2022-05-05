@@ -3,7 +3,7 @@
 
 
 typedef struct{
-    int portéeX;
+    int porteeX;
     int porteeY;
 }Sort;
 
