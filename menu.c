@@ -30,34 +30,34 @@ unsigned char clicExterneRectangle( int mouse_x, int mouse_y, Rect r){
 }
 
 Rect initialisationInterface1(Rect *r){
-    float y = 200.0f;
-    r[1].largeur = 50;
-    r[1].hauteur = 50;
+    float y = 400.0f;
+    r[1].largeur = 100;
+    r[1].hauteur = 100;
     r[1].x = (float)LARGEUR / 2 - r[1].largeur / 2;
     r[1].y = y;
     r[1].color = OR;
     r[1].colorThickness = ORfonce;
     r[1].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
 
-    r[0].largeur = 50;
-    r[0].hauteur = 50;
-    r[0].x = ((float)LARGEUR / 2 - r[0].largeur / 2) - 55;
+    r[0].largeur = 100;
+    r[0].hauteur = 100;
+    r[0].x = ((float)LARGEUR / 2 - r[0].largeur / 2) - (r[1].largeur + 5);
     r[0].y = y;
     r[0].color = OR;
     r[0].colorThickness = ORfonce;
     r[0].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
 
-    r[2].largeur = 50;
-    r[2].hauteur = 50;
-    r[2].x = ((float)LARGEUR / 2 - r[2].largeur / 2) + 55;
+    r[2].largeur = 100;
+    r[2].hauteur = 100;
+    r[2].x = ((float)LARGEUR / 2 - r[2].largeur / 2) + (r[1].largeur + 5);
     r[2].y = y;
     r[2].color = OR;
     r[2].colorThickness = ORfonce;
     r[2].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
 
-    r[3].largeur = 50;
-    r[3].hauteur = 50;
-    r[3].x = ((float)LARGEUR / 2 - r[3].largeur / 2) + 110;
+    r[3].largeur = 100;
+    r[3].hauteur = 100;
+    r[3].x = ((float)LARGEUR / 2 - r[3].largeur / 2) + (r[2].largeur + 5);
     r[3].y = y;
     r[3].color = OR;
     r[3].colorThickness = ORfonce;
@@ -77,4 +77,58 @@ void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     al_draw_text(r[3].font, NOIR, r[3].x + 10, r[3].y - 10, 0, "1");
 
     al_flip_display();
+}
+
+void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie){
+    bool end = false;
+
+    Rect rectangleInterfaceChoixJoueurs[NB_RECTANGLE_NBJ];
+    ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
+
+    ALLEGRO_SAMPLE *whoosh = al_load_sample("../Sound/whoosh.ogg");
+
+    initialisationInterface1(rectangleInterfaceChoixJoueurs);
+    dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs);
+
+    while(!end){
+        al_wait_for_event(queue, &event);
+        switch (event.type) {
+            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
+                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[0])) {
+                    al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                    donneePartie->nbJoueurs = 2;
+                    end = true;
+                }
+                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[1])) {
+                    al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                    donneePartie->nbJoueurs = 3;
+                    end = true;
+                }
+                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[2])) {
+                    al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                    donneePartie->nbJoueurs = 4;
+                    end = true;
+                }
+                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[3])) {
+                    al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+
+                    donneePartie->nbJoueurs = 1;
+                    end = true;
+                }
+                break;
+            }
+            case ALLEGRO_EVENT_MOUSE_AXES:{
+                for (int i = 0; i < NB_RECTANGLE_NBJ; i++) {
+                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[i])){
+                        rectangleInterfaceChoixJoueurs[i].color = rectangleInterfaceChoixJoueurs[i].colorThickness;
+                    }
+                    else{
+                        rectangleInterfaceChoixJoueurs[i].color = OR;
+                    }
+                }
+                break;
+            }
+        }
+        dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs);
+    }
 }
