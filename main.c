@@ -8,7 +8,6 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <assert.h>
-#include <unistd.h>
 #include "time.h"
 
 
@@ -18,6 +17,7 @@
 #include "echap.h"
 #include "classe.h"
 #include "chargement.h"
+#include "arene.h"
 
 
 #define LARGEUR 1400
@@ -62,9 +62,10 @@ int main(){
     while(!end){
         //affichageChargement();
         //interface0(queue, event);
-        menu(queue, event, &donneePartie);
-        classe(event, queue, joueur, donneePartie);
-        //dessinerArene();
+        //menu(queue, event, &donneePartie);
+        //classe(event, queue, joueur, donneePartie);
+
+        arene(event, queue);
         end = true;
     }
 
