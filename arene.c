@@ -4,8 +4,6 @@ void initialiserArene(){
 
 }
 
-
-
 void dessinerArene(ALLEGRO_BITMAP *fond ){
 
     al_draw_scaled_bitmap(fond, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
@@ -21,7 +19,7 @@ void dessinerArene(ALLEGRO_BITMAP *fond ){
     // y = ax + b
     // a = yb - ya / xb - xa
 
-    //y = 0,56x - 372
+    //y = 0,56dx - 372
     al_draw_line((float)LARGEUR/2, 20, (float)LARGEUR - 20, 400, BLANC, 5);
 
     //y = -0,56x + 412

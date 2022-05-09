@@ -7,6 +7,7 @@
 
 typedef struct{
     int classe;
+
 }Joueur;
 
 void initialiserJoueur(Joueur *joueur);
