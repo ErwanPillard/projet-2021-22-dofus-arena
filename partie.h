@@ -7,6 +7,7 @@
 
 typedef struct{
     int nbJoueurs;
+    char nom[50];
 }Partie;
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_PARTIE_H

@@ -61,11 +61,11 @@ int main(){
     al_wait_for_event(queue, &event);
     while(!end){
         //affichageChargement();
-        //interface0(queue, event);
-        //menu(queue, event, &donneePartie);
-        //classe(event, queue, joueur, donneePartie);
+        interface0(queue, event);
+        menu(queue, event, &donneePartie);
+        classe(event, queue, joueur, donneePartie);
 
-        arene(event, queue);
+        /*arene(event, queue);*/
         end = true;
     }
 

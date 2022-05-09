@@ -4,6 +4,7 @@
 
 #ifndef ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
 #define ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -16,12 +17,11 @@
 
 #include "menu.h"
 
-typedef struct{
-}Arene;
 
 void initialiserArene();
 void dessinerArene();
 
 void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue);
 
-#endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
+
+#endif ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
