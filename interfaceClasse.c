@@ -80,7 +80,6 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
 
     classe[2].infoClasse = al_load_bitmap("../Image/Classes/eniripsa/infoEniripsa.png");
     classe[2].fondEcran = al_load_bitmap("../Image/Classes/eniripsa/eniripsafondecran.jpg");
-
     classe[2].perso[0].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa1.png");
     classe[2].perso[1].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa2.png");
     classe[2].perso[2].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa3.png");
@@ -90,7 +89,16 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     classe[2].perso[6].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa7.png");
     classe[2].perso[7].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa8.png");
 
-
+    //4eme classe
+    classe[3].fondEcran = al_load_bitmap("../Image/Classes/huppermage/fondecranhuppermage.jpg");
+    classe[3].perso[0].image = al_load_bitmap("../Image/Classes/huppermage/hup1.png");
+    classe[3].perso[1].image = al_load_bitmap("../Image/Classes/huppermage/hup2.png");
+    classe[3].perso[2].image = al_load_bitmap("../Image/Classes/huppermage/hup3.png");
+    classe[3].perso[3].image = al_load_bitmap("../Image/Classes/huppermage/hup4.png");
+    classe[3].perso[4].image = al_load_bitmap("../Image/Classes/huppermage/hup5.png");
+    classe[3].perso[5].image = al_load_bitmap("../Image/Classes/huppermage/hup6.png");
+    classe[3].perso[6].image = al_load_bitmap("../Image/Classes/huppermage/hup7.png");
+    classe[3].perso[7].image = al_load_bitmap("../Image/Classes/huppermage/hup8.png");
 }
 
 void dessinerImageFond(int classeEnCours, AffichageClasse classe[]){
@@ -109,6 +117,11 @@ void dessinerImageFond(int classeEnCours, AffichageClasse classe[]){
         case 2:{
             al_draw_scaled_bitmap(classe[2].fondEcran, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
             al_draw_scaled_bitmap(classe[2].infoClasse, 0, 0, 882, 1250, 30, 0, 585, 826, 0);
+            break;
+        }
+        case 3:{
+            al_draw_scaled_bitmap(classe[3].fondEcran, 0, 0, 1280, 720, 0, 0, LARGEUR, HAUTEUR, 0);
+            //al_draw_scaled_bitmap(classe[3].infoClasse, 0, 0, 882, 1250, 30, 0, 585, 826, 0);
             break;
         }
     }
