@@ -31,37 +31,39 @@ unsigned char clicExterneRectangle( int mouse_x, int mouse_y, Rect r){
 
 Rect initialisationInterface1(Rect *r){
     float y = 400.0f;
+    //Correspond au numéro 3
     r[1].largeur = 100;
     r[1].hauteur = 100;
     r[1].x = (float)LARGEUR / 2 - r[1].largeur / 2;
-    r[1].y = y;
+    r[1].y = y-100;
     r[1].color = OR;
     r[1].colorThickness = ORfonce;
-    r[1].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
+    r[1].font = al_load_font("../Polices/allegroopen.ttf", 145, 0);
 
+//Correspond au numéro 2
     r[0].largeur = 100;
     r[0].hauteur = 100;
     r[0].x = ((float)LARGEUR / 2 - r[0].largeur / 2) - (r[1].largeur + 5);
-    r[0].y = y;
+    r[0].y = y-100;
     r[0].color = OR;
     r[0].colorThickness = ORfonce;
-    r[0].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
-
+    r[0].font = al_load_font("../Polices/allegroopen.ttf", 145, 0);
+//Correspond au numéro 4
     r[2].largeur = 100;
     r[2].hauteur = 100;
     r[2].x = ((float)LARGEUR / 2 - r[2].largeur / 2) + (r[1].largeur + 5);
-    r[2].y = y;
+    r[2].y = y-100;
     r[2].color = OR;
     r[2].colorThickness = ORfonce;
-    r[2].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
-
+    r[2].font = al_load_font("../Polices/allegroopen.ttf", 145, 0);
+//Correspond au numéro 1
     r[3].largeur = 100;
     r[3].hauteur = 100;
     r[3].x = ((float)LARGEUR / 2 - r[3].largeur / 2) + (r[2].largeur + 5);
-    r[3].y = y;
+    r[3].y = y+50;
     r[3].color = OR;
     r[3].colorThickness = ORfonce;
-    r[3].font = al_load_font("../Polices/Achafont.ttf", 60, 0);
+    r[3].font = al_load_font("../allegroopen.ttf", 145, 0);
 }
 
 void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
