@@ -15,7 +15,7 @@
 #include "menu.h"
 #include "interface0.h"
 #include "echap.h"
-#include "classe.h"
+#include "interfaceClasse.h"
 #include "chargement.h"
 #include "arene.h"
 
@@ -57,18 +57,18 @@ int main(){
 
     Partie donneePartie = {0};
     Joueur joueur[4];
+    Classe classe[4];
+    initialiserClasses(classe);
 
     al_wait_for_event(queue, &event);
     while(!end){
         //affichageChargement();
-        interface0(queue, event);
+        //interface0(queue, event);
         menu(queue, event, &donneePartie);
-        classe(event, queue, joueur, donneePartie);
-
-        /*arene(event, queue);*/
+        interfaceClasse(event, queue, joueur, donneePartie, classe);
+        //arene(event, queue);
         end = true;
     }
-
 }
 /*
 int zebi(){
@@ -395,4 +395,4 @@ int zebi(){
 
 
         }
-        */
+*/
