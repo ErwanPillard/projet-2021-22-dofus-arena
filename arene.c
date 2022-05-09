@@ -4,8 +4,39 @@ void initialiserArene(){
 
 }
 
+void dessinerArene(ALLEGRO_BITMAP *fond){
+    al_draw_scaled_bitmap(fond, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
+    ALLEGRO_BITMAP *sol = al_load_bitmap("../Image/sol.png");
+    ALLEGRO_BITMAP *sol2 = al_load_bitmap("../Image/sol2.png");
 
+    int x = 800;
+    int y = 0;
+    for (int i = 0; i < 12; i++) {
+        for (int j = 1; j < 13; j++) {
+            al_draw_bitmap(sol,(LARGEUR/2 - (j * 40)) + (i * 40), (20 * j)+ i * 20,0);
+        }
 
+    }
+
+    al_flip_display();
+}
+
+/*
+void dessinerArene(ALLEGRO_BITMAP *fond ){
+
+    al_draw_scaled_bitmap(fond, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
+
+    for(int i = 0; i < 10; i++){
+        al_draw_line((float)LARGEUR/2 + (i * 30), 20 + (i * 15), 20 + (i * 30), 400 + (i * 15), BLANC, 2);
+    }
+    for(int i = 0; i < 10; i++){
+        al_draw_line((float)LARGEUR/2 - (i * 30), 20 + (i * 15), (float)LARGEUR - 20 - (i * 30), 400 + (i * 15), BLANC, 2);
+    }
+
+    al_flip_display();
+}
+*/
+/*
 void dessinerArene(ALLEGRO_BITMAP *fond ){
 
     al_draw_scaled_bitmap(fond, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
@@ -33,7 +64,7 @@ void dessinerArene(ALLEGRO_BITMAP *fond ){
     al_draw_line(x1 - 40, 42.4f , 10, 10, BLANC, 5);
 
     al_flip_display();
-}
+}*/
 
 void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue){
     bool end = false;

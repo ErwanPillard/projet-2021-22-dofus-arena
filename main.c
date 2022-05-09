@@ -55,6 +55,19 @@ int main(){
     al_register_event_source(queue, al_get_keyboard_event_source());
     al_register_event_source(queue, al_get_mouse_event_source());
 
+    //Musique
+    al_reserve_samples(2);
+
+    ALLEGRO_SAMPLE *music_Accueil = al_load_sample("../Sound/musique1.ogg");
+
+    assert(music_Accueil != NULL);
+
+    ALLEGRO_SAMPLE_INSTANCE *musicInstance = al_create_sample_instance(music_Accueil);
+    al_set_sample_instance_playmode(musicInstance, ALLEGRO_PLAYMODE_LOOP);
+    al_attach_sample_instance_to_mixer(musicInstance, al_get_default_mixer());
+
+    al_play_sample_instance(musicInstance);
+
     Partie donneePartie = {0};
     Joueur joueur[4];
     Classe classe[4];
@@ -66,7 +79,7 @@ int main(){
         //interface0(queue, event);
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
-        //arene(event, queue);
+        arene(event, queue);
         end = true;
     }
 }

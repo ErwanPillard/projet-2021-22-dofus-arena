@@ -13,6 +13,7 @@ void initialiserClasses(Classe *classe){
     classe[1].skin = al_load_bitmap("../Image/Classes/CoeurIop/IOP1.png");
     classe[2].skin = al_load_bitmap("../Image/Classes/eniripsa/eniripsa1.png");
 
+
     //Sorts
 
 

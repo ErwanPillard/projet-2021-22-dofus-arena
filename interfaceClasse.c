@@ -78,8 +78,9 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     classe[1].perso[7].image = al_load_bitmap("../Image/Classes/CoeurIop/IOP8.png");
 
 
-    //classe[2].infoClasse = al_load_bitmap("../Image/Classes/CoeurIop/IOP.png");
+    classe[2].infoClasse = al_load_bitmap("../Image/Classes/eniripsa/infoEniripsa.png");
     classe[2].fondEcran = al_load_bitmap("../Image/Classes/eniripsa/eniripsafondecran.jpg");
+
     classe[2].perso[0].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa1.png");
     classe[2].perso[1].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa2.png");
     classe[2].perso[2].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa3.png");
@@ -88,6 +89,7 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     classe[2].perso[5].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa6.png");
     classe[2].perso[6].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa7.png");
     classe[2].perso[7].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa8.png");
+
 
 }
 
@@ -106,7 +108,7 @@ void dessinerImageFond(int classeEnCours, AffichageClasse classe[]){
         }
         case 2:{
             al_draw_scaled_bitmap(classe[2].fondEcran, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
-            //al_draw_scaled_bitmap(classe[2].infoClasse, 0, 0, 882, 1250, 30, 0, 585, 826, 0);
+            al_draw_scaled_bitmap(classe[2].infoClasse, 0, 0, 882, 1250, 30, 0, 585, 826, 0);
             break;
         }
     }
@@ -127,10 +129,10 @@ void dessinerBoutonClasses(InterfaceClasse interfaceC[]){ // 4 classes
 }
 
 void dessinerTexteInterfaceClasse(InterfaceClasse interfaceC[], Joueur joueur[], Classe classe[], int nbJoueurs, int joueurEnCours){
-    al_draw_textf(interfaceC[0].texte, BLANC, 10, 10, 0, "CHOIX DE CLASSE : JOUEUR %d", joueurEnCours + 1);
+    al_draw_textf(interfaceC[TEXTE].texte, BLANC, 10, 10, 0, "CHOIX DE CLASSE : JOUEUR %d", joueurEnCours + 1);
     for (int i = 0; i < nbJoueurs; i++) {
         if(joueur[i].classe >= 0 && joueur[i].classe <= 3) {
-            al_draw_textf(interfaceC[0].texte, BLANC, 10, (float) (30 + i * 20), 0, "JOUEUR %d : %s", i + 1,
+            al_draw_textf(interfaceC[TEXTE].texte, BLANC, 10, (float) (30 + i * 20), 0, "JOUEUR %d : %s", i + 1,
                           classe[joueur[i].classe].nom);
         }
     }
@@ -154,7 +156,7 @@ void dessinerInterfaceClasses(AffichageClasse affichageClasse[], int classeEnCou
     dessinerBoutonClasses(interfaceC);
 
     //Texte
-    //dessinerTexteInterfaceClasse(interfaceC, joueur, classe, nbJoueurs, joueurEnCours);
+    dessinerTexteInterfaceClasse(interfaceC, joueur, classe, nbJoueurs, joueurEnCours);
     al_flip_display();
 }
 
@@ -187,7 +189,6 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                         classeEnCours = 1;
                         posJoueur = 0;
                     }
-                    printf("posJoueur : %d \n", posJoueur);
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE3].x, (int)interfaceC[CLASSE3].y, (int)interfaceC[CLASSE3].largeur,(int)interfaceC[CLASSE1].hauteur)) {
                         classeEnCours = 2;
                         posJoueur = 0;
@@ -198,9 +199,7 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                     }
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[FLECHE].x, (int)interfaceC[FLECHE].y, (int)interfaceC[FLECHE].largeur,(int)interfaceC[FLECHE].hauteur)){
                         posJoueur = (posJoueur + 1) % 8;
-                        printf("ok\n");
                     }
-                    printf("posJoueur : %d \n", posJoueur);
                     break;
                 }
                 case ALLEGRO_EVENT_DISPLAY_CLOSE:{
