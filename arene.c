@@ -5,7 +5,7 @@ void initialiserArene(){
 }
 
 void dessinerArene(ALLEGRO_BITMAP *fond){
-    al_draw_scaled_bitmap(fond, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
+    al_draw_scaled_bitmap(fond, 0, 0, 1952, 1008, 0, 0, LARGEUR, HAUTEUR, 0);
     ALLEGRO_BITMAP *sol = al_load_bitmap("../Image/sol.png");
     ALLEGRO_BITMAP *sol2 = al_load_bitmap("../Image/sol2.png");
     ALLEGRO_BITMAP *sol3 = al_load_bitmap("../Image/sol3.png");
@@ -24,6 +24,7 @@ void dessinerArene(ALLEGRO_BITMAP *fond){
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++) {
             al_draw_bitmap(sol6,POSITION_MAP_ISO_X - LARGEUR_TUILE /2 - (j * (LARGEUR_TUILE /2)) + (i * (LARGEUR_TUILE/2)), POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2,0);
+
         }
     }
     al_flip_display();
@@ -78,7 +79,7 @@ void dessinerArene(ALLEGRO_BITMAP *fond ){
 void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue){
     bool end = false;
 
-    ALLEGRO_BITMAP *fond = al_load_bitmap("../Image/Classes/CoeurIop/IOP.jpg");
+    ALLEGRO_BITMAP *fond = al_load_bitmap("../Image/jungle.jpeg");
 
     while(!end){
         al_wait_for_event(queue, &event);
