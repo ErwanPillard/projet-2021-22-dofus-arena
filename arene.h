@@ -17,7 +17,10 @@
 
 #include "menu.h"
 
-
+#define LARGEUR_TUILE 80
+#define HAUTEUR_TUILE 47
+#define POSITION_MAP_ISO_X 700 //premier carré en haut a gauche
+#define POSITION_MAP_ISO_Y 50
 void initialiserArene();
 void dessinerArene();
 

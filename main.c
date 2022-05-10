@@ -10,8 +10,6 @@
 #include <assert.h>
 #include "time.h"
 
-
-
 #include "menu.h"
 #include "interface0.h"
 #include "echap.h"
@@ -75,14 +73,15 @@ int main(){
 
     al_wait_for_event(queue, &event);
     while(!end){
-        //affichageChargement();
-        //interface0(queue, event);
-        //menu(queue, event, &donneePartie);
-        //interfaceClasse(event, queue, joueur, donneePartie, classe);
+        affichageChargement();
+        interface0(queue, event);
+        menu(queue, event, &donneePartie);
+        interfaceClasse(event, queue, joueur, donneePartie, classe);
         arene(event, queue);
         end = true;
     }
 }
+
 /*
 int zebi(){
     //Déclarations
