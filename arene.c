@@ -12,6 +12,8 @@ void dessinerArene(ALLEGRO_BITMAP *fond){
     ALLEGRO_BITMAP *sol4 = al_load_bitmap("../Image/sol4.png");
     ALLEGRO_BITMAP *sol5 = al_load_bitmap("../Image/sol5.png");
     ALLEGRO_BITMAP *sol6 = al_load_bitmap("../Image/sol6.png");
+    ALLEGRO_BITMAP *obstacle1 = al_load_bitmap("../Image/obstacle1.png");
+    ALLEGRO_BITMAP *obstacle2 = al_load_bitmap("../Image/obstacle2.png");
 
     /*
     for (int i = 0; i < 12; i++) {
@@ -27,6 +29,10 @@ void dessinerArene(ALLEGRO_BITMAP *fond){
 
         }
     }
+    //obstacles
+    al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2-5, 0);
+    al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+320, 0);
+    al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2-120, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+157, 0);
     al_flip_display();
 }
 
@@ -80,6 +86,7 @@ void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue){
     bool end = false;
 
     ALLEGRO_BITMAP *fond = al_load_bitmap("../Image/jungle.jpeg");
+
 
     while(!end){
         al_wait_for_event(queue, &event);
