@@ -23,14 +23,14 @@ void copierJoueur(Joueur j[], Partie donneePartie, FILE* creerFichier(), FILE *m
                 classe.parametreSorts);
     }
 }
-
+/*
 int copierMAPDansFichier(FILE *myFile){
     int res = fprintf(myFile, "PLATEAU:%d;%d\n",);
     (myFile);
     (myFile);
     (myFile);
     return res;
-}
+}*/
 int fermerFichier(FILE* myFile){
     return fclose (myFile);
 }
