@@ -13,10 +13,13 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 
+#include <time.h>
+
 typedef struct{
     int classe;
     int caseX;//sur quelle case est positionné le joueur
     int caseY;
+    int PM;
 }Joueur;
 
 void initialiserJoueur(Joueur joueur[4]);

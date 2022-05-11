@@ -18,26 +18,26 @@
 
 #include "menu.h"
 #include "joueur.h"
+#include "classe.h"
 
 #define LARGEUR_TUILE 80
 #define HAUTEUR_TUILE 41
 #define POSITION_MAP_ISO_X 700 //premier carré en haut a gauche
 #define POSITION_MAP_ISO_Y 300
-void initialiserArene();
-void dessinerArene();
+
 
 typedef struct{
     float x, y;
 }CoordonneeISO;
 
-void dessinerArene(ALLEGRO_BITMAP *font, CoordonneeISO coordonneeIso[12][12], Joueur joueur[4]);
+void dessinerArene(ALLEGRO_BITMAP *font, CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]);
 void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]);
 
-void dessinerJoueur(CoordonneeISO coordonneeIso[12][12], Joueur joueur[]);
+void dessinerJoueur(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[]);
 
 void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]);
-
-void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4]);
+int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]);
+void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[]);
 
 
 #endif ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
