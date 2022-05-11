@@ -14,6 +14,8 @@ void dessinerArene(ALLEGRO_BITMAP *fond){
     ALLEGRO_BITMAP *sol6 = al_load_bitmap("../Image/sol6.png");
     ALLEGRO_BITMAP *obstacle1 = al_load_bitmap("../Image/obstacle1.png");
     ALLEGRO_BITMAP *obstacle2 = al_load_bitmap("../Image/obstacle2.png");
+    ALLEGRO_BITMAP *obstacleGlace = al_load_bitmap("../Image/obstacleGlace.png");
+    ALLEGRO_BITMAP *obstacleGlace2 = al_load_bitmap("../Image/gl.png");
     ALLEGRO_BITMAP *herbe = al_load_bitmap("../Image/herbe.png");
     ALLEGRO_BITMAP *lave = al_load_bitmap("../Image/lave.png");
 
@@ -27,16 +29,23 @@ void dessinerArene(ALLEGRO_BITMAP *fond){
 
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++) {
-            al_draw_bitmap(sol6,POSITION_MAP_ISO_X - LARGEUR_TUILE /2 - (j * (LARGEUR_TUILE /2)) + (i * (LARGEUR_TUILE/2)), POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2,0);
+                al_draw_bitmap(sol4,POSITION_MAP_ISO_X - LARGEUR_TUILE /2 - (j * (LARGEUR_TUILE /2)) + (i * (LARGEUR_TUILE/2)), POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2,0);
 
         }
     }
     //obstacles
-    al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2-5, 0);
-    al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+320, 0);
-    al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2-120, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+157, 0);
-    al_draw_bitmap(herbe, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+115, 0);
-    al_draw_bitmap(herbe, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+41, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+138, 0);
+    al_draw_bitmap(obstacleGlace, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+20, 0);
+   // al_draw_bitmap(sol5, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+343, 0);
+    //al_draw_bitmap(sol5, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+40, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+364, 0);
+    //al_draw_bitmap(sol5, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+384, 0);
+    al_draw_bitmap(sol5, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+39, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+365, 0);
+    al_draw_bitmap(sol5, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+78, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+385, 0);
+    al_draw_bitmap(obstacleGlace2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+374, 0);
+
+    //al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+320, 0);
+    //al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2-120, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+157, 0);
+   // al_draw_bitmap(herbe, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+115, 0);
+    //al_draw_bitmap(lave, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+41, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+138, 0);
     al_flip_display();
 }
 

@@ -73,6 +73,7 @@ int main(){
 
     al_wait_for_event(queue, &event);
     while(!end){
+        srand(time(NULL));
         //affichageChargement();
         //interface0(queue, event);
         //menu(queue, event, &donneePartie);
