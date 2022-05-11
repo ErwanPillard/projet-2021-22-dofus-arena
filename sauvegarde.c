@@ -38,8 +38,8 @@ int fermerFichier(FILE* myFile){
 int sauvegarderPartie(){
     FILE *sauvegarde = creerFichier();
     //ouvrirFichier();
-    if (NULL != sauvegarde) copierMAPDansFichier(sauvegarde);
-    else printf("Erreur sur création fichier\n");
+    if (NULL != sauvegarde){ copierMAPDansFichier(sauvegarde);}
+    else {printf("Erreur sur création fichier\n");}
     if (0 != fermerFichier(sauvegarde)) {
         printf ("Erreur lors de la fermeture du fichier de sauvegarde\n");
     }
@@ -84,3 +84,4 @@ int rechargerPlateau(FILE * myFile){
                &monPlateau.tabCases[i].valTaxes);
     }
 }*/
+

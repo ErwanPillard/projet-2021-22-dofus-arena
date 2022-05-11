@@ -25,7 +25,6 @@
 #define POSITION_MAP_ISO_Y 300
 void initialiserArene();
 void dessinerArene();
-#define POSITION_MAP_ISO_Y 150
 
 typedef struct{
     float x, y;
