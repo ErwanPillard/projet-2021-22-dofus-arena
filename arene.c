@@ -46,6 +46,11 @@ void dessinerArene(ALLEGRO_BITMAP *fond, CoordonneeISO coordonneeIso[12][12], Jo
     ALLEGRO_BITMAP *grosarbre = al_load_bitmap("../Image/arbrevol2.png");
     ALLEGRO_BITMAP *arbrerose = al_load_bitmap("../Image/arbrerose.png");
     ALLEGRO_BITMAP *kamas = al_load_bitmap("../Image/kamas.png");
+    ALLEGRO_BITMAP *Huppermagepv = al_load_bitmap("../Image/Huppermagepng.png");
+    ALLEGRO_BITMAP *CoeurIop = al_load_bitmap("../Image/CoeurIop.png");
+    ALLEGRO_BITMAP *Iniripsa = al_load_bitmap("../Image/Iniripsa.png");
+
+
 
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++) {
@@ -59,6 +64,15 @@ void dessinerArene(ALLEGRO_BITMAP *fond, CoordonneeISO coordonneeIso[12][12], Jo
 
     //obstacles
     al_draw_bitmap(obstacleGlace, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+20, 0);
+
+    // dessiner bitmap sors joueurs
+    al_draw_bitmap(Huppermagepv, 20, 20, 0);//Sors huppermage
+    al_draw_bitmap(CoeurIop, 20, 20, 0);//Sors Coeurs D'iop etc..
+    al_draw_bitmap(Iniripsa, 20, 20, 0);//Sors iniripsa
+
+
+
+
     al_draw_bitmap(kamas, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+10, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+177, 0);
     al_draw_bitmap(arbrerose, POSITION_MAP_ISO_X - LARGEUR_TUILE /2-247, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+166, 0);
     al_draw_bitmap(sol5, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+39, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+365, 0);

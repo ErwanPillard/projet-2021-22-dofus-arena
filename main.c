@@ -76,7 +76,7 @@ int main(){
         srand(time(NULL));
         //affichageChargement();
         //interface0(queue, event);
-        menu(queue, event, &donneePartie);
+        //menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         arene(event, queue, joueur);
         end = true;
