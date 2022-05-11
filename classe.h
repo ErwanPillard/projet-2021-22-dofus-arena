@@ -8,11 +8,13 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+#include "Sorts.h"
 
 typedef struct{
     char *nom;
     ALLEGRO_BITMAP *skin;
     //Structure sorts
+    Sort parametreSorts;
 }Classe;
 
 void initialiserClasses(Classe *classe);

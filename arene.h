@@ -4,6 +4,7 @@
 
 #ifndef ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
 #define ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -19,8 +20,11 @@
 #include "joueur.h"
 
 #define LARGEUR_TUILE 80
-#define HAUTEUR_TUILE 47
+#define HAUTEUR_TUILE 41
 #define POSITION_MAP_ISO_X 700 //premier carré en haut a gauche
+#define POSITION_MAP_ISO_Y 300
+void initialiserArene();
+void dessinerArene();
 #define POSITION_MAP_ISO_Y 150
 
 typedef struct{
