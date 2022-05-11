@@ -23,29 +23,32 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     interfaceC[FLECHE].largeur = 100;
     interfaceC[FLECHE].hauteur = 80;
 
-    //interfaceC[CLASSE1].bitmap = al_load_bitmap("");
+    interfaceC[CLASSE1].bitmap = al_load_bitmap("../Image/Classes/OmbreSrum/ombresrum1.png");
     interfaceC[CLASSE1].x = 600;
     interfaceC[CLASSE1].y = 700;
-    interfaceC[CLASSE1].hauteur = 50;
-    interfaceC[CLASSE1].largeur = 50;
+    interfaceC[CLASSE1].hauteur = 75;
+    interfaceC[CLASSE1].largeur = 75;
 
-    //interfaceC[CLASSE2].bitmap = al_load_bitmap("");
+
+    interfaceC[CLASSE2].bitmap = al_load_bitmap("../Image/Classes/CoeurIop/IOP1.png");
     interfaceC[CLASSE2].x = 655;
     interfaceC[CLASSE2].y = 700;
-    interfaceC[CLASSE2].hauteur = 50;
-    interfaceC[CLASSE2].largeur = 50;
+    interfaceC[CLASSE2].hauteur = 75;
+    interfaceC[CLASSE2].largeur = 75;
 
-    //interfaceC[CLASSE3].bitmap = al_load_bitmap("");
+    interfaceC[CLASSE3].bitmap = al_load_bitmap("../Image/Classes/eniripsa/eniripsa1.png");
     interfaceC[CLASSE3].x = 710;
     interfaceC[CLASSE3].y = 700;
-    interfaceC[CLASSE3].hauteur = 50;
-    interfaceC[CLASSE3].largeur = 50;
+    interfaceC[CLASSE3].hauteur = 75;
+    interfaceC[CLASSE3].largeur = 75;
 
-    //interfaceC[CLASSE3].bitmap = al_load_bitmap("");
+    interfaceC[CLASSE4].bitmap = al_load_bitmap("../Image/Classes/huppermage/hup1.png");
     interfaceC[CLASSE4].x = 765;
     interfaceC[CLASSE4].y = 700;
-    interfaceC[CLASSE4].hauteur = 50;
-    interfaceC[CLASSE4].largeur = 50;
+    interfaceC[CLASSE4].hauteur = 75;
+    interfaceC[CLASSE4].largeur = 75;
+
+
 
     //Texte
     interfaceC[TEXTE].texte = al_load_font("../Polices/madetommy.ttf", 20, 0);
@@ -90,7 +93,7 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     classe[2].perso[7].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa8.png");
 
     //4eme classe
-    classe[3].fondEcran = al_load_bitmap("../Image/Classes/huppermage/fondecranhuppermage.jpg");
+    classe[3].fondEcran = al_load_bitmap("../Image/Classes/huppermage/huppermagefd2.jpg");
     classe[3].infoClasse = al_load_bitmap("../Image/Classes/huppermage/infoHuppermage.png");
     classe[3].perso[0].image = al_load_bitmap("../Image/Classes/huppermage/hup1.png");
     classe[3].perso[1].image = al_load_bitmap("../Image/Classes/huppermage/hup2.png");
@@ -121,7 +124,7 @@ void dessinerImageFond(int classeEnCours, AffichageClasse classe[]){
             break;
         }
         case 3:{
-            al_draw_scaled_bitmap(classe[3].fondEcran, 0, 0, 1635, 1100, 0, 0, LARGEUR, HAUTEUR, 0);
+            al_draw_scaled_bitmap(classe[3].fondEcran, 0, 0, 680, 382, 0, 0, LARGEUR, HAUTEUR, 0);
             al_draw_scaled_bitmap(classe[3].infoClasse, 0, 0, 790, 1124, 30, 0, 585, 826, 0);
             break;
         }
@@ -136,10 +139,11 @@ void dessinerFleche(InterfaceClasse interfaceC[]){
     al_draw_scaled_bitmap(interfaceC[FLECHE].bitmap, 0, 0, 406, 324, interfaceC[FLECHE].x, interfaceC[FLECHE].y, interfaceC[FLECHE].largeur,interfaceC[FLECHE].hauteur, 0);
 }
 
-void dessinerBoutonClasses(InterfaceClasse interfaceC[]){ // 4 classes
-    for (int i = 2; i < 6; i++) {
-        al_draw_filled_rectangle(interfaceC[i].x, interfaceC[i].y, interfaceC[i].x + interfaceC[i].largeur, interfaceC[i].y + interfaceC[i].hauteur, BLANC);
-    }
+void dessinerBoutonClasses(InterfaceClasse interfaceC[]) { // 4 classes
+    al_draw_scaled_bitmap(interfaceC[2].bitmap, 0, 0, 250, 250, interfaceC[2].x, interfaceC[2].y,interfaceC[2].largeur, interfaceC[2].hauteur, 0);
+    al_draw_scaled_bitmap(interfaceC[3].bitmap, 0, 0, 250, 250, interfaceC[3].x, interfaceC[3].y,interfaceC[3].largeur, interfaceC[3].hauteur, 0);
+    al_draw_scaled_bitmap(interfaceC[4].bitmap, 0, 0, 250, 250, interfaceC[4].x, interfaceC[4].y,interfaceC[4].largeur, interfaceC[4].hauteur, 0);
+    al_draw_scaled_bitmap(interfaceC[5].bitmap, 0, 0, 250, 250, interfaceC[5].x, interfaceC[5].y,interfaceC[5].largeur, interfaceC[5].hauteur, 0);
 }
 
 void dessinerTexteInterfaceClasse(InterfaceClasse interfaceC[], Joueur joueur[], Classe classe[], int nbJoueurs, int joueurEnCours){

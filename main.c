@@ -78,7 +78,7 @@ int main(){
         //interface0(queue, event);
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
-        arene(event, queue, joueur);
+        //arene(event, queue, joueur);
         end = true;
     }
 }

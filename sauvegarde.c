@@ -23,14 +23,7 @@ void copierJoueur(Joueur j[], Partie donneePartie, FILE* creerFichier(), FILE *m
                 classe.parametreSorts);
     }
 }
-/*
-int copierMAPDansFichier(FILE *myFile){
-    int res = fprintf(myFile, "PLATEAU:%d;%d\n",);
-    (myFile);
-    (myFile);
-    (myFile);
-    return res;
-}*/
+
 int fermerFichier(FILE* myFile){
     return fclose (myFile);
 }
@@ -38,8 +31,12 @@ int fermerFichier(FILE* myFile){
 int sauvegarderPartie(){
     FILE *sauvegarde = creerFichier();
     //ouvrirFichier();
-    if (NULL != sauvegarde){ copierMAPDansFichier(sauvegarde);}
-    else {printf("Erreur sur création fichier\n");}
+    if (NULL != sauvegarde){
+        copierJoueur(sauvegarde);
+    }
+    else {
+        printf("Erreur sur création fichier\n");
+    }
     if (0 != fermerFichier(sauvegarde)) {
         printf ("Erreur lors de la fermeture du fichier de sauvegarde\n");
     }
@@ -84,4 +81,3 @@ int rechargerPlateau(FILE * myFile){
                &monPlateau.tabCases[i].valTaxes);
     }
 }*/
-
