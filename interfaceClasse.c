@@ -9,7 +9,6 @@ unsigned char surPassage(int mouse_x, int mouse_y, int x, int y, int largeur,int
 }
 
 void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *interfaceC){
-
     //Affichage général
     interfaceC[VALIDER].bitmap = al_load_bitmap("../Image/bouttonStart.png");
     interfaceC[VALIDER].x = 1200;
@@ -229,4 +228,20 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
             dessinerInterfaceClasses(affichageClasse, classeEnCours, posJoueur, i, donneePartie.nbJoueurs, joueur, interfaceC, classe);
         }
     }
+
+    //Liberation
+    //Bitmap
+/*
+    for (int i = 0; i < 4; i++) {
+        al_destroy_bitmap(affichageClasse[i].fondEcran);
+        al_destroy_bitmap(affichageClasse[i].infoClasse);
+        for (int j = 0; j < 9; j++) {
+            al_destroy_bitmap(affichageClasse[i].perso[j].image);
+        }
+    }
+    for (int i = 0; i < 6; i++) {
+        al_destroy_bitmap(interfaceC[i].bitmap);
+    }
+    al_destroy_font(interfaceC[6].texte);
+    */
 }
