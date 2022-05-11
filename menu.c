@@ -60,10 +60,10 @@ Rect initialisationInterface1(Rect *r){
     r[3].largeur = 100;
     r[3].hauteur = 100;
     r[3].x = ((float)LARGEUR / 2 - r[3].largeur / 2) + (r[2].largeur + 5);
-    r[3].y = y+50;
+    r[3].y = y+200;
     r[3].color = OR;
     r[3].colorThickness = ORfonce;
-    r[3].font = al_load_font("../allegroopen.ttf", 145, 0);
+    r[3].font = al_load_font("../Polices/allegroopen.ttf", 145, 0);
 }
 
 void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
@@ -73,10 +73,10 @@ void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     dessinerFilledRectangle(r[1].x, r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
     dessinerFilledRectangle(r[2].x, r[2].y,r[2].x + r[2].largeur, r[2].y + r[2].hauteur, r[2].color);
     dessinerFilledRectangle(r[3].x, r[3].y,r[3].x + r[3].largeur, r[3].y + r[3].hauteur, r[3].color);
-    al_draw_text(r[0].font, NOIR, r[0].x + 10, r[0].y - 10, 0, "2");
-    al_draw_text(r[1].font, NOIR, r[1].x + 10, r[1].y - 10, 0, "3");
-    al_draw_text(r[2].font, NOIR, r[2].x + 10, r[2].y - 10, 0, "4");
-    al_draw_text(r[3].font, NOIR, r[3].x + 10, r[3].y - 10, 0, "1");
+    al_draw_text(r[0].font, NOIR, r[0].x + 25, r[0].y - 35, 0, "2");
+    al_draw_text(r[1].font, NOIR, r[1].x + 25, r[1].y - 35, 0, "3");
+    al_draw_text(r[2].font, NOIR, r[2].x + 25, r[2].y - 35, 0, "4");
+    al_draw_text(r[3].font, NOIR, r[3].x + 25, r[3].y - 35, 0, "1");
 
     al_flip_display();
 }
