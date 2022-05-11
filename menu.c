@@ -66,6 +66,7 @@ Rect initialisationInterface1(Rect *r){
     r[3].font = al_load_font("../Polices/allegroopen.ttf", 145, 0);
 }
 
+
 void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     al_draw_bitmap(imagePrincipale, 0, 0, 0);
 

@@ -78,9 +78,7 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     classe[1].perso[7].image = al_load_bitmap("../Image/Classes/CoeurIop/IOP8.png");
 
 
-    //classe[2].infoClasse = al_load_bitmap("../Image/Classes/CoeurIop/IOP.png");
-
-    //3eme classe
+    classe[2].infoClasse = al_load_bitmap("../Image/Classes/eniripsa/infoEniripsa.png");
     classe[2].fondEcran = al_load_bitmap("../Image/Classes/eniripsa/eniripsafondecran.jpg");
     classe[2].perso[0].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa1.png");
     classe[2].perso[1].image = al_load_bitmap("../Image/Classes/eniripsa/eniripsa2.png");
@@ -93,6 +91,7 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
 
     //4eme classe
     classe[3].fondEcran = al_load_bitmap("../Image/Classes/huppermage/fondecranhuppermage.jpg");
+    classe[3].infoClasse = al_load_bitmap("../Image/Classes/huppermage/infoHuppermage.png");
     classe[3].perso[0].image = al_load_bitmap("../Image/Classes/huppermage/hup1.png");
     classe[3].perso[1].image = al_load_bitmap("../Image/Classes/huppermage/hup2.png");
     classe[3].perso[2].image = al_load_bitmap("../Image/Classes/huppermage/hup3.png");
@@ -118,12 +117,12 @@ void dessinerImageFond(int classeEnCours, AffichageClasse classe[]){
         }
         case 2:{
             al_draw_scaled_bitmap(classe[2].fondEcran, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
-            //al_draw_scaled_bitmap(classe[2].infoClasse, 0, 0, 882, 1250, 30, 0, 585, 826, 0);
+            al_draw_scaled_bitmap(classe[2].infoClasse, 0, 0, 905, 1280, 30, 0, 585, 826, 0);
             break;
         }
         case 3:{
-            al_draw_scaled_bitmap(classe[3].fondEcran, 0, 0, 1280, 720, 0, 0, LARGEUR, HAUTEUR, 0);
-            //al_draw_scaled_bitmap(classe[3].infoClasse, 0, 0, 882, 1250, 30, 0, 585, 826, 0);
+            al_draw_scaled_bitmap(classe[3].fondEcran, 0, 0, 1635, 1100, 0, 0, LARGEUR, HAUTEUR, 0);
+            al_draw_scaled_bitmap(classe[3].infoClasse, 0, 0, 790, 1124, 30, 0, 585, 826, 0);
             break;
         }
     }
@@ -204,7 +203,6 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                         classeEnCours = 1;
                         posJoueur = 0;
                     }
-                    printf("posJoueur : %d \n", posJoueur);
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE3].x, (int)interfaceC[CLASSE3].y, (int)interfaceC[CLASSE3].largeur,(int)interfaceC[CLASSE1].hauteur)) {
                         classeEnCours = 2;
                         posJoueur = 0;
@@ -215,9 +213,7 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                     }
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[FLECHE].x, (int)interfaceC[FLECHE].y, (int)interfaceC[FLECHE].largeur,(int)interfaceC[FLECHE].hauteur)){
                         posJoueur = (posJoueur + 1) % 8;
-                        printf("ok\n");
                     }
-                    printf("posJoueur : %d \n", posJoueur);
                     break;
                 }
                 case ALLEGRO_EVENT_DISPLAY_CLOSE:{

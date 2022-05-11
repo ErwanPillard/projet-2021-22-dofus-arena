@@ -5,7 +5,7 @@
 #include "chargement.h"
 
 void affichageChargement(){
-    ALLEGRO_BITMAP *ecranChargement = al_load_bitmap("../Image/dofus3.jpg");
+    ALLEGRO_BITMAP *ecranChargement = al_load_bitmap("../Image/FondEcran.jpeg");
     ALLEGRO_FONT *chargement = al_load_font("../Polices/Achafont.ttf", 30, 0);
     ALLEGRO_FONT *chargement1 = al_load_font("../Polices/Achafont.ttf", 35, 0);
     ALLEGRO_FONT *chargement2 = al_load_font("../Polices/Achafont.ttf", 30, 0);
