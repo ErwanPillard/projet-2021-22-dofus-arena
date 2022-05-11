@@ -182,6 +182,8 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
 
     initialisationInterfaceClasses(affichageClasse, interfaceC);
 
+    initialiserJoueur(joueur);
+
     int classeEnCours = 0;
     int posJoueur = 0;
 

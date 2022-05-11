@@ -1,10 +1,35 @@
 #include "arene.h"
 
-void initialiserArene(){
 
+//****************************************Initialiser***************************************//
+void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]){
+    for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 12; j++) {
+            coordonneeIso[i][j].x = POSITION_MAP_ISO_X - LARGEUR_TUILE /2 - (j * (LARGEUR_TUILE /2)) + (i * (LARGEUR_TUILE/2)) + LARGEUR_TUILE/2;
+            coordonneeIso[i][j].y = POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2 + HAUTEUR_TUILE/2;
+        }
+    }
 }
 
-void dessinerArene(ALLEGRO_BITMAP *fond){
+void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]){
+
+    for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 12; j++) {
+            printf("[%d][%d] x : %f y : %f\n", i,j, coordonneeIso[i][j].x, coordonneeIso[i][j].y);
+        }
+    }
+    for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 12; j++) {
+            al_draw_filled_ellipse(coordonneeIso[i][j].x, coordonneeIso[i][j].y, 20, 15, BLANC);
+        }
+    }
+}
+
+void dessinerJoueur(CoordonneeISO coordonneeIso[12][12], Joueur joueur[]){
+    al_draw_filled_ellipse(coordonneeIso[joueur[0].caseX][joueur[0].caseY].x, coordonneeIso[joueur[0].caseX][joueur[0].caseY].y, 20, 15, BLANC);
+}
+
+void dessinerArene(ALLEGRO_BITMAP *fond, CoordonneeISO coordonneeIso[12][12], Joueur joueur[4]){
     al_draw_scaled_bitmap(fond, 0, 0, 1952, 1008, 0, 0, LARGEUR, HAUTEUR, 0);
     ALLEGRO_BITMAP *sol = al_load_bitmap("../Image/sol.png");
     ALLEGRO_BITMAP *sol2 = al_load_bitmap("../Image/sol2.png");
@@ -13,73 +38,26 @@ void dessinerArene(ALLEGRO_BITMAP *fond){
     ALLEGRO_BITMAP *sol5 = al_load_bitmap("../Image/sol5.png");
     ALLEGRO_BITMAP *sol6 = al_load_bitmap("../Image/sol6.png");
 
-    /*
-    for (int i = 0; i < 12; i++) {
-        for (int j = 1; j < 13; j++) {
-            al_draw_bitmap(sol3,(LARGEUR/2 - (j * 40)) + (i * 40), (20 * j)+ i * 20,0);
-        }
-
-    }*/
-
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++) {
             al_draw_bitmap(sol6,POSITION_MAP_ISO_X - LARGEUR_TUILE /2 - (j * (LARGEUR_TUILE /2)) + (i * (LARGEUR_TUILE/2)), POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2,0);
-
         }
     }
+
+    //dessinerSurbrillance(coordonneeIso);
+
+    dessinerJoueur(coordonneeIso, joueur);
     al_flip_display();
 }
 
-/*
-void dessinerArene(ALLEGRO_BITMAP *fond ){
 
-    al_draw_scaled_bitmap(fond, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
-
-    for(int i = 0; i < 10; i++){
-        al_draw_line((float)LARGEUR/2 + (i * 30), 20 + (i * 15), 20 + (i * 30), 400 + (i * 15), BLANC, 2);
-    }
-    for(int i = 0; i < 10; i++){
-        al_draw_line((float)LARGEUR/2 - (i * 30), 20 + (i * 15), (float)LARGEUR - 20 - (i * 30), 400 + (i * 15), BLANC, 2);
-    }
-
-    al_flip_display();
-}
-*/
-
-/*
-void dessinerArene(ALLEGRO_BITMAP *fond ){
-
-    al_draw_scaled_bitmap(fond, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
-
-    //contour
-
-    float x1 = LARGEUR / 2;
-    float y1 = 20;
-
-    float x2 = 1380;
-    float y2 = 400;
-
-    // y = ax + b
-    // a = yb - ya / xb - xa
-
-    //y = 0,56x - 372
-    al_draw_line((float)LARGEUR/2, 20, (float)LARGEUR - 20, 400, BLANC, 5);
-
-    //y = -0,56x + 412
-    al_draw_line((float)LARGEUR/2, 20, 20, 400, BLANC, 5);
-    //al_draw_line(20, (float)HAUTEUR / 2, (float)LARGEUR / 2, HAUTEUR - 20, BLANC, 5);
-    //al_draw_line((float)LARGEUR / 2, HAUTEUR - 20, (float)LARGEUR - 20, (float)HAUTEUR / 2, BLANC, 5);
-
-    //gauche droite
-    al_draw_line(x1 - 40, 42.4f , 10, 10, BLANC, 5);
-
-    al_flip_display();
-}*/
-
-void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue){
+void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4]){
     bool end = false;
 
     ALLEGRO_BITMAP *fond = al_load_bitmap("../Image/jungle.jpeg");
+    CoordonneeISO coordonneeIso[12][12];
+
+    initialiserCoordMilieuTuile(coordonneeIso);
 
     while(!end){
         al_wait_for_event(queue, &event);
@@ -89,6 +67,6 @@ void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue){
                 break;
             }
         }
-        dessinerArene(fond);
+        dessinerArene(fond, coordonneeIso, joueur);
     }
 }
