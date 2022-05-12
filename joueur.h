@@ -12,10 +12,11 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
-#include "classe.h"
+//#include "classe.h"
 
 #include <time.h>
 
+#include "coordonneesISO.h"
 
 typedef struct{
     int classe;
@@ -25,6 +26,6 @@ typedef struct{
 }Joueur;
 
 void initialiserJoueur(Joueur joueur[4]);
-
+int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_JOUEUR_H

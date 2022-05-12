@@ -16,7 +16,6 @@ typedef struct Classe {
     Sort sorts[4];
 } Classe;
 
-
 void initialiserClasses(Classe *classe);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_CLASSE_H

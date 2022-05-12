@@ -16,5 +16,5 @@ void initialiserClasses(Classe *classe){
     classe[3].skin = al_load_bitmap("../Image/Classes/huppermage/hup1.png");
     //Sorts
 
-}
 
+}
