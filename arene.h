@@ -19,6 +19,7 @@
 #include "menu.h"
 #include "joueur.h"
 #include "classe.h"
+#include "interfaceClasse.h"
 
 #define LARGEUR_TUILE 80
 #define HAUTEUR_TUILE 41
