@@ -11,7 +11,7 @@
 #include "Sorts.h"
 
 typedef struct{
-    char *nom;
+    char nom[50];
     ALLEGRO_BITMAP *skin;
     //Structure sorts
     Sort parametreSorts;

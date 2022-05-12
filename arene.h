@@ -40,4 +40,4 @@ int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12]
 void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[]);
 
 
-#endif ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
+#endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
