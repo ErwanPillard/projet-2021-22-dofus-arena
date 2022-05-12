@@ -231,23 +231,67 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE1].x, (int)interfaceC[CLASSE1].y,(int)interfaceC[CLASSE1].largeur, (int)interfaceC[CLASSE1].hauteur)){
                         interfaceC[CLASSE1].largeur = 90;
                         interfaceC[CLASSE1].hauteur = 90;
+                        interfaceC[CLASSE1].y = 690;
+                        interfaceC[CLASSE1].x = 590;
+                        break;
                     }
+                    interfaceC[CLASSE1].largeur = 75;
+                    interfaceC[CLASSE1].hauteur = 75;
+                    interfaceC[CLASSE1].y = 700;
+                    interfaceC[CLASSE1].x = 600;
+
+                    if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE2].x, (int)interfaceC[CLASSE2].y,(int)interfaceC[CLASSE2].largeur, (int)interfaceC[CLASSE2].hauteur)){
+                        interfaceC[CLASSE2].largeur = 90;
+                        interfaceC[CLASSE2].hauteur = 90;
+                        interfaceC[CLASSE2].y = 690;
+                        interfaceC[CLASSE2].x = 645;
+                        break;
+                    }
+                    interfaceC[CLASSE2].largeur = 75;
+                    interfaceC[CLASSE2].hauteur = 75;
+                    interfaceC[CLASSE2].y = 700;
+                    interfaceC[CLASSE2].x = 655;
+
+                    if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE3].x, (int)interfaceC[CLASSE3].y,(int)interfaceC[CLASSE3].largeur, (int)interfaceC[CLASSE3].hauteur)){
+                        interfaceC[CLASSE3].largeur = 90;
+                        interfaceC[CLASSE3].hauteur = 90;
+                        interfaceC[CLASSE3].y = 690;
+                        interfaceC[CLASSE3].x = 700;
+                        break;
+                    }
+                    interfaceC[CLASSE3].largeur = 75;
+                    interfaceC[CLASSE3].hauteur = 75;
+                    interfaceC[CLASSE3].y = 700;
+                    interfaceC[CLASSE3].x = 710;
+
+                    if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE4].x, (int)interfaceC[CLASSE4].y,(int)interfaceC[CLASSE4].largeur, (int)interfaceC[CLASSE4].hauteur)){
+                        interfaceC[CLASSE4].largeur = 90;
+                        interfaceC[CLASSE4].hauteur = 90;
+                        interfaceC[CLASSE4].y = 690;
+                        interfaceC[CLASSE4].x = 755;
+                        break;
+                    }
+                    interfaceC[CLASSE4].largeur = 75;
+                    interfaceC[CLASSE4].hauteur = 75;
+                    interfaceC[CLASSE4].y = 700;
+                    interfaceC[CLASSE4].x = 765;
 
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[VALIDER].x, (int)interfaceC[VALIDER].y,(int)interfaceC[VALIDER].largeur, (int)interfaceC[VALIDER].hauteur)){
                         interfaceC[VALIDER].largeur = 175;
                         interfaceC[VALIDER].largeur = 175;
                         interfaceC[VALIDER].hauteur = 83;
-                        interfaceC[VALIDER].x = 1190;
-                        interfaceC[VALIDER].y = 690;
+
+                        interfaceC[VALIDER].x -= 10;
+                       // interfaceC[VALIDER].x = 1190;
+                        interfaceC[VALIDER].y = 690;//690
                         break;
                     }
-                    interfaceC[VALIDER].x = 1200;
+                    //interfaceC[VALIDER].x = 1200;
                     interfaceC[VALIDER].y = 700;
                     interfaceC[VALIDER].largeur = 165;
                     interfaceC[VALIDER].hauteur = 73;
                 }
-                    interfaceC[CLASSE1].largeur = 75;
-                    interfaceC[CLASSE1].hauteur = 75;
+
 
             }
             dessinerInterfaceClasses(affichageClasse, classeEnCours, posJoueur, i, donneePartie.nbJoueurs, joueur, interfaceC, classe);

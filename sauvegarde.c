@@ -14,15 +14,17 @@ FILE* creerFichier(){
     return monFichier;
 }
 
+/*
 void copierJoueur(Joueur j[], Partie donneePartie, FILE* creerFichier(), FILE *myFile, Classe classe){
     for(int i=0; i < donneePartie.nbJoueurs; i++){
         fprintf(myFile, "JOUEUR:%s\n",donneePartie.nom);
-        fprintf(myFile,"%s%d%d%d\n",
+        fprintf(myFile,"%s%\n",
                 classe.nom,
                 classe.skin,
-                classe.parametreSorts);
+                classe.sorts);
     }
 }
+
 
 int fermerFichier(FILE* myFile){
     return fclose (myFile);
