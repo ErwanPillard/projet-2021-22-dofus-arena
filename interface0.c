@@ -38,7 +38,15 @@ void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     al_draw_text(r[0].font, NOIR, r[0].x + 70, r[0].y + 6, 0, "JOUER");
     al_draw_text(r[1].font, NOIR, r[1].x + 50, r[1].y + 6, 0, "CHARGER");
     al_draw_text(r[2].font, NOIR, r[2].x + 50, r[2].y + 6, 0, "QUITTER");
+/*
+    for(int i = 0; i < 1; i++){
+        al_draw_filled_rectangle(r[i].x , r[i].y, r[i].x + r[i].largeur, r[i].y + r[i].hauteur, r[i].color);
+        al_draw_rectangle(r[i].x, r[i].y, r[i].x + r[i].largeur, r[i].y + r[i].hauteur, r[i].colorThickness, r[i].thickness);
+    }
 
+    al_draw_text(r[0].font, NOIR, r[0].x + 70, r[0].y + 6, 0, "SAUVERGARDER");
+    al_draw_text(r[1].font, NOIR, r[1].x + 50, r[1].y + 6, 0, "CHARGER ANCIENNE PARTIE");
+*/
     al_flip_display();
 }
 
@@ -69,12 +77,14 @@ void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 for (int i = 0; i < 3; i++) {
-                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[0])){
+                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[0])){ // pour Jouer une partie
                         al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                         end = true;
                     }
-                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1])){
-                        //charger un ancienne partie
+                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1])){ //charger un ancienne partie
+                        al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                        end = true;
+
                     }
                     else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[2])){
                         //Liberation

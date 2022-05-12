@@ -7,7 +7,7 @@
 FILE* creerFichier(){
     char chemin[LG_MAX_CHEMIN_SAUVEGARDE];
     char nomPartie[LG_MAX_NOM_PARTIE];
-    printf("Comment voulez vous appeler votre partie?\n");
+    printf("Comment voulez-vous appeler votre partie?\n");
     scanf("%s",nomPartie);
     sprintf(chemin,"%s/%s", CHEMIN_SAUVEGARDE, nomPartie);
     FILE* monFichier = fopen(chemin,"w");
