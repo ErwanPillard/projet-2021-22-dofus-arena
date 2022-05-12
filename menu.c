@@ -131,6 +131,7 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
                     else{
                         rectangleInterfaceChoixJoueurs[i].color = OR;
                     }
+                    
                 }
                 break;
             }

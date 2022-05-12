@@ -14,7 +14,16 @@ void initialiserClasses(Classe *classe){
     classe[1].skin = al_load_bitmap("../Image/Classes/CoeurIop/IOP1.png");
     classe[2].skin = al_load_bitmap("../Image/Classes/eniripsa/eniripsa1.png");
     classe[3].skin = al_load_bitmap("../Image/Classes/huppermage/hup1.png");
-    //Sorts
+    //PA par classe
+    classe[0].PaTotal = 6;// reinitialiser à chaque tour
+    classe[1].PaTotal = 6;
+    classe[2].PaTotal = 6;
+    classe[3].PaTotal = 6;
+    // Pv de départ par classe
+    classe[0].PvDepart = 48;// même pendant toute la partie
+    classe[1].PvDepart = 50;
+    classe[2].PvDepart = 40;
+    classe[3].PvDepart = 42;
 
 
 }
