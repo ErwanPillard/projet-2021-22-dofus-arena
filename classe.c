@@ -3,6 +3,7 @@
 
 void initialiserClasses(Classe *classe){
 
+    //Nom
     strcpy(classe[0].nom, "L'ombre de Sram");
     strcpy(classe[1].nom, "Coeur d'Iop");
     strcpy(classe[2].nom, "Les mains d'Eniripsa");

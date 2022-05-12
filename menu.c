@@ -69,6 +69,8 @@ Rect initialisationInterface1(Rect *r){
 
 void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     al_draw_bitmap(imagePrincipale, 0, 0, 0);
+    ALLEGRO_BITMAP *nbjoueurs = al_load_bitmap("../Image/nbjoueurs.png");
+    al_draw_bitmap(nbjoueurs, 200, 0, 0);
 
     dessinerFilledRectangle(r[0].x, r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
     dessinerFilledRectangle(r[1].x, r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);

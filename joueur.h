@@ -12,13 +12,14 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+//#include "classe.h"
 
 #include <time.h>
 
 #include "arene.h"
 
 typedef struct{
-    int classe;
+    //Classe tabclasse[];
     int caseX;//sur quelle case est positionné le joueur
     int caseY;
     int PM;

@@ -10,12 +10,11 @@
 #include <allegro5/allegro_acodec.h>
 #include "Sorts.h"
 
-typedef struct{
+typedef struct Classe {
     char nom[50];
     ALLEGRO_BITMAP *skin;
-    //Structure sorts
-    Sort parametreSorts;
-}Classe;
+    Sort sorts[4];
+} Classe;
 
 void initialiserClasses(Classe *classe);
 
