@@ -13,7 +13,7 @@
 #include "menu.h"
 #include "interface0.h"
 #include "echap.h"
-#include "interfaceClasse.h"
+//#include "interfaceClasse.h"
 #include "chargement.h"
 #include "arene.h"
 
