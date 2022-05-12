@@ -16,10 +16,10 @@
 
 #include <time.h>
 
-#include "arene.h"
+#include "coordonneesISO.h"
 
 typedef struct{
-    //Classe tabclasse[];
+    int classe;
     int caseX;//sur quelle case est positionné le joueur
     int caseY;
     int PM;
