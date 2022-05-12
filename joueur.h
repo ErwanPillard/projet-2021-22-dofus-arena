@@ -16,14 +16,16 @@
 
 #include <time.h>
 
+#include "coordonneesISO.h"
+
 typedef struct{
-    //Classe tabclasse[];
+    int classe;
     int caseX;//sur quelle case est positionné le joueur
     int caseY;
     int PM;
 }Joueur;
 
 void initialiserJoueur(Joueur joueur[4]);
-
+int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_JOUEUR_H

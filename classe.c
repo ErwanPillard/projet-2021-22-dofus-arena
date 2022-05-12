@@ -25,5 +25,5 @@ void initialiserClasses(Classe *classe){
     classe[2].PvDepart = 40;
     classe[3].PvDepart = 42;
 
-}
 
+}

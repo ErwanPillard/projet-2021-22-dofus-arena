@@ -1,5 +1,3 @@
-
-#include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
@@ -8,14 +6,10 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <assert.h>
-#include "time.h"
-
+#include <time.h>
 #include "menu.h"
-#include "interface0.h"
-#include "echap.h"
-//#include "interfaceClasse.h"
-#include "chargement.h"
 #include "arene.h"
+#include "interfaceClasse.h"
 
 #define LARGEUR 1400
 #define HAUTEUR 807
