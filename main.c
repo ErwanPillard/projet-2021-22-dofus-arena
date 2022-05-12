@@ -13,6 +13,8 @@
 
 #define LARGEUR 1400
 #define HAUTEUR 807
+#include "chargement.h"
+#include "interface0.h"
 
 int main(){
     //Déclarations

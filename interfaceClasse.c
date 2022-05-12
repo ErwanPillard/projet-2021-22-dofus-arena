@@ -117,6 +117,7 @@ void dessinerImageFond(int classeEnCours, AffichageClasse classe[]){
             al_draw_scaled_bitmap(classe[1].infoClasse, 0, 0, 882, 1250, 30, 0, 585, 826, 0);
 
             break;
+            break;
         }
         case 2:{
             al_draw_scaled_bitmap(classe[2].fondEcran, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
@@ -139,7 +140,7 @@ void dessinerFleche(InterfaceClasse interfaceC[]){
     al_draw_scaled_bitmap(interfaceC[FLECHE].bitmap, 0, 0, 406, 324, interfaceC[FLECHE].x, interfaceC[FLECHE].y, interfaceC[FLECHE].largeur,interfaceC[FLECHE].hauteur, 0);
 }
 
-void dessinerBoutonClasses(InterfaceClasse interfaceC[]) { // 4 classes
+void dessinerBoutonClasses(InterfaceClasse interfaceC[]) {// 4 classes
     al_draw_scaled_bitmap(interfaceC[2].bitmap, 0, 0, 250, 250, interfaceC[2].x, interfaceC[2].y,interfaceC[2].largeur, interfaceC[2].hauteur, 0);
     al_draw_scaled_bitmap(interfaceC[3].bitmap, 0, 0, 250, 250, interfaceC[3].x, interfaceC[3].y,interfaceC[3].largeur, interfaceC[3].hauteur, 0);
     al_draw_scaled_bitmap(interfaceC[4].bitmap, 0, 0, 250, 250, interfaceC[4].x, interfaceC[4].y,interfaceC[4].largeur, interfaceC[4].hauteur, 0);
@@ -226,7 +227,14 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                     //fermer
                 }
                 case ALLEGRO_EVENT_MOUSE_AXES:{
+                    //sur passage joueurs du bas
+                    if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE1].x, (int)interfaceC[CLASSE1].y,(int)interfaceC[CLASSE1].largeur, (int)interfaceC[CLASSE1].hauteur)){
+                        interfaceC[CLASSE1].largeur = 90;
+                        interfaceC[CLASSE1].hauteur = 90;
+                    }
+
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[VALIDER].x, (int)interfaceC[VALIDER].y,(int)interfaceC[VALIDER].largeur, (int)interfaceC[VALIDER].hauteur)){
+                        interfaceC[VALIDER].largeur = 175;
                         interfaceC[VALIDER].largeur = 175;
                         interfaceC[VALIDER].hauteur = 83;
                         interfaceC[VALIDER].x = 1190;
@@ -238,6 +246,9 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                     interfaceC[VALIDER].largeur = 165;
                     interfaceC[VALIDER].hauteur = 73;
                 }
+                    interfaceC[CLASSE1].largeur = 75;
+                    interfaceC[CLASSE1].hauteur = 75;
+
             }
             dessinerInterfaceClasses(affichageClasse, classeEnCours, posJoueur, i, donneePartie.nbJoueurs, joueur, interfaceC, classe);
         }
