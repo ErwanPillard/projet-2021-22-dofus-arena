@@ -136,4 +136,20 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
         }
         dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs);
     }
+
+    //Liberation
+
+    //Bitmap
+    al_destroy_bitmap(imagePrincipale);
+
+    //Font
+    al_destroy_font(rectangleInterfaceChoixJoueurs[0].font);
+    al_destroy_font(rectangleInterfaceChoixJoueurs[1].font);
+    al_destroy_font(rectangleInterfaceChoixJoueurs[2].font);
+    al_destroy_font(rectangleInterfaceChoixJoueurs[3].font);
+
+    //SAMPLE
+    al_destroy_sample(whoosh);
+
 }
+

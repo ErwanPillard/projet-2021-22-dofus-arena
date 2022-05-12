@@ -4,10 +4,10 @@
 void initialiserClasses(Classe *classe){
 
     //Nom
-    classe[0].nom = "L'ombre de Sram";
-    classe[1].nom = "Coeur d'Iop";
-    classe[2].nom = "Les mains d'Eniripsa";
-    classe[3].nom = "La rune d'huppermage";
+    strcpy(classe[0].nom, "L'ombre de Sram");
+    strcpy(classe[1].nom, "Coeur d'Iop");
+    strcpy(classe[2].nom, "Les mains d'Eniripsa");
+    strcpy(classe[3].nom, "La rune d'huppermage");
 
     //Skin
     classe[0].skin = al_load_bitmap("../Image/Classes/OmbreSrum/ombresrum1.png");
@@ -16,5 +16,5 @@ void initialiserClasses(Classe *classe){
     classe[3].skin = al_load_bitmap("../Image/Classes/huppermage/hup1.png");
     //Sorts
 
-
 }
+

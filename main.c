@@ -13,7 +13,7 @@
 #include "menu.h"
 #include "interface0.h"
 #include "echap.h"
-#include "interfaceClasse.h"
+//#include "interfaceClasse.h"
 #include "chargement.h"
 #include "arene.h"
 
@@ -72,7 +72,6 @@ int main(){
 
     al_wait_for_event(queue, &event);
     while(!end){
-        srand(time(NULL));
         //affichageChargement();
         //interface0(queue, event);
         menu(queue, event, &donneePartie);
