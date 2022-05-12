@@ -6,6 +6,7 @@
 
 unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled){
     if(mouse_x >= (int)rectanglefilled.x && mouse_y >= (int)rectanglefilled.y && mouse_x <= (int)rectanglefilled.x + (int)rectanglefilled.largeur && mouse_y <= (int)rectanglefilled.y + (int)rectanglefilled.hauteur){
+
         return 1;
     }
     return 0;
@@ -35,7 +36,7 @@ Rect initialisationInterface1(Rect *r){
     r[1].largeur = 100;
     r[1].hauteur = 100;
     r[1].x = (float)LARGEUR / 2 - r[1].largeur / 2;
-    r[1].y = y-100;
+    r[1].y = y-250;
     r[1].color = OR;
     r[1].colorThickness = ORfonce;
     r[1].font = al_load_font("../Polices/allegroopen.ttf", 145, 0);
@@ -44,7 +45,7 @@ Rect initialisationInterface1(Rect *r){
     r[0].largeur = 100;
     r[0].hauteur = 100;
     r[0].x = ((float)LARGEUR / 2 - r[0].largeur / 2) - (r[1].largeur + 5);
-    r[0].y = y-100;
+    r[0].y = y-250;
     r[0].color = OR;
     r[0].colorThickness = ORfonce;
     r[0].font = al_load_font("../Polices/allegroopen.ttf", 145, 0);
@@ -52,7 +53,7 @@ Rect initialisationInterface1(Rect *r){
     r[2].largeur = 100;
     r[2].hauteur = 100;
     r[2].x = ((float)LARGEUR / 2 - r[2].largeur / 2) + (r[1].largeur + 5);
-    r[2].y = y-100;
+    r[2].y = y-250;
     r[2].color = OR;
     r[2].colorThickness = ORfonce;
     r[2].font = al_load_font("../Polices/allegroopen.ttf", 145, 0);
@@ -70,7 +71,7 @@ Rect initialisationInterface1(Rect *r){
 void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     al_draw_bitmap(imagePrincipale, 0, 0, 0);
     ALLEGRO_BITMAP *nbjoueurs = al_load_bitmap("../Image/nbjoueurs.png");
-    al_draw_bitmap(nbjoueurs, 200, 0, 0);
+    al_draw_bitmap(nbjoueurs, LARGEUR/2-195, 20, 0);
 
     dessinerFilledRectangle(r[0].x, r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
     dessinerFilledRectangle(r[1].x, r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);

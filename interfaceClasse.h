@@ -7,7 +7,7 @@
 
 #include "menu.h"
 #include "partie.h"
-//#include "joueur.h"
+#include "joueur.h"
 #include "classe.h"
 
 #include <stdio.h>

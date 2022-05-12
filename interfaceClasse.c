@@ -1,5 +1,6 @@
 
 #include "interfaceClasse.h"
+#include "menu.h"
 
 unsigned char surPassage(int mouse_x, int mouse_y, int x, int y, int largeur,int hauteur){// duplication fonction à optimiser
     if(mouse_x >= x && mouse_y >= y && mouse_x <= x + largeur && mouse_y <= y + hauteur){
@@ -223,6 +224,19 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                 }
                 case ALLEGRO_EVENT_DISPLAY_CLOSE:{
                     //fermer
+                }
+                case ALLEGRO_EVENT_MOUSE_AXES:{
+                    if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[VALIDER].x, (int)interfaceC[VALIDER].y,(int)interfaceC[VALIDER].largeur, (int)interfaceC[VALIDER].hauteur)){
+                        interfaceC[VALIDER].largeur = 175;
+                        interfaceC[VALIDER].hauteur = 83;
+                        interfaceC[VALIDER].x = 1190;
+                        interfaceC[VALIDER].y = 690;
+                        break;
+                    }
+                    interfaceC[VALIDER].x = 1200;
+                    interfaceC[VALIDER].y = 700;
+                    interfaceC[VALIDER].largeur = 165;
+                    interfaceC[VALIDER].hauteur = 73;
                 }
             }
             dessinerInterfaceClasses(affichageClasse, classeEnCours, posJoueur, i, donneePartie.nbJoueurs, joueur, interfaceC, classe);
