@@ -1,6 +1,8 @@
 #ifndef ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_SORTS_H
 #define ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_SORTS_H
-#define NB_SORTS 4
+
+#include "stdlib.h"
+#include "time.h"
 
 typedef struct Sort {
     int porteeX;

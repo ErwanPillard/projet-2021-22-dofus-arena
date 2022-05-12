@@ -14,6 +14,8 @@ typedef struct Classe {
     char nom[50];
     ALLEGRO_BITMAP *skin;
     Sort sorts[4];
+    int PaTotal;
+    int PvDepart;
 } Classe;
 
 void initialiserClasses(Classe *classe);
