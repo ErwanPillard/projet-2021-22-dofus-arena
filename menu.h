@@ -13,6 +13,7 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 
+#include "echap.h"
 #include "partie.h"
 
 #define LARGEUR 1400
