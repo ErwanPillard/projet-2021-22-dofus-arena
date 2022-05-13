@@ -286,6 +286,9 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                         interfaceC[VALIDER].y = 690;//690
                         break;
                     }
+                    if(interfaceC[VALIDER].x < LARGEUR/2+300){
+                        interfaceC[VALIDER].x = LARGEUR/2+300;
+                    }
                     //interfaceC[VALIDER].x = 1200;
                     interfaceC[VALIDER].y = 700;
                     interfaceC[VALIDER].largeur = 165;
