@@ -21,6 +21,7 @@
 
 #define OR al_map_rgb(255,251,14)
 #define ORfonce al_map_rgb(238,225,32)
+#define OR2 al_map_rgb(255,235,20)
 #define BLANC al_map_rgb(255,255,255)
 #define NOIR al_map_rgb(0,0,0)
 
