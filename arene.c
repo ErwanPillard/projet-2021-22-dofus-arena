@@ -12,19 +12,7 @@ void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]){
 }
 
 //****************************************Dessiner***************************************//
-void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]){
 
-    for (int i = 0; i < 12; i++) {
-        for (int j = 0; j < 12; j++) {
-            printf("[%d][%d] x : %f y : %f\n", i,j, coordonneeIso[i][j].x, coordonneeIso[i][j].y);
-        }
-    }
-    for (int i = 0; i < 12; i++) {
-        for (int j = 0; j < 12; j++) {
-            al_draw_filled_ellipse(coordonneeIso[i][j].x, coordonneeIso[i][j].y, 20, 15, BLANC);
-        }
-    }
-}
 
 void dessinerJoueur(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[]){
     //al_draw_filled_ellipse(coordonneeIso[joueur[0].caseX][joueur[0].caseY].x, coordonneeIso[joueur[0].caseX][joueur[0].caseY].y, 20, 15, NOIR);
@@ -92,12 +80,6 @@ void dessinerArene(ALLEGRO_BITMAP *fond, CoordonneeISO coordonneeIso[12][12], Jo
     al_flip_display();
 }
 
-void agrandissementCase(){
-    ALLEGRO_BITMAP *image = al_load_bitmap("../Image/sol4.png");
-    //al_draw_scaled_bitmap(image, 180, 200, 0);
-    al_draw_bitmap(image, 180, 180, 0);
-    al_flip_display();
-}
 
 void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[]){
     bool end = false;
@@ -121,7 +103,6 @@ void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Cl
 
               case ALLEGRO_EVENT_MOUSE_AXES:{
                 if(surPassage(event.mouse.x, event.mouse.y, event.mouse.x, event.mouse.y, 40, 50)){
-                    agrandissementCase();
                 }
             }
 
