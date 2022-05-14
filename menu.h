@@ -15,6 +15,7 @@
 
 #include "echap.h"
 #include "partie.h"
+#include "rect.h"
 
 #define LARGEUR 1400
 #define HAUTEUR 807
@@ -26,13 +27,6 @@
 #define NOIR al_map_rgb(0,0,0)
 
 #define NB_RECTANGLE_NBJ 4
-
-typedef struct{
-    float x, y, largeur, hauteur, thickness, rounded_x, rounded_y;
-    ALLEGRO_COLOR color;
-    ALLEGRO_COLOR colorThickness;
-    ALLEGRO_FONT *font;
-}Rect;
 
 unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled);
 void dessinerFilledRectangle2(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color);
@@ -48,4 +42,4 @@ void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]);
 
 void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie);
 
-#endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_MENU_H
+#endif ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_MENU_H
