@@ -68,9 +68,9 @@ Rect initialisationInterface1(Rect *r){
 }
 
 
-void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
+void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[], ALLEGRO_BITMAP *nbjoueurs){
     al_draw_bitmap(imagePrincipale, 0, 0, 0);
-    ALLEGRO_BITMAP *nbjoueurs = al_load_bitmap("../Image/nbjoueurs.png");
+
     al_draw_bitmap(nbjoueurs, LARGEUR/2-195, 20, 0);
 
     dessinerFilledRectangle(r[0].x, r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
@@ -90,11 +90,12 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
 
     Rect rectangleInterfaceChoixJoueurs[NB_RECTANGLE_NBJ];
     ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
+    ALLEGRO_BITMAP *nbjoueurs = al_load_bitmap("../Image/nbjoueurs.png");
 
     ALLEGRO_SAMPLE *whoosh = al_load_sample("../Sound/whoosh.ogg");
 
     initialisationInterface1(rectangleInterfaceChoixJoueurs);
-    dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs);
+    dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs, nbjoueurs);
 
     while(!end){
         al_wait_for_event(queue, &event);
@@ -135,7 +136,7 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
                 break;
             }
         }
-        dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs);
+        dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs, nbjoueurs);
     }
 
     //Liberation

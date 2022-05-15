@@ -68,7 +68,7 @@ void dessinerArene(ALLEGRO_BITMAP *fond, CoordonneeISO coordonneeIso[12][12], Jo
     dessinerJoueur(coordonneeIso, joueur, classe);
 
     //obstacles
-
+/*
     al_draw_bitmap(obstacleGlace, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+20, 0);
 
     // dessiner bitmap sors joueurs
@@ -89,13 +89,7 @@ void dessinerArene(ALLEGRO_BITMAP *fond, CoordonneeISO coordonneeIso[12][12], Jo
     //al_draw_bitmap(obstacle2, POSITION_MAP_ISO_X - LARGEUR_TUILE /2-120, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+157, 0);
     // al_draw_bitmap(herbe, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+115, 0);
     //al_draw_bitmap(lave, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+41, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+138, 0);
-    al_flip_display();
-}
-
-void agrandissementCase(){
-    ALLEGRO_BITMAP *image = al_load_bitmap("../Image/sol4.png");
-    //al_draw_scaled_bitmap(image, 180, 200, 0);
-    al_draw_bitmap(image, 180, 180, 0);
+    */
     al_flip_display();
 }
 
@@ -106,6 +100,7 @@ void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Cl
     CoordonneeISO coordonneeIso[12][12];
 
     initialiserCoordMilieuTuile(coordonneeIso);
+    dessinerArene(fond, coordonneeIso, joueur, classe);
 
     while(!end){
         al_wait_for_event(queue, &event);
@@ -118,14 +113,6 @@ void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Cl
                 deplacementJoueurs(event.mouse.x, event.mouse.y, coordonneeIso, joueur);
                 break;
             }
-
-              case ALLEGRO_EVENT_MOUSE_AXES:{
-                if(surPassage(event.mouse.x, event.mouse.y, event.mouse.x, event.mouse.y, 40, 50)){
-                    agrandissementCase();
-                }
-            }
-
-
         }
         dessinerArene(fond, coordonneeIso, joueur, classe);
     }

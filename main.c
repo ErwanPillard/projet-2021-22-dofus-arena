@@ -65,6 +65,7 @@ int main(){
     initialiserClasses(classe);
 
     al_wait_for_event(queue, &event);
+
     while(!end){
         //affichageChargement();
         //interface0(queue, event);

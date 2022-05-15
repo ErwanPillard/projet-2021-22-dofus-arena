@@ -42,7 +42,7 @@ unsigned char clicExterneRectangle( int mouse_x, int mouse_y, Rect r);
 
 Rect initialisationInterface1(Rect *r);
 
-void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]);
+void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[], ALLEGRO_BITMAP *nbjoueurs);
 
 void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie);
 
