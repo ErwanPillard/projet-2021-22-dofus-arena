@@ -13,6 +13,8 @@
 
 #define LARGEUR 1400
 #define HAUTEUR 807
+#include "chargement.h"
+#include "interface0.h"
 
 int main(){
     //Déclarations
@@ -67,10 +69,11 @@ int main(){
     al_wait_for_event(queue, &event);
 
     while(!end){
-        //affichageChargement();
-        //interface0(queue, event);
+        affichageChargement();
+        interface0(queue, event);
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
+        affichageChargement2();
         arene(event, queue, joueur, classe);
         end = true;
     }

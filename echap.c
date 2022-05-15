@@ -17,8 +17,11 @@ Rect initialisationMenuEchap(){
     return r;
 }
 
-void dessierMenuEchap(Rect r){ // Menu doit aussi être accessible a la souris
+void dessinerMenuEchap(Rect r){ // Menu doit aussi être accessible a la souris
     al_draw_filled_rounded_rectangle(r.x, r.y, r.x + r.largeur, r.y + r.hauteur, r.rounded_x, r.rounded_y, r.color);
     al_draw_rounded_rectangle(r.x, r.y, r.x + r.largeur, r.y + r.hauteur, r.rounded_x, r.rounded_y, OR, r.thickness);
+
+    al_draw_text(r.font, NOIR, r.x + 70, r.y + 6, 0, "SAUVEGARDER");
+
     al_flip_display();
 }

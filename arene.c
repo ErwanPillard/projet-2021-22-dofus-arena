@@ -100,7 +100,6 @@ void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Cl
     CoordonneeISO coordonneeIso[12][12];
 
     initialiserCoordMilieuTuile(coordonneeIso);
-    dessinerArene(fond, coordonneeIso, joueur, classe);
 
     while(!end){
         al_wait_for_event(queue, &event);

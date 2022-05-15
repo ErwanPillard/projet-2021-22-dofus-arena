@@ -74,8 +74,11 @@ void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[], ALLEGRO_BITMA
     al_draw_bitmap(nbjoueurs, LARGEUR/2-195, 20, 0);
 
     dessinerFilledRectangle(r[0].x, r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
+    dessinerRectangle(r[0].x, r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, ORfonce, 5);
     dessinerFilledRectangle(r[1].x, r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
+    dessinerRectangle(r[1].x, r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, ORfonce, 5);
     dessinerFilledRectangle(r[2].x, r[2].y,r[2].x + r[2].largeur, r[2].y + r[2].hauteur, r[2].color);
+    dessinerRectangle(r[2].x, r[2].y,r[2].x + r[2].largeur, r[2].y + r[2].hauteur, ORfonce, 5);
     dessinerFilledRectangle(r[3].x, r[3].y,r[3].x + r[3].largeur, r[3].y + r[3].hauteur, r[3].color);
     al_draw_text(r[0].font, NOIR, r[0].x + 25, r[0].y - 35, 0, "2");
     al_draw_text(r[1].font, NOIR, r[1].x + 25, r[1].y - 35, 0, "3");
@@ -118,7 +121,6 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
                 }
                 if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[3])) {
                     al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
-
                     donneePartie->nbJoueurs = 1;
                     end = true;
                 }
@@ -128,10 +130,12 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
                 for (int i = 0; i < NB_RECTANGLE_NBJ; i++) {
                     if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[i])){
                         rectangleInterfaceChoixJoueurs[i].color = rectangleInterfaceChoixJoueurs[i].colorThickness;
+
                     }
                     else{
                         rectangleInterfaceChoixJoueurs[i].color = OR;
                     }
+                    
                 }
                 break;
             }
