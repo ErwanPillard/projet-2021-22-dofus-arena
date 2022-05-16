@@ -1,7 +1,3 @@
-//
-// Created by 33782 on 05/05/2022.
-//
-
 #include "joueur.h"
 
 void initialiserJoueur(Joueur joueur[4]){
@@ -17,6 +13,18 @@ void initialiserJoueur(Joueur joueur[4]){
     joueur[3].classe = 5;
 }
 
+void surbrillanceJoueur(CoordonneeISO coordonneeIso[][12], int x, int y, int PM){
+
+    al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLANC);
+
+    if(PM > 0){
+        surbrillanceJoueur(coordonneeIso, x + 1, y, PM - 1);
+        surbrillanceJoueur(coordonneeIso, x - 1, y, PM - 1);
+        surbrillanceJoueur(coordonneeIso, x, y + 1, PM - 1);
+        surbrillanceJoueur(coordonneeIso, x, y - 1, PM - 1);
+    }
+}
+
 int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]){
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++){
@@ -27,6 +35,7 @@ int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12]
         }
     }
 }
+
 
 
 

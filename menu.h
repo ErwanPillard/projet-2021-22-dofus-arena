@@ -42,4 +42,4 @@ void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[], ALLEGRO_BITMA
 
 void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie);
 
-#endif ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_MENU_H
+#endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_MENU_H

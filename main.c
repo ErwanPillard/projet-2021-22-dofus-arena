@@ -69,8 +69,8 @@ int main(){
     al_wait_for_event(queue, &event);
 
     while(!end){
-        affichageChargement();
-        interface0(queue, event);
+        //affichageChargement();
+        //interface0(queue, event);
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         affichageChargement2();

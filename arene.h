@@ -34,7 +34,7 @@
 
 void dessinerArene(ALLEGRO_BITMAP *font, CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]);
 void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]);
-
+void dessinerObsacle();
 void dessinerJoueur(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[]);
 
 void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]);

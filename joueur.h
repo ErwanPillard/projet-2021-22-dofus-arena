@@ -12,7 +12,10 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+#include <stdio.h>
 //#include "classe.h"
+
+#define BLANC al_map_rgb(255,255,255)
 
 #include <time.h>
 
@@ -28,4 +31,5 @@ typedef struct{
 void initialiserJoueur(Joueur joueur[4]);
 int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]);
 
+void surbrillanceJoueur(CoordonneeISO coordonneeIso[][12], int x, int y, int PM);
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_JOUEUR_H
