@@ -1,6 +1,5 @@
 
 #include "interfaceClasse.h"
-#include "menu.h"
 
 unsigned char surPassage(int mouse_x, int mouse_y, int x, int y, int largeur,int hauteur){// duplication fonction à optimiser
     if(mouse_x >= x && mouse_y >= y && mouse_x <= x + largeur && mouse_y <= y + hauteur){

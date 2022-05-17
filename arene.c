@@ -26,8 +26,10 @@ void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]){
     }
 }
 
-void dessinerJoueur(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[]){
-    al_draw_scaled_bitmap(classe[joueur[0].classe].skin, 0, 0, 250,250, coordonneeIso[joueur[0].caseX][joueur[0].caseY].x - 42, coordonneeIso[joueur[0].caseX][joueur[0].caseY].y - 83, 100, 100, 0);
+void dessinerJoueurs(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[], int nbJoueurs){
+    for(int i = 0; i < nbJoueurs; i++){
+        al_draw_scaled_bitmap(classe[joueur[i].classe].skin, 0, 0, 250,250, coordonneeIso[joueur[i].caseX][joueur[i].caseY].x - 42, coordonneeIso[joueur[i].caseX][joueur[i].caseY].y - 83, 100, 100, 0);
+    }
 }
 
 void dessinerObsacle(){
@@ -63,7 +65,9 @@ void dessinerObsacle(){
     //al_draw_bitmap(lave, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+41, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+138, 0);
 }
 
-void dessinerArene(ALLEGRO_BITMAP *fond, CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]){
+void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]){
+    ALLEGRO_BITMAP *fond = al_load_bitmap("../Image/Map3.png");
+
     al_draw_scaled_bitmap(fond, 0, 0, 1397, 807, 0, 0, LARGEUR, HAUTEUR, 0);
     ALLEGRO_BITMAP *sol = al_load_bitmap("../Image/sol.png");
     ALLEGRO_BITMAP *sol2 = al_load_bitmap("../Image/sol2.png");
@@ -79,36 +83,8 @@ void dessinerArene(ALLEGRO_BITMAP *fond, CoordonneeISO coordonneeIso[12][12], Jo
         }
     }
 
-
-
     //dessinerSurbrillance(coordonneeIso);
-    surbrillanceJoueur(coordonneeIso, joueur[0].caseX, joueur[0].caseY,joueur[0].PM);
-    dessinerJoueur(coordonneeIso, joueur, classe);
+
     //dessinerJoueur(coordonneeIso, joueur, classe);
     //dessinerObstacle
-    al_flip_display();
-}
-
-void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[]){
-    bool end = false;
-
-    ALLEGRO_BITMAP *fond = al_load_bitmap("../Image/Map3.png");
-    CoordonneeISO coordonneeIso[12][12];
-
-    initialiserCoordMilieuTuile(coordonneeIso);
-    dessinerArene(fond, coordonneeIso, joueur, classe);
-
-    while(!end){
-        al_wait_for_event(queue, &event);
-        switch (event.type) {
-            case ALLEGRO_EVENT_DISPLAY_CLOSE:{
-                end = true;
-                break;
-            }
-            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
-                break;
-            }
-        }
-        dessinerArene(fond, coordonneeIso, joueur, classe);
-    }
 }

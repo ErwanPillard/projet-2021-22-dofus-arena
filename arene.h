@@ -29,17 +29,15 @@
 #include "joueur.h"
 #include "classe.h"
 #include "coordonneesISO.h"
-#include "interfaceClasse.h"
 
+#include "deplacement.h"
 
-void dessinerArene(ALLEGRO_BITMAP *font, CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]);
+void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]);
 void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]);
 void dessinerObsacle();
-void dessinerJoueur(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[]);
+void dessinerJoueurs(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[], int nbJoueurs);
 
 void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]);
-
-void arene(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[]);
 
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H

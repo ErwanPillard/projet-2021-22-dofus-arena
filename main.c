@@ -10,6 +10,7 @@
 #include "menu.h"
 #include "arene.h"
 #include "interfaceClasse.h"
+#include "partie.h"
 
 #define LARGEUR 1400
 #define HAUTEUR 807
@@ -74,7 +75,7 @@ int main(){
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         affichageChargement2();
-        arene(event, queue, joueur, classe);
+        partie(event, queue, joueur, classe, donneePartie);
         end = true;
     }
 }

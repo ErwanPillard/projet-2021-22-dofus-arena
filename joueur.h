@@ -29,7 +29,5 @@ typedef struct{
 }Joueur;
 
 void initialiserJoueur(Joueur joueur[4]);
-int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]);
 
-void surbrillanceJoueur(CoordonneeISO coordonneeIso[][12], int x, int y, int PM);
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_JOUEUR_H
