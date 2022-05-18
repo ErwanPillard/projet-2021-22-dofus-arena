@@ -274,21 +274,16 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                     interfaceC[CLASSE4].hauteur = 75;
                     interfaceC[CLASSE4].y = 700;
                     interfaceC[CLASSE4].x = 765;
-
+                    
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[VALIDER].x, (int)interfaceC[VALIDER].y,(int)interfaceC[VALIDER].largeur, (int)interfaceC[VALIDER].hauteur)){
-                        interfaceC[VALIDER].largeur = 175;
                         interfaceC[VALIDER].largeur = 175;
                         interfaceC[VALIDER].hauteur = 83;
 
-                        interfaceC[VALIDER].x -= 10;
-                       // interfaceC[VALIDER].x = 1190;
-                        interfaceC[VALIDER].y = 690;//690
+                        interfaceC[VALIDER].x = 1195;
+                        interfaceC[VALIDER].y = 695;
                         break;
                     }
-                    if(interfaceC[VALIDER].x < LARGEUR/2+300){
-                        interfaceC[VALIDER].x = LARGEUR/2+300;
-                    }
-                    //interfaceC[VALIDER].x = 1200;
+                    interfaceC[VALIDER].x = 1200;
                     interfaceC[VALIDER].y = 700;
                     interfaceC[VALIDER].largeur = 165;
                     interfaceC[VALIDER].hauteur = 73;

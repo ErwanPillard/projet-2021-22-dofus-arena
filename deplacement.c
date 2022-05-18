@@ -24,18 +24,22 @@ void deplacementJoueur(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12]
 
     if(PM >= 0 && x <= 11 && y <= 11 && x >= 0 && y >= 0){
 
-        if(mouseX >= coordonneeIso[x][y].x - 20 && mouseX <= coordonneeIso[x][y].x + 20 && mouseY >= coordonneeIso[x][y].y - 15 && mouseY <= coordonneeIso[x][y].y + 15 && map[x][y] != 1/*&& si il n'y a pas d'obstacle (fichier txt*/){
+        if(mouseX >= coordonneeIso[x][y].x - 20 && mouseX <= coordonneeIso[x][y].x + 20 && mouseY >= coordonneeIso[x][y].y - 15 && mouseY <= coordonneeIso[x][y].y + 15 && map[x][y] != 1/*&& si il n'y a pas d'obstacle (fichier txt*/ && PM > 0){
             joueur[joueurEnCours].caseX = x;
             joueur[joueurEnCours].caseY = y;
             joueur[joueurEnCours].PM = PM;
+            printf("PM : %d", PM);
+        }
+        else{
+            deplacementJoueur(mouseX, mouseY, coordonneeIso, x + 1, y, PM - 1, joueur, joueurEnCours, map);
+            deplacementJoueur(mouseX, mouseY, coordonneeIso, x - 1, y, PM - 1, joueur, joueurEnCours, map);
+            deplacementJoueur(mouseX, mouseY, coordonneeIso, x, y + 1, PM - 1, joueur, joueurEnCours, map);
+            deplacementJoueur(mouseX, mouseY, coordonneeIso, x, y - 1, PM - 1, joueur, joueurEnCours, map);
         }
 
-        deplacementJoueur(mouseX, mouseY, coordonneeIso, x + 1, y, PM - 1, joueur, joueurEnCours, map);
-        deplacementJoueur(mouseX, mouseY, coordonneeIso, x - 1, y, PM - 1, joueur, joueurEnCours, map);
-        deplacementJoueur(mouseX, mouseY, coordonneeIso, x, y + 1, PM - 1, joueur, joueurEnCours, map);
-        deplacementJoueur(mouseX, mouseY, coordonneeIso, x, y - 1, PM - 1, joueur, joueurEnCours, map);
     }
 }
+
 /*
 int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]){
     for (int i = 0; i < 12; i++) {
@@ -66,7 +70,7 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
     }
 
     dessinerArene(coordonneeIso, joueur, classe);
-    surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY,joueur[0].PM, map);
+    surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY,joueur[0].PM + 1, map);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
     al_flip_display();
 
@@ -79,9 +83,9 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
                 break;
             }
             case ALLEGRO_EVENT_TIMER:{
-                joueur[donneePartie.joueurEnCours].PM = 3;
-                donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
-                redessiner = true;
+                //joueur[donneePartie.joueurEnCours].PM = 3;
+                //donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
+                //redessiner = true;
                 break;
             }
         }
