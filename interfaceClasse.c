@@ -199,6 +199,7 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP: {
                     if (surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[VALIDER].x, (int)interfaceC[VALIDER].y, (int)interfaceC[VALIDER].largeur,(int)interfaceC[VALIDER].hauteur)){
                         joueur[i].classe = classeEnCours;
+
                         end = true;
                     }
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE1].x, (int)interfaceC[CLASSE1].y, (int)interfaceC[CLASSE1].largeur,(int)interfaceC[CLASSE1].hauteur)){
