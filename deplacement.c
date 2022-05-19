@@ -9,7 +9,7 @@ void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int
     if(PM >= 0 && x <= 11 && y <= 11 && x >= 0 && y >= 0){
         //si il n'y a pas d'obstacle (fichier txt):
         if(map[x][y] != 1){
-            al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLANC);
+            al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLEU);
         }
 
         surbrillanceDeplacementJoueur(coordonneeIso, x + 1, y, PM - 1, map);
@@ -25,9 +25,11 @@ void deplacementJoueur(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12]
     if(PM >= 0 && x <= 11 && y <= 11 && x >= 0 && y >= 0){
 
         if(mouseX >= coordonneeIso[x][y].x - 20 && mouseX <= coordonneeIso[x][y].x + 20 && mouseY >= coordonneeIso[x][y].y - 15 && mouseY <= coordonneeIso[x][y].y + 15 && map[x][y] != 1/*&& si il n'y a pas d'obstacle (fichier txt*/){
+            map[joueur[joueurEnCours].caseX][joueur[joueurEnCours].caseY] = 0; // libère la case occupé par le joueur
             joueur[joueurEnCours].caseX = x;
             joueur[joueurEnCours].caseY = y;
             joueur[joueurEnCours].PM = PM;
+            map[x][y] = 1; //case sur laquelle arrive le joueur est occupé
         }
 
         deplacementJoueur(mouseX, mouseY, coordonneeIso, x + 1, y, PM - 1, joueur, joueurEnCours, map);
@@ -75,6 +77,8 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 deplacementJoueur(event.mouse.x, event.mouse.y, coordonneeIso,joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY, joueur[donneePartie.joueurEnCours].PM, joueur, donneePartie.joueurEnCours, map);
+
+
                 redessiner = true;
                 break;
             }
