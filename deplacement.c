@@ -11,7 +11,7 @@ void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int
     if(PM >= 0 && x <= 11 && y <= 11 && x >= 0 && y >= 0){
         //si il n'y a pas d'obstacle (fichier txt):
         if(map[x][y] != 1){
-            al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLANC);
+            al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLEU);
         }
 
         surbrillanceDeplacementJoueur(coordonneeIso, x + 1, y, PM - 1, map);
@@ -23,12 +23,13 @@ void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int
 }
 
 void deplacementJoueur(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], int x, int y, int PM, Joueur joueur[], int joueurEnCours, int map[][12]){
+
     if(PM >= 0 && x <= 11 && y <= 11 && x >= 0 && y >= 0){
-        if(mouseX >= coordonneeIso[x][y].x - 20 && mouseX <= coordonneeIso[x][y].x + 20 && mouseY >= coordonneeIso[x][y].y - 15 && mouseY <= coordonneeIso[x][y].y + 15 && map[x][y] != 1/*&& si il n'y a pas d'obstacle (fichier txt*/ && PM > 0){
+
+        if(mouseX >= coordonneeIso[x][y].x - 20 && mouseX <= coordonneeIso[x][y].x + 20 && mouseY >= coordonneeIso[x][y].y - 15 && mouseY <= coordonneeIso[x][y].y + 15 && map[x][y] != 1/*&& si il n'y a pas d'obstacle (fichier txt*/){
             joueur[joueurEnCours].caseX = x;
             joueur[joueurEnCours].caseY = y;
             joueur[joueurEnCours].PM = PM;
-            printf("PM : %d", PM);
         }
         else{
             deplacementJoueur(mouseX, mouseY, coordonneeIso, x + 1, y, PM - 1, joueur, joueurEnCours, map);
@@ -38,7 +39,6 @@ void deplacementJoueur(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12]
         }
     }
 }
-
 /*
 int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]){
     for (int i = 0; i < 12; i++) {
@@ -69,7 +69,7 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
     }
 
     dessinerArene(coordonneeIso, joueur, classe);
-    surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY,joueur[0].PM + 1, map);
+    surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY,joueur[0].PM, map);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
     al_flip_display();
 
