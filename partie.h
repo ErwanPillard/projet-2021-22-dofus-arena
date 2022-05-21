@@ -28,6 +28,8 @@ typedef struct{
     int joueurEnCours;
 }Partie;
 
+enum action{DEPLACER, SUIVANT};
+
 void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[],Partie donneePartie);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_PARTIE_H

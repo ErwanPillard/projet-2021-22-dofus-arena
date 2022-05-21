@@ -70,8 +70,8 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
     dessinerArene(coordonneeIso, joueur, classe);
     surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY,joueur[donneePartie.joueurEnCours].PM, map);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
-    al_draw_filled_rectangle(r[0].x,r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
-    al_draw_filled_rectangle(r[1].x,r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
+    al_draw_filled_rectangle(r[DEPLACER].x,r[DEPLACER].y,r[DEPLACER].x + r[DEPLACER].largeur, r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
+    al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
     al_flip_display();
 
     while(!end){
@@ -80,9 +80,11 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 deplacementJoueur(event.mouse.x, event.mouse.y, coordonneeIso,joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY, joueur[donneePartie.joueurEnCours].PM, joueur, donneePartie.joueurEnCours, map);
 
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[1])){
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
                     joueur[donneePartie.joueurEnCours].PM = 3;
                     donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
+                    al_stop_timer(timer);
+                    al_start_timer(timer);//pour réinitialiser le timer : stop puis start
                 }
 
                 end = true;

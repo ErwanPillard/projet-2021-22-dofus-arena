@@ -19,19 +19,20 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     donneePartie.joueurEnCours = 0;
 
     Rect r[5];
-    r[0].x = 100;
-    r[0].y = 100;
-    r[0].largeur = 50;
-    r[0].hauteur = 50;
-    r[0].color = OR;
+    r[DEPLACER].x = 100;
+    r[DEPLACER].y = 100;
+    r[DEPLACER].largeur = 50;
+    r[DEPLACER].hauteur = 50;
+    r[DEPLACER].color = OR;
 
-    r[1].x = 200;
-    r[1].y = 100;
-    r[1].largeur = 50;
-    r[1].hauteur = 50;
-    r[1].color = BLEU;
+    r[SUIVANT].x = 200;
+    r[SUIVANT].y = 100;
+    r[SUIVANT].largeur = 50;
+    r[SUIVANT].hauteur = 50;
+    r[SUIVANT].color = BLEU;
 
     dessinerArene(coordonneeIso, joueur, classe);
+
     //dessiner ellipse joueur qui joue
     al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
@@ -48,13 +49,15 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                 break;
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[0])){
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[DEPLACER])){
                     deplacement(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r);
                     redessiner = true;
                 }
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[1])){
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
                     joueur[donneePartie.joueurEnCours].PM = 3;
                     donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
+                    al_stop_timer(timer);
+                    al_start_timer(timer);//pour réinitialiser le timer : stop puis start
                     redessiner = true;
                 }
                 break;
