@@ -17,6 +17,9 @@
 
 #include "menu.h"
 
+void courrirIop();
+void didacticiel();
+void BDF();
 void affichageChargement();
 void affichageChargement2();
 

@@ -76,7 +76,6 @@ void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe
     ALLEGRO_BITMAP *sol5 = al_load_bitmap("../Image/sol5.png");
     ALLEGRO_BITMAP *sol6 = al_load_bitmap("../Image/sol6.png");
 
-
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++) {
             al_draw_bitmap(sol4,POSITION_MAP_ISO_X - LARGEUR_TUILE /2 - (j * (LARGEUR_TUILE /2)) + (i * (LARGEUR_TUILE/2)), POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2,0);

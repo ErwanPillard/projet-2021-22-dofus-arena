@@ -8,7 +8,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
 
     bool end = false;
 
-    timer = al_create_timer(4);
+    timer = al_create_timer(15);
 
     al_register_event_source(queue, al_get_timer_event_source(timer));
 

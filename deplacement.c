@@ -3,6 +3,8 @@
 //
 
 #include "deplacement.h"
+#include "joueur.h"
+
 
 void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int y, int PM, int map[][12]){
 
