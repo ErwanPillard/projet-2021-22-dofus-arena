@@ -89,6 +89,11 @@ void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[], ALLEGRO_BITMA
 }
 
 void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie){
+    ALLEGRO_TIMER *timer = NULL;
+    timer = al_create_timer(1.0/60);
+
+    al_register_event_source(queue, al_get_timer_event_source(timer));
+
     bool end = false;
 
     Rect rectangleInterfaceChoixJoueurs[NB_RECTANGLE_NBJ];
@@ -100,6 +105,7 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
     initialisationInterface1(rectangleInterfaceChoixJoueurs);
     dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs, nbjoueurs);
 
+    al_start_timer(timer);
     while(!end){
         al_wait_for_event(queue, &event);
         switch (event.type) {
@@ -139,8 +145,11 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
                 }
                 break;
             }
+            case ALLEGRO_EVENT_TIMER:{
+                dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs, nbjoueurs);
+                break;
+            }
         }
-        dessinerInterface1(imagePrincipale, rectangleInterfaceChoixJoueurs, nbjoueurs);
     }
 
     //Liberation
@@ -157,5 +166,7 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
     //SAMPLE
     al_destroy_sample(whoosh);
 
+    //TIMER
+    al_destroy_timer(timer);
 }
 

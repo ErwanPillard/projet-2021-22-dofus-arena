@@ -9,7 +9,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     bool end = false;
     bool redessiner = false;
 
-    timer = al_create_timer(4);
+    timer = al_create_timer(15);
 
     al_register_event_source(queue, al_get_timer_event_source(timer));
 
@@ -36,6 +36,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
     al_draw_filled_rectangle(r[0].x, r[0].y, r[0].x + r[0].largeur,r[0].y + r[0].hauteur, r[0].color);
+    al_draw_filled_rectangle(r[1].x,r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
     al_flip_display();
 
     al_start_timer(timer);
@@ -48,15 +49,18 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[0])){
-                    deplacement(event, queue, coordonneeIso, joueur, classe, donneePartie, timer);
+                    deplacement(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r);
+                    redessiner = true;
                 }
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[1])){
+                    joueur[donneePartie.joueurEnCours].PM = 3;
                     donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
                     redessiner = true;
                 }
                 break;
             }
             case ALLEGRO_EVENT_TIMER:{
+                joueur[donneePartie.joueurEnCours].PM = 3;
                 donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
                 redessiner = true;
                 break;

@@ -179,6 +179,9 @@ void dessinerInterfaceClasses(AffichageClasse affichageClasse[], int classeEnCou
 }
 
 void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *joueur, Partie donneePartie, Classe classe[]){
+    ALLEGRO_TIMER *timer = NULL;
+    timer = al_create_timer(1.0/5);
+
     bool end = false;
 
     AffichageClasse affichageClasse[4];
@@ -191,6 +194,11 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
     int classeEnCours = 0;
     int posJoueur = 0;
 
+    al_register_event_source(queue, al_get_timer_event_source(timer));
+
+    dessinerInterfaceClasses(affichageClasse, classeEnCours, posJoueur, 0, donneePartie.nbJoueurs, joueur, interfaceC, classe);
+
+    al_start_timer(timer);
     for (int i = 0; i < donneePartie.nbJoueurs; i++) {
         end = false;
         while(!end){
@@ -223,9 +231,6 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                     }
                     break;
                 }
-                case ALLEGRO_EVENT_DISPLAY_CLOSE:{
-                    //fermer
-                }
                 case ALLEGRO_EVENT_MOUSE_AXES:{
                     //sur passage joueurs du bas
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE1].x, (int)interfaceC[CLASSE1].y,(int)interfaceC[CLASSE1].largeur, (int)interfaceC[CLASSE1].hauteur)){
@@ -233,70 +238,77 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
                         interfaceC[CLASSE1].hauteur = 90;
                         interfaceC[CLASSE1].y = 690;
                         interfaceC[CLASSE1].x = 590;
-                        break;
                     }
+                    /*
                     interfaceC[CLASSE1].largeur = 75;
                     interfaceC[CLASSE1].hauteur = 75;
                     interfaceC[CLASSE1].y = 700;
                     interfaceC[CLASSE1].x = 600;
-
+                    */
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE2].x, (int)interfaceC[CLASSE2].y,(int)interfaceC[CLASSE2].largeur, (int)interfaceC[CLASSE2].hauteur)){
                         interfaceC[CLASSE2].largeur = 90;
                         interfaceC[CLASSE2].hauteur = 90;
                         interfaceC[CLASSE2].y = 690;
                         interfaceC[CLASSE2].x = 645;
-                        break;
                     }
+                    /*
                     interfaceC[CLASSE2].largeur = 75;
                     interfaceC[CLASSE2].hauteur = 75;
                     interfaceC[CLASSE2].y = 700;
                     interfaceC[CLASSE2].x = 655;
-
+                    */
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE3].x, (int)interfaceC[CLASSE3].y,(int)interfaceC[CLASSE3].largeur, (int)interfaceC[CLASSE3].hauteur)){
                         interfaceC[CLASSE3].largeur = 90;
                         interfaceC[CLASSE3].hauteur = 90;
                         interfaceC[CLASSE3].y = 690;
                         interfaceC[CLASSE3].x = 700;
-                        break;
                     }
+                    /*
                     interfaceC[CLASSE3].largeur = 75;
                     interfaceC[CLASSE3].hauteur = 75;
                     interfaceC[CLASSE3].y = 700;
                     interfaceC[CLASSE3].x = 710;
-
+                    */
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[CLASSE4].x, (int)interfaceC[CLASSE4].y,(int)interfaceC[CLASSE4].largeur, (int)interfaceC[CLASSE4].hauteur)){
                         interfaceC[CLASSE4].largeur = 90;
                         interfaceC[CLASSE4].hauteur = 90;
                         interfaceC[CLASSE4].y = 690;
                         interfaceC[CLASSE4].x = 755;
-                        break;
                     }
+                    /*
                     interfaceC[CLASSE4].largeur = 75;
                     interfaceC[CLASSE4].hauteur = 75;
                     interfaceC[CLASSE4].y = 700;
                     interfaceC[CLASSE4].x = 765;
+                     */
                     
                     if(surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[VALIDER].x, (int)interfaceC[VALIDER].y,(int)interfaceC[VALIDER].largeur, (int)interfaceC[VALIDER].hauteur)){
                         interfaceC[VALIDER].largeur = 175;
                         interfaceC[VALIDER].hauteur = 83;
-
                         interfaceC[VALIDER].x = 1195;
                         interfaceC[VALIDER].y = 695;
-                        break;
                     }
+                    /*
                     interfaceC[VALIDER].x = 1200;
                     interfaceC[VALIDER].y = 700;
                     interfaceC[VALIDER].largeur = 165;
                     interfaceC[VALIDER].hauteur = 73;
+                     */
+                    break;
                 }
-
-
+                case ALLEGRO_EVENT_TIMER:{
+                    dessinerInterfaceClasses(affichageClasse, classeEnCours, posJoueur, i, donneePartie.nbJoueurs, joueur, interfaceC, classe);
+                    break;
+                }
             }
-            dessinerInterfaceClasses(affichageClasse, classeEnCours, posJoueur, i, donneePartie.nbJoueurs, joueur, interfaceC, classe);
         }
     }
 
     //Liberation
+
+    //TIMER
+    al_destroy_timer(timer);
+
     //Bitmap
 /*
     for (int i = 0; i < 4; i++) {

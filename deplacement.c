@@ -3,6 +3,7 @@
 //
 
 #include "deplacement.h"
+#include "menu.h"
 
 void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int y, int PM, int map[][12]){
 
@@ -50,7 +51,7 @@ int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12]
 }
 */
 
-void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie donneePartie, ALLEGRO_TIMER *timer){
+void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie donneePartie, ALLEGRO_TIMER *timer, Rect r[5]){
     bool end = false;
     bool redessiner = false;
 
@@ -61,14 +62,16 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
     for(int i = 0; i < 12; i++){
         for (int j = 0; j < 12; j++) {
             fscanf(file, "%d", &map[i][j]);
-            printf("%d", map[i][j]);
+            //printf("%d", map[i][j]);
         }
-        printf("\n");
+        //printf("\n");
     }
 
     dessinerArene(coordonneeIso, joueur, classe);
-    surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY,joueur[0].PM, map);
+    surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY,joueur[donneePartie.joueurEnCours].PM, map);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
+    al_draw_filled_rectangle(r[0].x,r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
+    al_draw_filled_rectangle(r[1].x,r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
     al_flip_display();
 
     while(!end){
@@ -76,22 +79,31 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 deplacementJoueur(event.mouse.x, event.mouse.y, coordonneeIso,joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY, joueur[donneePartie.joueurEnCours].PM, joueur, donneePartie.joueurEnCours, map);
-                redessiner = true;
+
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[1])){
+                    joueur[donneePartie.joueurEnCours].PM = 3;
+                    donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
+                }
+
+                end = true;
                 break;
             }
             case ALLEGRO_EVENT_TIMER:{
                 joueur[donneePartie.joueurEnCours].PM = 3;
                 donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
-                redessiner = true;
+                end = true;
                 break;
             }
         }
+        /*
         if(redessiner == true){
             dessinerArene(coordonneeIso, joueur, classe);
-            surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie.joueurEnCours].caseX, joueur[donneePartie.joueurEnCours].caseY,joueur[donneePartie.joueurEnCours].PM, map);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
+            al_draw_filled_rectangle(r[0].x,r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
+            al_draw_filled_rectangle(r[1].x,r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
             al_flip_display();
             redessiner = false;
         }
+         */
     }
 }
