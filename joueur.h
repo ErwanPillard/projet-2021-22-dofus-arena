@@ -16,6 +16,7 @@
 //#include "classe.h"
 
 #define BLANC al_map_rgb(255,255,255)
+#define NB_IMAGES 10
 
 #include <time.h>
 
@@ -26,6 +27,7 @@ typedef struct{
     int caseX;//sur quelle case est positionné le joueur
     int caseY;
     int PM;
+    ALLEGRO_BITMAP* sprite[NB_IMAGES];
 }Joueur;
 
 void initialiserJoueur(Joueur joueur[4]);
