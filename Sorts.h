@@ -2,7 +2,10 @@
 #define ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_SORTS_H
 
 #include "stdlib.h"
-#include "time.h"
+#include <time.h>
+
+#include "coordonneesISO.h"
+#include "joueur.h"
 
 typedef struct Sort {
     int porteeX;

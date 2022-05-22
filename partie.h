@@ -28,7 +28,7 @@ typedef struct{
     int joueurEnCours;
 }Partie;
 
-enum action{DEPLACER, SUIVANT};
+enum action{DEPLACER, SUIVANT, SORT1};
 
 void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[],Partie donneePartie);
 

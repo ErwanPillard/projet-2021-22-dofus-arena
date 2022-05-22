@@ -9,6 +9,12 @@ void initialiserClasses(Classe *classe){
     strcpy(classe[2].nom, "Les mains d'Eniripsa");
     strcpy(classe[3].nom, "La rune d'huppermage");
 
+    //Dipsoniblilité classe
+    classe[0].dispo = true;
+    classe[1].dispo = true;
+    classe[2].dispo = true;
+    classe[3].dispo = true;
+
     //Skin
     classe[0].skin = al_load_bitmap("../Image/Classes/OmbreSrum/ombresrum1.png");
     classe[1].skin = al_load_bitmap("../Image/Classes/CoeurIop/IOP1.png");

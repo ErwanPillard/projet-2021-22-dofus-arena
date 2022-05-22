@@ -2,6 +2,7 @@
 
 
 //****************************************Initialiser***************************************//
+
 void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]){
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++) {
@@ -9,6 +10,20 @@ void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]){
             coordonneeIso[i][j].y = POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2 + HAUTEUR_TUILE/2;
         }
     }
+}
+
+void initialiserArene(int map[][12]){
+    FILE* file = NULL;
+    file = fopen("../map.txt", "r");
+
+    for(int i = 0; i < 12; i++){
+        for (int j = 0; j < 12; j++) {
+            fscanf(file, "%d", &map[i][j]);
+            //printf("%d", map[i][j]);
+        }
+        //printf("\n");
+    }
+    fclose(file);
 }
 
 //****************************************Dessiner***************************************//

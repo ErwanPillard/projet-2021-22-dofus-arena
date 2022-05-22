@@ -205,8 +205,9 @@ void interfaceClasse(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE* queue, Joueur *jo
             al_wait_for_event(queue, &event);
             switch (event.type) {
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP: {
-                    if (surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[VALIDER].x, (int)interfaceC[VALIDER].y, (int)interfaceC[VALIDER].largeur,(int)interfaceC[VALIDER].hauteur)){
+                    if (surPassage(event.mouse.x, event.mouse.y, (int)interfaceC[VALIDER].x, (int)interfaceC[VALIDER].y, (int)interfaceC[VALIDER].largeur,(int)interfaceC[VALIDER].hauteur) && classe[classeEnCours].dispo == true){
                         joueur[i].classe = classeEnCours;
+                        classe[classeEnCours].dispo = false;
 
                         end = true;
                     }

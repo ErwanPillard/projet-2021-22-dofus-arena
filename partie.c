@@ -9,6 +9,9 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     bool end = false;
     bool redessiner = false;
 
+    int map[12][12]; // fichier txt (obstacle, decor...)
+    initialiserArene(map);
+
     timer = al_create_timer(15);
 
     al_register_event_source(queue, al_get_timer_event_source(timer));
@@ -31,16 +34,25 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     r[SUIVANT].hauteur = 50;
     r[SUIVANT].color = BLEU;
 
+    r[SORT1].x = 300;
+    r[SORT1].y = 100;
+    r[SORT1].largeur = 50;
+    r[SORT1].hauteur = 50;
+    r[SORT1].color = ORANGE;
+
+
     dessinerArene(coordonneeIso, joueur, classe);
 
     //dessiner ellipse joueur qui joue
     al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
-    al_draw_filled_rectangle(r[0].x, r[0].y, r[0].x + r[0].largeur,r[0].y + r[0].hauteur, r[0].color);
-    al_draw_filled_rectangle(r[1].x,r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
+    al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
+    al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
+    al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
     al_flip_display();
 
     al_start_timer(timer);
+
     while(!end){
         al_wait_for_event(queue, &event);
         switch (event.type) {
@@ -50,7 +62,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[DEPLACER])){
-                    deplacement(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r);
+                    deplacement(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
                     redessiner = true;
                 }
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
@@ -73,8 +85,9 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             dessinerArene(coordonneeIso, joueur, classe);
             al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
-            al_draw_filled_rectangle(r[0].x, r[0].y, r[0].x + r[0].largeur,r[0].y + r[0].hauteur, r[0].color);
-            al_draw_filled_rectangle(r[1].x, r[1].y, r[1].x + r[1].largeur,r[1].y + r[1].hauteur, r[1].color);
+            al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
+            al_draw_filled_rectangle(r[SUIVANT].x, r[SUIVANT].y, r[SUIVANT].x + r[SUIVANT].largeur,r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
+            al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
             al_flip_display();
             redessiner = false;
         }

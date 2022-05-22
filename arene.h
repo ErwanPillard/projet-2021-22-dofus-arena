@@ -38,6 +38,6 @@ void dessinerObsacle();
 void dessinerJoueurs(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[], int nbJoueurs);
 
 void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]);
-
+void initialiserArene(int map[][12]);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ARENE_H
