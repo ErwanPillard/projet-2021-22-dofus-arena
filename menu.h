@@ -15,23 +15,18 @@
 
 #include "echap.h"
 #include "partie.h"
+#include "rect.h"
 
 #define LARGEUR 1400
 #define HAUTEUR 807
 
 #define OR al_map_rgb(255,251,14)
 #define ORfonce al_map_rgb(238,225,32)
+#define OR2 al_map_rgb(255,235,20)
 #define BLANC al_map_rgb(255,255,255)
 #define NOIR al_map_rgb(0,0,0)
 
 #define NB_RECTANGLE_NBJ 4
-
-typedef struct{
-    float x, y, largeur, hauteur, thickness, rounded_x, rounded_y;
-    ALLEGRO_COLOR color;
-    ALLEGRO_COLOR colorThickness;
-    ALLEGRO_FONT *font;
-}Rect;
 
 unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled);
 void dessinerFilledRectangle2(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color);
@@ -43,7 +38,7 @@ unsigned char clicExterneRectangle( int mouse_x, int mouse_y, Rect r);
 
 Rect initialisationInterface1(Rect *r);
 
-void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[]);
+void dessinerInterface1(ALLEGRO_BITMAP *imagePrincipale, Rect r[], ALLEGRO_BITMAP *nbjoueurs);
 
 void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie);
 

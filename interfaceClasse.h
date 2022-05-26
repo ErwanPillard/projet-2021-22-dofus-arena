@@ -5,12 +5,19 @@
 #ifndef ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_INTERFACECLASSE_H
 #define ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_INTERFACECLASSE_H
 
-#include "menu.h"
-#include "partie.h"
+
 #include "joueur.h"
 #include "classe.h"
+#include "partie.h"
 
 #include <stdio.h>
+
+#define OR al_map_rgb(255,251,14)
+#define ORfonce al_map_rgb(238,225,32)
+#define BLANC al_map_rgb(255,255,255)
+#define NOIR al_map_rgb(0,0,0)
+#define LARGEUR 1400
+#define HAUTEUR 807
 
 #define NB_POSITION 9
 #define NB_RECT 9
@@ -37,7 +44,6 @@ typedef struct{ //similaire pour différentes classes
     float x, y;
     float largeur, hauteur;
     ALLEGRO_FONT *texte;
-
 }InterfaceClasse;
 
 unsigned char surPassage(int mouse_x, int mouse_y, int x, int y, int largeur,int hauteur);// duplication fonction à optimiser

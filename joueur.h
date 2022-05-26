@@ -12,7 +12,11 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+#include <stdio.h>
 //#include "classe.h"
+
+#define BLANC al_map_rgb(255,255,255)
+#define NB_IMAGES 10
 
 #include <time.h>
 
@@ -23,9 +27,9 @@ typedef struct{
     int caseX;//sur quelle case est positionné le joueur
     int caseY;
     int PM;
+    ALLEGRO_BITMAP* sprite[NB_IMAGES];
 }Joueur;
 
 void initialiserJoueur(Joueur joueur[4]);
-int deplacementJoueurs(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[]);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_JOUEUR_H

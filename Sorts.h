@@ -14,6 +14,10 @@
 #define NOIR al_map_rgb(0,0,0)
 
 // if sorts 4 alors ca -> faire une fonction
+#include <time.h>
+
+#include "coordonneesISO.h"
+#include "joueur.h"
 
 /*typedef struct {
     image hauteur, largeur;

@@ -17,6 +17,10 @@
 
 #include "menu.h"
 
+void courrirIop();
+void didacticiel();
+void BDF();
 void affichageChargement();
+void affichageChargement2();
 
-#endif ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_CHARGEMENT_H
+#endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_CHARGEMENT_H

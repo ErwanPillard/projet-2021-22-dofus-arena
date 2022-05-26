@@ -121,6 +121,62 @@ void initialiserSorts(Classe classe[]){
 
 }
 
+void surbrillanceSort(){
+
+}
+
+void applicationSort(){
+
+}
+
+void sort(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12]){
+    bool end = false;
+    bool redessiner = false;
+
+    dessinerArene(coordonneeIso, joueur, classe);
+    surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie->joueurEnCours].caseX, joueur[donneePartie->joueurEnCours].caseY,joueur[donneePartie->joueurEnCours].PM, map);
+    dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
+    al_draw_filled_rectangle(r[DEPLACER].x,r[DEPLACER].y,r[DEPLACER].x + r[DEPLACER].largeur, r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
+    al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
+    al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
+    al_flip_display();
+
+    while(!end){
+        al_wait_for_event(queue, &event);
+        switch (event.type) {
+            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
+
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
+                    joueur[donneePartie->joueurEnCours].PM = 3;
+                    donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
+                    al_stop_timer(timer);
+                    al_start_timer(timer);//pour réinitialiser le timer : stop puis start
+                }
+
+                end = true;
+                break;
+            }
+            case ALLEGRO_EVENT_TIMER:{
+                joueur[donneePartie->joueurEnCours].PM = 3;
+                donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
+                end = true;
+                break;
+            }
+        }
+/*
+        if(redessiner == true){
+            dessinerArene(coordonneeIso, joueur, classe);
+            dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
+            al_draw_filled_rectangle(r[0].x,r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur, r[0].color);
+            al_draw_filled_rectangle(r[1].x,r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
+            al_flip_display();
+            redessiner = false;
+        }*/
+
+    }
+}
+
+
 void bouleDeFeux(){//mettre dans la fonction timer en répétant la fonction en faisant avancer le x=x+30
     //Classe * classe;
     int x =10;

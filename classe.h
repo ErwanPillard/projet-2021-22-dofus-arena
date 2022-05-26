@@ -14,6 +14,7 @@ typedef struct Classe {
     char nom[50];
     ALLEGRO_BITMAP *skin;
     Sort sorts[4];
+    bool dispo;
     int PaTotal;
     int PvDepart;
 } Classe;

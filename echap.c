@@ -3,7 +3,7 @@
 //
 
 #include "echap.h"
-/*
+
 Rect initialisationMenuEchap(){
     Rect r;
     r.largeur = 300;
@@ -25,4 +25,3 @@ void dessinerMenuEchap(Rect r){ // Menu doit aussi être accessible a la souris
 
     al_flip_display();
 }
-*/
