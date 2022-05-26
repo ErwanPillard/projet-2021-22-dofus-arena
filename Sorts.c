@@ -14,7 +14,7 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[0].numSort = 1;
     classe[0].sorts[0].nombrePA = 5;
     classe[0].sorts[0].nombrePVinflige = rand() % (5) + 18;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 18 et MAX = 22
-    classe[0].sorts[0].image[1] = al_load_bitmap("../Image/Sorts/posters-boule-de-feu.jpg-removebg-preview.png");// boule de feux
+    classe[0].sorts[0].image[1] = al_load_bitmap("../Image/Sorts/posters-boule-de-feu.jpg.jpg");// boule de feux
     // boucle for
     //classe[0].sorts[0].porteeX = ;
     //classe[0].sorts[0].porteeY = ;
@@ -22,12 +22,11 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[1].numSort = 2;
     classe[0].sorts[1].nombrePA = 2;
     classe[0].sorts[1].nombrePVinflige = rand() % (5) + 10;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 10 et MAX = 14
-    //classe[0].sorts[1].image[1] = al_load_bitmap();// traine de feux ( découper la trainée en 6 bitmap)
-    //classe[0].sorts[1].image[2] = al_load_bitmap();// voir si ca repeint derriere
-    //classe[0].sorts[1].image[3] = al_load_bitmap();
-    // classe[0].sorts[1].image[4] = al_load_bitmap();
-    //classe[0].sorts[1].image[5] = al_load_bitmap();
-    //classe[0].sorts[1].image[6] = al_load_bitmap();
+    classe[0].sorts[1].image[1] = al_load_bitmap("../Image/Sorts/traineeDeFeu1.png");// traine de feux ( découper la trainée en 6 bitmap)
+    classe[0].sorts[1].image[2] = al_load_bitmap("../Image/Sorts/traineeDeFeu2.png");// voir si ca repeint derriere
+    classe[0].sorts[1].image[3] = al_load_bitmap("../Image/Sorts/traineeDeFeu3.png");
+    classe[0].sorts[1].image[4] = al_load_bitmap("../Image/Sorts/traineeDeFeu4.png");
+    classe[0].sorts[1].image[5] = al_load_bitmap("../Image/Sorts/traineeDeFeu5.png");
     //classe[0].sorts[1].porteeX = ;
     //classe[0].sorts[1].porteeY = ;
     ////////* Sorts 3*/////////////
@@ -132,7 +131,7 @@ void applicationSort(){
 
 }
 
-void sort(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12]){
+/*void sort(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12]){
     bool end = false;
     bool redessiner = false;
 
@@ -174,43 +173,79 @@ void sort(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordon
             al_draw_filled_rectangle(r[1].x,r[1].y,r[1].x + r[1].largeur, r[1].y + r[1].hauteur, r[1].color);
             al_flip_display();
             redessiner = false;
-        }*/
+        }
 
     }
-}
-
-
+}*/
 void bouleDeFeux(){//mettre dans la fonction timer en répétant la fonction en faisant avancer le x=x+30
     //Classe * classe;
     int x =10;
     int y = 50;
-    ALLEGRO_BITMAP *ima1 = al_load_bitmap("../Image/Sorts/posters-boule-de-feu.jpg-removebg-preview.png");
+    ALLEGRO_BITMAP *ima1 = al_load_bitmap("../Image/Sorts/posters-boule-de-feu.jpg.jpg");
     //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
-    al_draw_bitmap(ima1, x, y, 0);
+    al_draw_bitmap(ima1, 0, 0, 0);
     x=x+30;
     y=y+30;
     al_flip_display();
     sleep(1);
     al_clear_to_color(NOIR);
     //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
-    al_draw_bitmap(ima1, x, y, 0);
+    al_draw_bitmap(ima1, 0, 0, 0);
     x=x+30;
     y=y+30;
     al_flip_display();
     sleep(1);
     al_clear_to_color(NOIR);
     //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
-    al_draw_bitmap(ima1, x, y, 0);
+    al_draw_bitmap(ima1, 0, 0, 0);
     x=x+30;
     y=y+30;
     al_flip_display();
     sleep(1);
     al_clear_to_color(NOIR);
     //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
-    al_draw_bitmap(ima1, x, y, 0);
+    al_draw_bitmap(ima1, 0, 0, 0);
     al_flip_display();
 }
 
+void traineeFeux(){
+    int x = 10;
+    int y = 50;
+
+    ALLEGRO_BITMAP *img1 = al_load_bitmap("../Image/Sorts/traineeDeFeu1.png");
+    ALLEGRO_BITMAP *img2 = al_load_bitmap("../Image/Sorts/traineeDeFeu2.png");
+    ALLEGRO_BITMAP *img3 = al_load_bitmap("../Image/Sorts/traineeDeFeu3.png");
+    ALLEGRO_BITMAP *img4 = al_load_bitmap("../Image/Sorts/traineeDeFeu4.png");
+    ALLEGRO_BITMAP *img5 = al_load_bitmap("../Image/Sorts/traineeDeFeu5.png");
+
+    al_draw_bitmap(img1, x, y, 0);
+    x=x+30;
+    y=y+30;
+    al_flip_display();
+    sleep(1);
+    al_clear_to_color(NOIR);
+    al_draw_bitmap(img2, x, y, 0);
+    x=x+30;
+    y=y+30;
+    al_flip_display();
+    sleep(1);
+    al_clear_to_color(NOIR);
+    al_draw_bitmap(img3, x, y, 0);
+    x=x+30;
+    y=y+30;
+    al_flip_display();
+    sleep(1);
+    al_clear_to_color(NOIR);
+    al_draw_bitmap(img4, x, y, 0);
+    x=x+30;
+    y=y+30;
+    al_flip_display();
+    sleep(1);
+    al_clear_to_color(NOIR);
+    al_draw_bitmap(img5, x, y, 0);
+    al_flip_display();
+    sleep(1);
+}
 
 void didacticiel(){
     int x = 10;
@@ -250,7 +285,7 @@ void didacticiel(){
     al_flip_display();
     sleep(2);
     al_clear_to_color(NOIR);
-    BDF();
+    bouleDeFeux();
 }
 
 void courrirIop(){
@@ -313,51 +348,4 @@ void courrirIop(){
     al_flip_display();
     sleep(1);
 
-}
-
-void BDF(){
-    int x = 130;
-    int y = 250;
-    ALLEGRO_BITMAP *boule = al_load_bitmap("../Image/bouleFeu.png");
-    ALLEGRO_BITMAP *img1 = al_load_bitmap("../Image/Classes/CoeurIop/IOP1.png");
-    ALLEGRO_BITMAP *img6 = al_load_bitmap("../Image/Classes/CoeurIop/IopPos6.png");
-    al_draw_bitmap(img1, 10, 250, 0);
-    al_flip_display();
-    sleep(2);
-    al_clear_to_color(NOIR);
-    al_draw_bitmap(img6, 10, 250, 0);
-    al_draw_bitmap(boule, x, y, 0);
-    x=x+30;
-    al_flip_display();
-    sleep(1);
-    al_clear_to_color(NOIR);
-    al_draw_bitmap(img6, 10, 250, 0);
-
-    al_draw_bitmap(boule, x, y, 0);
-    x=x+30;
-    al_flip_display();
-    sleep(1);
-    al_clear_to_color(NOIR);
-    al_draw_bitmap(img6, 10, 250, 0);
-
-    al_draw_bitmap(boule, x, y, 0);
-    x=x+30;
-    al_flip_display();
-    sleep(1);
-    al_clear_to_color(NOIR);
-    al_draw_bitmap(img6, 10, 250, 0);
-    al_draw_bitmap(boule, x, y, 0);x=x+30;
-    al_flip_display();
-    sleep(1);
-    al_clear_to_color(NOIR);
-    al_draw_bitmap(img6, 10, 250, 0);
-    al_draw_bitmap(boule, x, y, 0);x=x+30;
-    al_flip_display();
-    sleep(1);
-    al_clear_to_color(NOIR);
-    al_draw_bitmap(img6, 10, 250, 0);
-    al_draw_bitmap(boule, x, y, 0);x=x+30;
-    al_flip_display();
-    sleep(1);
-    al_clear_to_color(NOIR);
 }

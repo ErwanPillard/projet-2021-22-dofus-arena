@@ -71,7 +71,8 @@ int main(){
 
     while(!end){
         //didacticiel();
-        //BDF();
+        traineeFeux();
+        bouleDeFeux();
        // courrirIop();
         //affichageChargement();
         //interface0(queue, event);

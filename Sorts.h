@@ -49,6 +49,7 @@ typedef struct {
 */
 
 void bouleDeFeux();
+void traineeFeux();
 
 
 
