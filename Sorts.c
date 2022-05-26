@@ -11,12 +11,20 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[0].numSort = 1;
     classe[0].sorts[0].nombrePA = 5;
     classe[0].sorts[0].nombrePVinflige = rand() % (5) + 18;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 18 et MAX = 22
+    classe[0].sorts[0].image[1] = al_load_bitmap("../Image/Sorts/posters-boule-de-feu.jpg-removebg-preview.png");// boule de feux
+    // boucle for
     //classe[0].sorts[0].porteeX = ;
     //classe[0].sorts[0].porteeY = ;
     ////////* Sorts 2*/////////////
     classe[0].sorts[1].numSort = 2;
     classe[0].sorts[1].nombrePA = 2;
     classe[0].sorts[1].nombrePVinflige = rand() % (5) + 10;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 10 et MAX = 14
+    //classe[0].sorts[1].image[1] = al_load_bitmap();// traine de feux ( découper la trainée en 6 bitmap)
+    //classe[0].sorts[1].image[2] = al_load_bitmap();// voir si ca repeint derriere
+    //classe[0].sorts[1].image[3] = al_load_bitmap();
+    // classe[0].sorts[1].image[4] = al_load_bitmap();
+    //classe[0].sorts[1].image[5] = al_load_bitmap();
+    //classe[0].sorts[1].image[6] = al_load_bitmap();
     //classe[0].sorts[1].porteeX = ;
     //classe[0].sorts[1].porteeY = ;
     ////////* Sorts 3*/////////////
@@ -111,4 +119,35 @@ void initialiserSorts(Classe classe[]){
     //classe[3].sorts[3].porteeX = ;
     //classe[3].sorts[3].porteeY = ;
 
+}
+
+void bouleDeFeux(){//mettre dans la fonction timer en répétant la fonction en faisant avancer le x=x+30
+    //Classe * classe;
+    int x =10;
+    int y = 50;
+    ALLEGRO_BITMAP *ima1 = al_load_bitmap("../Image/Sorts/posters-boule-de-feu.jpg-removebg-preview.png");
+    //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
+    al_draw_bitmap(ima1, x, y, 0);
+    x=x+30;
+    y=y+30;
+    al_flip_display();
+    sleep(1);
+    al_clear_to_color(NOIR);
+    //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
+    al_draw_bitmap(ima1, x, y, 0);
+    x=x+30;
+    y=y+30;
+    al_flip_display();
+    sleep(1);
+    al_clear_to_color(NOIR);
+    //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
+    al_draw_bitmap(ima1, x, y, 0);
+    x=x+30;
+    y=y+30;
+    al_flip_display();
+    sleep(1);
+    al_clear_to_color(NOIR);
+    //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
+    al_draw_bitmap(ima1, x, y, 0);
+    al_flip_display();
 }
