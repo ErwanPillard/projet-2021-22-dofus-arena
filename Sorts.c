@@ -14,7 +14,7 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[0].numSort = 1;
     classe[0].sorts[0].nombrePA = 5;
     classe[0].sorts[0].nombrePVinflige = rand() % (5) + 18;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 18 et MAX = 22
-    classe[0].sorts[0].image[1] = al_load_bitmap("../Image/Sorts/posters-boule-de-feu.jpg.jpg");// boule de feux
+    classe[0].sorts[0].image[1] = al_load_bitmap("../Image/Sorts/Bdf1.jpg");// boule de feux
     // boucle for
     //classe[0].sorts[0].porteeX = ;
     //classe[0].sorts[0].porteeY = ;
@@ -22,23 +22,21 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[1].numSort = 2;
     classe[0].sorts[1].nombrePA = 2;
     classe[0].sorts[1].nombrePVinflige = rand() % (5) + 10;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 10 et MAX = 14
-    classe[0].sorts[1].image[1] = al_load_bitmap("../Image/Sorts/traineeDeFeu1.png");// traine de feux ( découper la trainée en 6 bitmap)
-    classe[0].sorts[1].image[2] = al_load_bitmap("../Image/Sorts/traineeDeFeu2.png");// voir si ca repeint derriere
-    classe[0].sorts[1].image[3] = al_load_bitmap("../Image/Sorts/traineeDeFeu3.png");
-    classe[0].sorts[1].image[4] = al_load_bitmap("../Image/Sorts/traineeDeFeu4.png");
-    classe[0].sorts[1].image[5] = al_load_bitmap("../Image/Sorts/traineeDeFeu5.png");
+    classe[0].sorts[1].image[1] = al_load_bitmap("../Image/Sorts/trainéefeu1.png");// trainée de feux
     //classe[0].sorts[1].porteeX = ;
     //classe[0].sorts[1].porteeY = ;
     ////////* Sorts 3*/////////////
     classe[0].sorts[2].numSort = 3;
     classe[0].sorts[2].nombrePA = 6;
     classe[0].sorts[2].nombrePVinflige = rand() %(5) + 22;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 22 et MAX = 26
+    classe[0].sorts[2].image[1] = al_load_bitmap("../Image/Sorts/traine glace.jpg.png");// pic de glace
     //classe[0].sorts[2].porteeX = ;
     //classe[0].sorts[2].porteeY = ;
     ////////* Sorts 4*/////////////
     classe[0].sorts[3].numSort = 4;
     classe[0].sorts[3].nombrePA = 3;
     classe[0].sorts[3].nombrePVinflige = rand() %(5) + 14;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 14 et MAX = 18
+    classe[0].sorts[3].image[1] = al_load_bitmap("../Image/Sorts/foudre2.png");//foudre
     //classe[0].sorts[3].porteeX = ;
     //classe[0].sorts[3].porteeY = ;
 
@@ -48,24 +46,28 @@ void initialiserSorts(Classe classe[]){
     classe[1].sorts[0].numSort = 1;
     classe[1].sorts[0].nombrePA = 4;
     classe[1].sorts[0].nombrePVinflige = rand() % (5) + 15;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 15 et MAX = 19
+    classe[1].sorts[0].image[1] = al_load_bitmap("../Image/Sorts/epeefeux-removebg-preview.png");//épée enflammée
     //classe[1].sorts[0].porteeX = ;
     //classe[1].sorts[0].porteeY = ;
     ////////* Sorts 2*/////////////
     classe[1].sorts[1].numSort = 2;
     classe[1].sorts[1].nombrePA = 3;
     classe[1].sorts[1].nombrePVinflige = rand() % (5) + 8;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 8 et MAX = 12
+    classe[1].sorts[1].image[1] = al_load_bitmap("../Image/Sorts/Sprite boule de neige.png");//Boule de neige
     //classe[1].sorts[1].porteeX = ;
     //classe[1].sorts[1].porteeY = ;
     ////////* Sorts 3*/////////////
     classe[1].sorts[2].numSort = 3;
     classe[1].sorts[2].nombrePA = 2;
     classe[1].sorts[2].nombrePVinflige = rand() % (5) + 13;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 13 et MAX = 17
+    classe[1].sorts[2].image[1] = al_load_bitmap("../Image/Sorts/Aigle-removebg-preview.png");// dans les autres sens aussi pour qu'il soit dans la bonne direction
     //classe[1].sorts[2].porteeX = ;
     //classe[1].sorts[2].porteeY = ;
     ////////* Sorts 4*/////////////
     classe[1].sorts[3].numSort = 4;
     classe[1].sorts[3].nombrePA = 3;
     classe[1].sorts[3].nombrePVinflige = rand() % (5) + 15;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 15 et MAX = 19
+    classe[1].sorts[3].image[1] = al_load_bitmap("../Image/Sorts/Explosion_feux.png");//pas encore découper mais on peut faire de plusieurs tailles
     //classe[1].sorts[3].porteeX = ;
     //classe[1].sorts[3].porteeY = ;
 
@@ -74,24 +76,28 @@ void initialiserSorts(Classe classe[]){
     classe[2].sorts[0].numSort = 1;
     classe[2].sorts[0].nombrePA = 4;
     classe[2].sorts[0].nombrePVinflige = rand() % (5) + 18;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 18 et MAX = 22
+    classe[2].sorts[0].image[1] = al_load_bitmap("../Image/Sorts/Neon1.png");//néon en forme d'anneau
     //classe[2].sorts[0].porteeX = ;
     //classe[2].sorts[0].porteeY = ;
     ////////* Sorts 2*/////////////
     classe[2].sorts[1].numSort = 2;
     classe[2].sorts[1].nombrePA = 5;
     classe[2].sorts[1].nombrePVinflige = rand() % (5) + 22;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 22 et MAX = 26
+    classe[2].sorts[1].image[1] = al_load_bitmap("../Image/Sorts/Boomerang1.png");// Boomerang en feux
     //classe[2].sorts[1].porteeX = ;
     //classe[2].sorts[1].porteeY = ;
     ////////* Sorts 3*/////////////
     classe[2].sorts[2].numSort = 3;
     classe[2].sorts[2].nombrePA = 3;
     classe[2].sorts[2].nombrePVinflige = rand() % (5) + 16;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 16 et MAX = 20
+    classe[2].sorts[2].image[1] = al_load_bitmap("../Image/Sorts/gaz_vert-removebg-preview(1).png");// Gaz vert enfumé
     //classe[2].sorts[2].porteeX = ;
     //classe[2].sorts[2].porteeY = ;
     ////////* Sorts 4*/////////////
     classe[2].sorts[3].numSort = 4;
     classe[2].sorts[3].nombrePA = 4;
     classe[2].sorts[3].nombrePVinflige = rand() % (5) + 18;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 18 et MAX = 22
+    classe[2].sorts[3].image[1] = al_load_bitmap("../Image/Sorts/EtoileRouge1.jpg");// Etoile rouge
     //classe[2].sorts[3].porteeX = ;
     //classe[2].sorts[3].porteeY = ;
 
@@ -100,24 +106,28 @@ void initialiserSorts(Classe classe[]){
     classe[3].sorts[0].numSort = 1;
     classe[3].sorts[0].nombrePA = 2;
     classe[3].sorts[0].nombrePVinflige = 0; // rajouter des PV au persos lorsqu'il utilise ce sort
+    classe[3].sorts[0].image[1] = al_load_bitmap("../Image/Sorts/guerisson1.jpg");//sorts de guérrison
     //classe[3].sorts[0].porteeX = ;
     //classe[3].sorts[0].porteeY = ;
     ////////* Sorts 2*/////////////
     classe[3].sorts[1].numSort = 2;
     classe[3].sorts[1].nombrePA = 3;
     classe[3].sorts[1].nombrePVinflige = rand() % (5) + 16;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 16 et MAX = 20
+    classe[3].sorts[1].image[1] = al_load_bitmap("../Image/Sorts/Cylindre.png");// Cylindre en feux
     //classe[3].sorts[1].porteeX = ;
     //classe[3].sorts[1].porteeY = ;
     ////////* Sorts 3*/////////////
     classe[3].sorts[2].numSort = 3;
     classe[3].sorts[2].nombrePA = 3;
     classe[3].sorts[2].nombrePVinflige = rand() % (5) + 15;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 15 et MAX = 19
+    classe[3].sorts[2].image[1] = al_load_bitmap("../Image/Sorts/vague2.png");// Vague d'eau ___ Voir si lorsqu'on les mets avec un timer rend bien
     //classe[3].sorts[2].porteeX = ;
     //classe[3].sorts[2].porteeY = ;
     ////////* Sorts 4*/////////////
     classe[3].sorts[3].numSort = 4;
     classe[3].sorts[3].nombrePA = 4;
     classe[3].sorts[3].nombrePVinflige = rand() % (5) + 20;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 20 et MAX = 24
+    classe[3].sorts[3].image[1] = al_load_bitmap("../Image/Sorts/fleche violet1.jpg"); // flèche violette
     //classe[3].sorts[3].porteeX = ;
     //classe[3].sorts[3].porteeY = ;
 
@@ -165,7 +175,7 @@ void applicationSort(){
                 break;
             }
         }
-/*
+
         if(redessiner == true){
             dessinerArene(coordonneeIso, joueur, classe);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
@@ -179,9 +189,9 @@ void applicationSort(){
 }*/
 void bouleDeFeux(){//mettre dans la fonction timer en répétant la fonction en faisant avancer le x=x+30
     //Classe * classe;
-    int x =10;
+    int x = 10;
     int y = 50;
-    ALLEGRO_BITMAP *ima1 = al_load_bitmap("../Image/Sorts/posters-boule-de-feu.jpg.jpg");
+    ALLEGRO_BITMAP *ima1 = al_load_bitmap("../Image/Sorts/Bdf1.jpg");
     //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
     al_draw_bitmap(ima1, 0, 0, 0);
     x=x+30;
@@ -212,19 +222,13 @@ void traineeFeux(){
     int x = 10;
     int y = 50;
 
-    ALLEGRO_BITMAP *img1 = al_load_bitmap("../Image/Sorts/traineeDeFeu1.png");
-    ALLEGRO_BITMAP *img2 = al_load_bitmap("../Image/Sorts/traineeDeFeu2.png");
+    //ALLEGRO_BITMAP *img1 = al_load_bitmap("../Image/Sorts/traineeDeFeu1.png");
+    //ALLEGRO_BITMAP *img2 = al_load_bitmap("../Image/Sorts/traineeDeFeu2.png");
     ALLEGRO_BITMAP *img3 = al_load_bitmap("../Image/Sorts/traineeDeFeu3.png");
-    ALLEGRO_BITMAP *img4 = al_load_bitmap("../Image/Sorts/traineeDeFeu4.png");
-    ALLEGRO_BITMAP *img5 = al_load_bitmap("../Image/Sorts/traineeDeFeu5.png");
+    //ALLEGRO_BITMAP *img4 = al_load_bitmap("../Image/Sorts/traineeDeFeu4.png");
+    //ALLEGRO_BITMAP *img5 = al_load_bitmap("../Image/Sorts/traineeDeFeu5.png");
 
-    al_draw_bitmap(img1, x, y, 0);
-    x=x+30;
-    y=y+30;
-    al_flip_display();
-    sleep(1);
-    al_clear_to_color(NOIR);
-    al_draw_bitmap(img2, x, y, 0);
+    al_draw_bitmap(img3, x, y, 0);
     x=x+30;
     y=y+30;
     al_flip_display();
@@ -236,13 +240,19 @@ void traineeFeux(){
     al_flip_display();
     sleep(1);
     al_clear_to_color(NOIR);
-    al_draw_bitmap(img4, x, y, 0);
+    al_draw_bitmap(img3, x, y, 0);
     x=x+30;
     y=y+30;
     al_flip_display();
     sleep(1);
     al_clear_to_color(NOIR);
-    al_draw_bitmap(img5, x, y, 0);
+    al_draw_bitmap(img3, x, y, 0);
+    x=x+30;
+    y=y+30;
+    al_flip_display();
+    sleep(1);
+    al_clear_to_color(NOIR);
+    al_draw_bitmap(img3, x, y, 0);
     al_flip_display();
     sleep(1);
 }

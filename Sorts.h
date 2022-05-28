@@ -19,6 +19,7 @@
 #include "coordonneesISO.h"
 #include "joueur.h"
 
+
 /*typedef struct {
     image hauteur, largeur;
 }visuImage;
