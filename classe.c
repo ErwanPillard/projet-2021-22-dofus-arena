@@ -82,10 +82,12 @@ void initialiserSorts(Classe classe[]){
     ////////* Sorts 2*/////////////
     classe[1].sorts[1].numSort = 2;
     classe[1].sorts[1].nombrePA = 3;
+
     classe[1].sorts[1].nombrePVinflige = rand() % (5) + 8;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 8 et MAX = 12
     classe[1].sorts[1].image = al_load_bitmap("../Image/Sorts/Sprite boule de neige.png");//Boule de neige
-    //classe[1].sorts[1].porteeX = ;
-    //classe[1].sorts[1].porteeY = ;
+
+    classe[1].sorts[1].porteeMax = 5;
+    classe[1].sorts[1].porteeMin = 2;
     ////////* Sorts 3*/////////////
     classe[1].sorts[2].numSort = 3;
     classe[1].sorts[2].nombrePA = 2;
@@ -119,10 +121,13 @@ void initialiserSorts(Classe classe[]){
     ////////* Sorts 3*/////////////
     classe[2].sorts[2].numSort = 3;
     classe[2].sorts[2].nombrePA = 3;
+
     classe[2].sorts[2].nombrePVinflige = rand() % (5) + 16;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 16 et MAX = 20
     classe[2].sorts[2].image = al_load_bitmap("../Image/Sorts/gaz_vert-removebg-preview(1).png");// Gaz vert enfumé
-    //classe[2].sorts[2].porteeX = ;
-    //classe[2].sorts[2].porteeY = ;
+
+    classe[2].sorts[2].porteeMax = 6;
+    classe[2].sorts[2].porteeMin = 3;
+
     ////////* Sorts 4*/////////////
     classe[2].sorts[3].numSort = 4;
     classe[2].sorts[3].nombrePA = 4;
@@ -156,9 +161,11 @@ void initialiserSorts(Classe classe[]){
     ////////* Sorts 4*/////////////
     classe[3].sorts[3].numSort = 4;
     classe[3].sorts[3].nombrePA = 4;
+
     classe[3].sorts[3].nombrePVinflige = rand() % (5) + 20;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 20 et MAX = 24
     classe[3].sorts[3].image = al_load_bitmap("../Image/Sorts/fleche violet1.jpg"); // flèche violette
-    //classe[3].sorts[3].porteeX = ;
-    //classe[3].sorts[3].porteeY = ;
+
+    classe[3].sorts[3].porteeMax = 7;
+    classe[3].sorts[3].porteeMin = 4;
 
 }

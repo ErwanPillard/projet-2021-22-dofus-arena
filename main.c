@@ -70,7 +70,7 @@ int main(){
     al_wait_for_event(queue, &event);
 
     while(!end){
-        //didacticiel();
+        didacticiel();
         //traineeFeux();
         //bouleDeFeux();
         //courrirIop();
