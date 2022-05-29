@@ -34,9 +34,10 @@
 
 void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]);
 void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]);
-void dessinerObsacle();
+//void dessinerObsacle();
 void dessinerJoueurs(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Classe classe[], int nbJoueurs);
-
+void dessinerObsacle(int map[][12]);
+void dessinerCompteur(int tmp, ALLEGRO_FONT *compteur);
 void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]);
 void initialiserArene(int map[][12]);
 

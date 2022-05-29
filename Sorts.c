@@ -14,6 +14,7 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[0].numSort = 1;
     classe[0].sorts[0].nombrePA = 5;
     classe[0].sorts[0].nombrePVinflige = rand() % (5) + 18;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 18 et MAX = 22
+
     //classe[0].sorts[0].porteeX = ;
     //classe[0].sorts[0].porteeY = ;
     ////////* Sorts 2*/////////////

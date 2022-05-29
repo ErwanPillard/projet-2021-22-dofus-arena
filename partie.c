@@ -6,18 +6,23 @@
 void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[], Partie donneePartie){
     ALLEGRO_TIMER *timer = NULL;
 
+    ALLEGRO_FONT *compteur = al_load_font("../Polices/madetommy.ttf", 60, 0);
+
+    timer = al_create_timer(15);
+
     bool end = false;
     bool redessiner = false;
 
     int map[12][12]; // fichier txt (obstacle, decor...)
-    initialiserArene(map);
-
-    timer = al_create_timer(15);
+    CoordonneeISO coordonneeIso[12][12];
 
     al_register_event_source(queue, al_get_timer_event_source(timer));
 
-    CoordonneeISO coordonneeIso[12][12];
+    initialiserArene(map);
     initialiserCoordMilieuTuile(coordonneeIso);
+
+    printf("x: %f | y: %f\n", coordonneeIso[0][0].x, coordonneeIso[0][0].y);
+    printf("x: %f | y: %f\n", coordonneeIso[3][0].x, coordonneeIso[3][0].y);
 
     donneePartie.joueurEnCours = 0;
 
@@ -42,7 +47,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
 
 
     dessinerArene(coordonneeIso, joueur, classe);
-
+    //dessinerObsacle(map);
     //dessiner ellipse joueur qui joue
     al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
@@ -83,6 +88,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
         }
         if(redessiner == true){
             dessinerArene(coordonneeIso, joueur, classe);
+            //dessinerObsacle(map);
             al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
             al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
@@ -91,6 +97,8 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             al_flip_display();
             redessiner = false;
         }
+        //dessinerCompteur((int)al_get_timer_count(timer), compteur);
+        //al_flip_display();
     }
     al_destroy_timer(timer);
 }

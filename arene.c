@@ -26,6 +26,8 @@ void initialiserArene(int map[][12]){
     fclose(file);
 }
 
+
+
 //****************************************Dessiner***************************************//
 void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]){
 
@@ -47,6 +49,23 @@ void dessinerJoueurs(CoordonneeISO coordonneeIso[12][12], Joueur joueur[], Class
     }
 }
 
+void dessinerObsacle(int map[][12]){
+    ALLEGRO_BITMAP *obstacle1 = al_load_bitmap("../Image/obstacle1.png");
+    for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 12; j++){
+            if(map[i][j] == 2){
+                //al_draw_bitmap(obstacle1,POSITION_MAP_ISO_X - LARGEUR_TUILE /2 - (j * (LARGEUR_TUILE /2)) + (i * (LARGEUR_TUILE/2)), POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2 - 31,0);
+                al_draw_scaled_bitmap(obstacle1, 0, 0, 80, 72, POSITION_MAP_ISO_X - LARGEUR_TUILE /2 - (j * (LARGEUR_TUILE /2)) + (i * (LARGEUR_TUILE/2)) + 3, POSITION_MAP_ISO_Y + (HAUTEUR_TUILE/2 * j) + i * HAUTEUR_TUILE/2 - 28,74, 67,0);
+            }
+        }
+    }
+}
+
+void dessinerCompteur(int tmp, ALLEGRO_FONT *compteur){
+    al_draw_textf(compteur, BLEU, 10,10, 0, "%d", tmp);
+}
+
+/*
 void dessinerObsacle(){
     ALLEGRO_BITMAP *obstacle1 = al_load_bitmap("../Image/obstacle1.png");
     ALLEGRO_BITMAP *obstacle2 = al_load_bitmap("../Image/obstacle2.png");
@@ -79,7 +98,7 @@ void dessinerObsacle(){
     // al_draw_bitmap(herbe, POSITION_MAP_ISO_X - LARGEUR_TUILE /2, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+115, 0);
     //al_draw_bitmap(lave, POSITION_MAP_ISO_X - LARGEUR_TUILE /2+41, POSITION_MAP_ISO_Y +HAUTEUR_TUILE/2+138, 0);
 }
-
+*/
 void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]){
     ALLEGRO_BITMAP *fond = al_load_bitmap("../Image/Map3.png");
 
