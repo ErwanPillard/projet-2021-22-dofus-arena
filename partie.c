@@ -2,6 +2,7 @@
 #include "partie.h"
 #include "menu.h"
 #include "arene.h"
+#include "interfaceSort.h"
 
 void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[], Partie donneePartie){
     ALLEGRO_TIMER *timer = NULL;
@@ -20,6 +21,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
 
     initialiserArene(map);
     initialiserCoordMilieuTuile(coordonneeIso);
+    initialiserSorts(classe);
 
     printf("x: %f | y: %f\n", coordonneeIso[0][0].x, coordonneeIso[0][0].y);
     printf("x: %f | y: %f\n", coordonneeIso[3][0].x, coordonneeIso[3][0].y);
@@ -76,6 +78,10 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     al_stop_timer(timer);
                     al_start_timer(timer);//pour réinitialiser le timer : stop puis start
                     redessiner = true;
+                }
+
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT1])){
+                    sort1(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
                 }
                 break;
             }

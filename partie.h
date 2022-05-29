@@ -21,7 +21,6 @@
 #include "coordonneesISO.h"
 #include "rect.h"
 
-
 typedef struct{
     int nbJoueurs;
     char nom[50];

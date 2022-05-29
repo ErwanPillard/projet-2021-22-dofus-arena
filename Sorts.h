@@ -8,8 +8,6 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include "stdlib.h"
-#include "time.h"
-#include "unistd.h"
 #define NB_IMAGE 7
 #define NOIR al_map_rgb(0,0,0)
 
@@ -17,8 +15,6 @@
 #include <time.h>
 
 #include "coordonneesISO.h"
-#include "joueur.h"
-
 
 /*typedef struct {
     image hauteur, largeur;
@@ -26,11 +22,11 @@
 */
 
 typedef struct {
-    int porteeX;
-    int porteeY;
+    int porteeMax;
+    int porteeMin;
     int numSort;//sors numeroté de 1 a 4
     int nombrePA, nombrePVinflige;
-    ALLEGRO_BITMAP * image[NB_IMAGE];
+    ALLEGRO_BITMAP *image;
 } Sort;
 
 /*

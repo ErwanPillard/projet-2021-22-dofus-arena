@@ -63,7 +63,7 @@ void dessierDeplacementJoueur(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, i
     }
 }
 
-void deplacementJ(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[], int joueurEnCours, int map[][12], ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie donneePartie, Classe classe[]){
+void deplacementJ(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[], int joueurEnCours, int map[][12]){
     int distanceX, distanceY;
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++){
@@ -96,7 +96,7 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 //Si on clic sur une case en surbrillance (3PM)
                 //deplacementJoueur(event.mouse.x, event.mouse.y, coordonneeIso,joueur[donneePartie->joueurEnCours].caseX, joueur[donneePartie->joueurEnCours].caseY, joueur[donneePartie->joueurEnCours].PM, joueur, donneePartie->joueurEnCours, map);
-                deplacementJ(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, map, queue, event, *donneePartie, classe);
+                deplacementJ(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, map);
                 //Si on veux changer de joueur en mode déplacement
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
                     joueur[donneePartie->joueurEnCours].PM = 3;

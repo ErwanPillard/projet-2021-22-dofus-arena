@@ -8,7 +8,7 @@
 #include <assert.h>
 #include <time.h>
 #include "menu.h"
-#include "arene.h"
+
 #include "interfaceClasse.h"
 #include "partie.h"
 
@@ -71,11 +71,11 @@ int main(){
 
     while(!end){
         //didacticiel();
-        traineeFeux();
+        //traineeFeux();
         //bouleDeFeux();
         //courrirIop();
-        affichageChargement();
-        interface0(queue, event);
+        //affichageChargement();
+        //interface0(queue, event);
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         //affichageChargement2();

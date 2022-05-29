@@ -8,6 +8,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+
 #include "Sorts.h"
 
 typedef struct Classe {
@@ -20,5 +21,7 @@ typedef struct Classe {
 } Classe;
 
 void initialiserClasses(Classe *classe);
+
+void initialiserSorts(Classe classe[]);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_CLASSE_H
