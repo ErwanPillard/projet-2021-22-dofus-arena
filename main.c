@@ -71,10 +71,11 @@ int main(){
 
     while(!end){
         //didacticiel();
-        //BDF();
-       // courrirIop();
-        //affichageChargement();
-        //interface0(queue, event);
+        traineeFeux();
+        //bouleDeFeux();
+        //courrirIop();
+        affichageChargement();
+        interface0(queue, event);
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         //affichageChargement2();
