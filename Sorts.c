@@ -1,9 +1,10 @@
+#include <unistd.h>
 #include "Sorts.h"
 
 // faire un switch case pour les rands
 // faire une fonctionne Initialisation Corps à corps -> pas de rapport avec les classes, indépendantes
 
-/*
+
 void bouleDeFeux(){//mettre dans la fonction timer en répétant la fonction en faisant avancer le x=x+30
     //Classe * classe;
     int x = 10;
@@ -33,9 +34,9 @@ void bouleDeFeux(){//mettre dans la fonction timer en répétant la fonction en 
     //al_draw_bitmap( classe[0].sorts[0].image[1],x,y,0);
     al_draw_bitmap(ima1, 0, 0, 0);
     al_flip_display();
-}*/
+}
 
-/*
+
 void traineeFeux(){
     int x = 10;
     int y = 50;
@@ -109,11 +110,7 @@ void didacticiel(){
     al_draw_bitmap(img7, 0, 0, 0);
     al_flip_display();
     sleep(3);
-    al_draw_bitmap(img1, 10, 250, 0);
-    al_flip_display();
-    sleep(2);
     al_clear_to_color(NOIR);
-    bouleDeFeux();
 }
 
 void courrirIop(){
@@ -177,4 +174,3 @@ void courrirIop(){
     sleep(1);
 
 }
-*/
