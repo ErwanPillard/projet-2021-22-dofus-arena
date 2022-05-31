@@ -30,12 +30,11 @@ void initialiserClasses(Classe *classe){
     classe[1].PvDepart = 50;
     classe[2].PvDepart = 40;
     classe[3].PvDepart = 42;
-
-
 }
 
 void initialiserSorts(Classe classe[]){
     srand(time(NULL));
+
     //Initialisation Classe 1
     ////////* Sorts 1*/////////////
     classe[0].sorts[0].numSort = 1;
@@ -52,8 +51,9 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[1].nombrePA = 2;
     classe[0].sorts[1].nombrePVinflige = rand() % (5) + 10;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 10 et MAX = 14
     classe[0].sorts[1].image = al_load_bitmap("../Image/Sorts/trainéefeu1.png");// trainée de feux
-    //classe[0].sorts[1].porteeX = ;
-    //classe[0].sorts[1].porteeY = ;
+
+    classe[0].sorts[1].porteeMax = 3;
+    classe[0].sorts[1].porteeMin = 2;
 
     ////////* Sorts 3*/////////////
     classe[0].sorts[2].numSort = 3;
@@ -69,7 +69,6 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[3].image = al_load_bitmap("../Image/Sorts/foudre2.png");//foudre
     //classe[0].sorts[3].porteeX = ;
     //classe[0].sorts[3].porteeY = ;
-
 
     //Initialisation Classe 2
     ////////* Sorts 1*/////////////
@@ -160,5 +159,4 @@ void initialiserSorts(Classe classe[]){
     classe[3].sorts[3].image = al_load_bitmap("../Image/Sorts/fleche violet1.jpg"); // flèche violette
     //classe[3].sorts[3].porteeX = ;
     //classe[3].sorts[3].porteeY = ;
-
 }

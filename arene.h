@@ -29,7 +29,6 @@
 #include "joueur.h"
 #include "classe.h"
 #include "coordonneesISO.h"
-#include "deplacement.h"
 
 void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]);
 void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]);

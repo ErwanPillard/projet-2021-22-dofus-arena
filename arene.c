@@ -1,6 +1,5 @@
 #include "arene.h"
-
-
+#include "deplacement.h"
 //****************************************Initialiser***************************************//
 
 void initialiserCoordMilieuTuile(CoordonneeISO coordonneeIso[12][12]){
@@ -19,7 +18,6 @@ void initialiserArene(int map[][12]){
     for(int i = 0; i < 12; i++){
         for (int j = 0; j < 12; j++) {
             fscanf(file, "%d", &map[i][j]);
-            //printf("%d", map[i][j]);
         }
         //printf("\n");
     }

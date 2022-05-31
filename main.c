@@ -60,7 +60,7 @@ int main(){
     al_set_sample_instance_playmode(musicInstance, ALLEGRO_PLAYMODE_LOOP);
     al_attach_sample_instance_to_mixer(musicInstance, al_get_default_mixer());
 
-    al_play_sample_instance(musicInstance);
+    //al_play_sample_instance(musicInstance);
 
     Partie donneePartie = {0};
     Joueur joueur[4];

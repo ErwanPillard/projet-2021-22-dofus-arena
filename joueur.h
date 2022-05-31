@@ -27,6 +27,7 @@ typedef struct{
     int caseX;//sur quelle case est positionné le joueur
     int caseY;
     int PM;
+    int PA;
     ALLEGRO_BITMAP* sprite[NB_IMAGES];
 }Joueur;
 

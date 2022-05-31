@@ -3,6 +3,7 @@
 #include "menu.h"
 #include "arene.h"
 #include "interfaceSort.h"
+#include "deplacement.h"
 
 void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[], Partie donneePartie){
     ALLEGRO_TIMER *timer = NULL;
@@ -47,6 +48,11 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     r[SORT1].hauteur = 50;
     r[SORT1].color = ORANGE;
 
+    r[SORT2].x = 400;
+    r[SORT2].y = 100;
+    r[SORT2].largeur = 50;
+    r[SORT2].hauteur = 50;
+    r[SORT2].color = ORANGE;
 
     dessinerArene(coordonneeIso, joueur, classe);
     //dessinerObsacle(map);
@@ -56,6 +62,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
     al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
     al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
+    al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
     al_flip_display();
 
     al_start_timer(timer);
@@ -79,9 +86,13 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     al_start_timer(timer);//pour réinitialiser le timer : stop puis start
                     redessiner = true;
                 }
-
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT1])){
-                    sort1(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
+                    sortCercle(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
+                    redessiner = true;
+                }
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT2])){
+                    sortLigneDroite(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
+                    redessiner = true;
                 }
                 break;
             }
@@ -100,6 +111,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
             al_draw_filled_rectangle(r[SUIVANT].x, r[SUIVANT].y, r[SUIVANT].x + r[SUIVANT].largeur,r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
             al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
+            al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
             al_flip_display();
             redessiner = false;
         }
