@@ -117,5 +117,5 @@ void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe
     //dessinerSurbrillance(coordonneeIso);
 
     //dessinerJoueur(coordonneeIso, joueur, classe);
-    //dessinerObstacle
+    //dessinerObstacle(CoordonneeISO coordonneeIso[12][12]);
 }

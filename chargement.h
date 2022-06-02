@@ -16,6 +16,10 @@
 #include <unistd.h>
 
 #include "menu.h"
+#include "joueur.h"
+#include "arene.h"
+#include "partie.h"
+
 
 void courrirIop();
 void didacticiel();

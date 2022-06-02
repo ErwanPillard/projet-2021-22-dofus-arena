@@ -10,6 +10,7 @@ void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int
     if(PM >= 0 && x <= 11 && y <= 11 && x >= 0 && y >= 0){
         //si il n'y a pas d'obstacle (fichier txt):
         if(map[x][y] != 1){
+
             al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLEU);
         }
 

@@ -70,12 +70,13 @@ int main(){
     al_wait_for_event(queue, &event);
 
     while(!end){
+        dessinerSortsGlace(queue, event);
         //didacticiel();
         //traineeFeux();
         //bouleDeFeux();
         //courrirIop();
         //affichageChargement();
-        interface0(queue, event);
+        //interface0(queue, event);
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         affichageChargement2();

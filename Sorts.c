@@ -174,3 +174,28 @@ void courrirIop(){
     sleep(1);
 
 }
+
+void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event){
+    ALLEGRO_TIMER *timer = NULL;
+    int i = 0;
+    bool end = false;
+    timer = al_create_timer(1.0/3);
+    al_register_event_source(queue, al_get_timer_event_source(timer));
+    al_wait_for_event(queue, &event);
+    al_start_timer(timer);
+    ALLEGRO_BITMAP *sortGlace= al_load_bitmap("../Image/sortGlace.png");
+    while (!end){
+        switch (event.type) {
+            case ALLEGRO_EVENT_TIMER:
+                al_clear_to_color(NOIR);
+                al_draw_bitmap(sortGlace, 300, i, 0);
+                i= i+20;
+                al_flip_display();
+                break;
+        }
+    }
+
+}
+
+
+

@@ -38,10 +38,14 @@ void affichageChargement(){
     sleep(1.5);
 }
 
-void affichageChargement2(){
+void affichageChargement2(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event){
+    bool end  = false;
     ALLEGRO_COLOR couleur2 = al_map_rgb(255,255,247);
     ALLEGRO_COLOR couleur1 = al_map_rgb(16,56,69);
     ALLEGRO_BITMAP *ecranChargement2 = al_load_bitmap("../Image/chargement2.jpeg");
+    ALLEGRO_BITMAP *didacticiel= al_load_bitmap("../Image/proposdida.png");
+
+
     ALLEGRO_FONT *chargement = al_load_font("../Polices/Achafont.ttf", 40, 0);
     ALLEGRO_FONT *chargement1 = al_load_font("../Polices/Achafont.ttf", 45, 0);
     ALLEGRO_FONT *chargement2 = al_load_font("../Polices/Achafont.ttf", 35, 0);

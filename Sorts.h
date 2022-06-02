@@ -47,6 +47,7 @@ typedef struct {
 
 void bouleDeFeux();
 void traineeFeux();
+void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event);
 
 
 
