@@ -43,7 +43,7 @@ enum decor{BOUTON, BOUTON2, HORLOGE}; // Décor autour de l'arene
 enum numSort{sort1, sort2, sort3, sort4};
 
 Rect initialisationMenuEchap(Rect* r);
-
+void horloge(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event);
 void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[],Partie donneePartie);
 void initialisationBoutonPartie(BUTTON *bouton);
 void dessinerBoutonDeplacer(BUTTON bouton[] );
