@@ -10,6 +10,7 @@ typedef struct{
     ALLEGRO_COLOR color;
     ALLEGRO_COLOR colorThickness;
     ALLEGRO_FONT *font;
+    ALLEGRO_BITMAP * image;
 }Rect;
 
 

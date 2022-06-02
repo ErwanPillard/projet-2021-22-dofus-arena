@@ -71,6 +71,8 @@ int main(){
 
     while(!end){
         //didacticiel();
+        //dessinerSorts2(queue, event);
+        //didacticiel();
         //traineeFeux();
         //bouleDeFeux();
         //courrirIop();
@@ -81,6 +83,7 @@ int main(){
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         //affichageChargement2();
         partie(event, queue, joueur, classe, donneePartie);
+        interfaceEchap(queue, event);
         end = true;
     }
 }

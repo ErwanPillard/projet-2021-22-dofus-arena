@@ -30,6 +30,7 @@
 #include "classe.h"
 #include "coordonneesISO.h"
 
+
 void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]);
 void dessinerSurbrillance(CoordonneeISO coordonneeIso[12][12]);
 //void dessinerObsacle();

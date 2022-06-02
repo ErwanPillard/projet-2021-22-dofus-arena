@@ -13,7 +13,7 @@
 #include "arene.h"
 #include "partie.h"
 
-#define BLEU al_map_rgb(0, 0, 255)
+#define BLEU al_map_rgb(106, 244, 252)
 #define ORANGE al_map_rgb(243, 111, 2)
 
 typedef struct{

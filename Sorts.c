@@ -174,3 +174,88 @@ void courrirIop(){
     sleep(1);
 
 }
+
+void dessinerSorts2(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event){
+    ALLEGRO_TIMER *timer2 = NULL;
+    int i = 0;
+    bool end = false;
+
+    ALLEGRO_BITMAP *sort0= al_load_bitmap("../Image/test.png");
+    ALLEGRO_BITMAP *sort1= al_load_bitmap("../Image/test2.png");
+    ALLEGRO_BITMAP *sort2= al_load_bitmap("../Image/test3.png");
+    ALLEGRO_BITMAP *sort3= al_load_bitmap("../Image/test4.png");
+    ALLEGRO_BITMAP *sort4= al_load_bitmap("../Image/test5.png");
+    ALLEGRO_BITMAP *sort5= al_load_bitmap("../Image/test6.png");
+
+    timer2 = al_create_timer(1.0/10);
+
+    al_register_event_source(queue, al_get_timer_event_source(timer2));
+
+    al_start_timer(timer2);
+
+
+    while (!end){
+        al_wait_for_event(queue, &event);
+        switch (event.type) {
+            case ALLEGRO_EVENT_TIMER: {
+                al_clear_to_color(al_map_rgb(0, 0, 0));
+
+                if(i==0){
+                    al_draw_bitmap(sort0, 300, 300, 0);
+
+                }
+                if(i==1){
+                    al_draw_bitmap(sort1, 300, 300, 0);
+
+                }
+                if(i==2){
+                    al_draw_bitmap(sort2, 300, 300, 0);
+
+                }
+                if(i==3){
+                    al_draw_bitmap(sort3, 300, 300, 0);
+
+                }
+                if(i==4){
+                    al_draw_bitmap(sort4, 300, 300, 0);
+
+                }
+                if(i==5){
+                    al_draw_bitmap(sort5, 300, 300, 0);
+
+                }
+                if(i==6){
+                    al_draw_bitmap(sort0, 300, 300, 0);
+
+                }
+                if(i==7){
+                    al_draw_bitmap(sort1, 300, 300, 0);
+
+                }
+                if(i==8){
+                    al_draw_bitmap(sort2, 300, 300, 0);
+
+                }
+                if(i==9){
+                    al_draw_bitmap(sort3, 300, 300, 0);
+
+                }
+                if(i==10){
+                    al_draw_bitmap(sort4, 300, 300, 0);
+
+                }
+                if(i==11){
+                    al_draw_bitmap(sort5, 300, 300, 0);
+
+                }
+                al_flip_display();
+                i++;
+
+                break;
+            }
+        }
+    }
+}
+
+
+
