@@ -27,6 +27,8 @@ void initialisationInterface0(Rect *r){
     r[2].thickness = 5;
     r[2].colorThickness = ORfonce;
     r[2].font = al_load_font("../Polices/Achafont.ttf", 30, 0);
+
+
 }
 
 void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
@@ -38,15 +40,7 @@ void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]){
     al_draw_text(r[0].font, NOIR, r[0].x + 70, r[0].y + 6, 0, "JOUER");
     al_draw_text(r[1].font, NOIR, r[1].x + 50, r[1].y + 6, 0, "CHARGER");
     al_draw_text(r[2].font, NOIR, r[2].x + 50, r[2].y + 6, 0, "QUITTER");
-/*
-    for(int i = 0; i < 1; i++){
-        al_draw_filled_rectangle(r[i].x , r[i].y, r[i].x + r[i].largeur, r[i].y + r[i].hauteur, r[i].color);
-        al_draw_rectangle(r[i].x, r[i].y, r[i].x + r[i].largeur, r[i].y + r[i].hauteur, r[i].colorThickness, r[i].thickness);
-    }
 
-    al_draw_text(r[0].font, NOIR, r[0].x + 70, r[0].y + 6, 0, "SAUVERGARDER");
-    al_draw_text(r[1].font, NOIR, r[1].x + 50, r[1].y + 6, 0, "CHARGER ANCIENNE PARTIE");
-*/
     al_flip_display();
 }
 
@@ -60,6 +54,7 @@ void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
     ALLEGRO_SAMPLE *whoosh = al_load_sample("../Sound/whoosh.ogg");
 
     dessinerInterface0(imagePrincipale, rectangleAccueil);
+    //dessinerApresC(imagePrincipale, rectangleAccueil);
 
     while(!end){
         al_wait_for_event(queue, &event);
@@ -83,6 +78,8 @@ void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
                     }
                     else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1])){ //charger un ancienne partie
                         al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                        charger(queue, event);
+
                         end = true;
 
                     }
@@ -93,7 +90,7 @@ void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
                 break;
             }
         }
-        dessinerInterface0(imagePrincipale, rectangleAccueil);
+
     }
     al_destroy_bitmap(imagePrincipale);
     al_destroy_sample(whoosh);

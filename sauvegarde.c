@@ -3,7 +3,61 @@
 //
 
 #include "sauvegarde.h"
+#include "menu.h"
 
+#define NB_RECT 2
+
+void dessinerInterfaceChargement(Rect r[]){
+    ALLEGRO_BITMAP *imagePrincipale = al_load_bitmap("../Image/dofus3.jpg");
+    
+    al_draw_bitmap(imagePrincipale,0,0,0);
+
+    al_draw_filled_rectangle(r[0].x, r[0].y,r[0].x + r[0].largeur,r[0].y + r[0].hauteur,r[0].color);
+    al_draw_rectangle(r[0].x,r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur,r[0].color,r[0].thickness);
+    al_draw_text(r[0].font, NOIR, r[0].x + 60, r[0].y + 6, 0, "SAUVER");
+
+    al_flip_display();
+}
+
+
+void charger(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event){
+    bool end = false;
+
+    Rect r[NB_RECT];
+
+    r[0].largeur = 200;
+    r[0].hauteur = 50;
+    r[0].x = (float)LARGEUR / 2 - r[0].largeur / 2;
+    r[0].y = (float)HAUTEUR / 2 - r[0].hauteur / 2;
+    r[0].color = OR;
+    r[0].thickness = 5;
+    r[0].colorThickness = ORfonce;
+    r[0].font = al_load_font("../Polices/Achafont.ttf", 30, 0);
+
+    ALLEGRO_SAMPLE *whoosh = al_load_sample(".../Sound/whoosh.ogg");
+
+    dessinerInterfaceChargement(r);
+    
+    while(!end){
+        al_wait_for_event(queue, &event);
+        switch (event.type) {
+            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[0])){
+                    al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+                    //action a faire
+
+                    end = true;
+                }
+                break;
+            }
+        }
+        
+    }
+    
+}
+
+
+/*
 FILE* creerFichier(){
     char chemin[LG_MAX_CHEMIN_SAUVEGARDE];
     char nomPartie[LG_MAX_NOM_PARTIE];
@@ -12,7 +66,7 @@ FILE* creerFichier(){
     sprintf(chemin,"%s/%s", CHEMIN_SAUVEGARDE, nomPartie);
     FILE* monFichier = fopen(chemin,"w");
     return monFichier;
-}
+}*/
 
 /*
 void copierJoueur(Joueur j[], Partie donneePartie, FILE* creerFichier(), FILE *myFile, Classe classe){
@@ -58,18 +112,7 @@ int rechargerPlateau(FILE * myFile){
                &monPlateau.tabJoueurs[i].positionJoueur);
     }
 
-    // Recharger Banque
-    fscanf(myFile, "BANQUE:%d;%d\n", &monPlateau.maBanque.nbMaisonRestant, &monPlateau.maBanque.nbHotelRestant);
-    for(int i=0; i<NB_MAX_PROPRIETE;i++){
-        fscanf(myFile, "PROPRIETE:%[^\n]", monPlateau.maBanque.tabProp[i].nom);
-        fscanf(myFile, "%f;%f;%d;%d;%d;%d\n",
-               &monPlateau.maBanque.tabProp[i].prixdeRevente,
-               &monPlateau.maBanque.tabProp[i].prixAchat,
-               &monPlateau.maBanque.tabProp[i].nbMaisonSurProp,
-               &monPlateau.maBanque.tabProp[i].nbHotelSurProp,
-               &monPlateau.maBanque.tabProp[i].groupe,
-               &monPlateau.maBanque.tabProp[i].indexJoueurPropritaire);
-    }
+    
     for(int i=0; i<NB_MAX_JOUEUR;i++){
         fscanf(myFile, "PRET:%f\n", &monPlateau.maBanque.tabPretParJoueur[i]);
     }
