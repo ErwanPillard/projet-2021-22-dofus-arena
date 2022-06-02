@@ -4,22 +4,16 @@
 #include "arene.h"
 #include "interfaceSort.h"
 #include "deplacement.h"
-
-unsigned char passage(int mouse_x, int mouse_y, int x, int y, int largeur,int hauteur){
-    if(mouse_x >= x && mouse_y >= y && mouse_x <= x + largeur && mouse_y <= y + hauteur){
-        return 1;
-    }
-    return 0;
-}
+#include "interfaceClasse.h"
 
 void initialisationBoutonPartie(BUTTON *bouton){
     // Bouton déplacer
 
     bouton[DEPLACER].image = al_load_bitmap("../Image/Decor/Boutondeplacer.png");
-    bouton[DEPLACER].x = 1400;
+    bouton[DEPLACER].x = 1000;
     bouton[DEPLACER].y = 100;
-    bouton[DEPLACER].largeur = 800;
-    bouton[DEPLACER].hauteur = 800;
+    bouton[DEPLACER].largeur = 120;
+    bouton[DEPLACER].hauteur = 170;
 
 
     //Bouton suivant
@@ -102,6 +96,23 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     donneePartie.joueurEnCours = 0;
 
     Rect r[10];
+    r[DEPLACER].x = 100;
+    r[DEPLACER].y = 100;
+    r[DEPLACER].largeur = 50;
+    r[DEPLACER].hauteur = 50;
+    r[DEPLACER].color = OR;
+
+    r[SUIVANT].x = 200;
+    r[SUIVANT].y = 100;
+    r[SUIVANT].largeur = 50;
+    r[SUIVANT].hauteur = 50;
+    r[SUIVANT].color = BLEU;
+
+    r[SORT1].x = 300;
+    r[SORT1].y = 100;
+    r[SORT1].largeur = 50;// Commentaire
+    r[SORT1].hauteur = 50;// Commentaire
+    r[SORT1].color = ORANGE;// Commentaire
 
 // 200 par 283
     //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_ENIPSA/Affichage_bouton.png"); // enipsa
@@ -128,14 +139,14 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     //dessiner ellipse joueur qui joue
     al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
     dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
-    //al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
+    al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
     al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
     al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
     al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
     //al_draw_bitmap(r[BOUTON].image, 1150, 200, 0);
     al_draw_bitmap(r[BOUTON2].image, 100, 200, 0);
     al_draw_bitmap(r[HORLOGE].image, 550 , -50, 0);
-    al_draw_bitmap(bouton[DEPLACER].image, (float)LARGEUR /2 - 30, (float)HAUTEUR / 2 - 125, 0);
+    al_draw_bitmap(bouton[DEPLACER].image, bouton[DEPLACER].x, bouton[DEPLACER].y,0);
 
     al_flip_display();
 
@@ -149,7 +160,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                 break;
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
-                if(passage(event.mouse.x, event.mouse.y, (int)bouton[DEPLACER].x, bouton[DEPLACER].y, bouton[DEPLACER].largeur, bouton[DEPLACER].hauteur)){
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[DEPLACER].x, bouton[DEPLACER].y, bouton[DEPLACER].largeur, bouton[DEPLACER].hauteur)){
                     deplacement(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
                     redessiner = true;
                 }
@@ -192,14 +203,14 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             //dessinerObsacle(map);
             al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
-            //al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
+            al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
             al_draw_filled_rectangle(r[SUIVANT].x, r[SUIVANT].y, r[SUIVANT].x + r[SUIVANT].largeur,r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
             al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
             al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
             //al_draw_bitmap(r[BOUTON].image, 1150, 200, 0);
             al_draw_bitmap(r[BOUTON2].image, 100, 200, 0);
             al_draw_bitmap(r[HORLOGE].image, 550 , -50, 0);
-            al_draw_bitmap(r[DEPLACER].image, (float)LARGEUR /2 - 30, (float)HAUTEUR / 2 - 125, 0);
+            al_draw_bitmap(bouton[DEPLACER].image, bouton[DEPLACER].x, bouton[DEPLACER].y, 0);
             al_flip_display();
             redessiner = false;
         }

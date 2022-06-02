@@ -40,7 +40,6 @@ enum action{DEPLACER, SUIVANT,SORT1, SORT2, SORT3, SORT4, ATTAQUE};
 
 enum decor{BOUTON, BOUTON2, HORLOGE}; // Décor autour de l'arene
 
-unsigned char passage(int mouse_x, int mouse_y, int x, int y, int largeur,int hauteur);
 enum numSort{sort1, sort2, sort3, sort4};
 
 Rect initialisationMenuEchap(Rect* r);
