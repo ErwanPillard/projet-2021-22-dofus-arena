@@ -218,7 +218,7 @@ void dessinerSorts2(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event){
     ALLEGRO_BITMAP *sort4= al_load_bitmap("../Image/test5.png");
     ALLEGRO_BITMAP *sort5= al_load_bitmap("../Image/test6.png");
 
-    timer2 = al_create_timer(1.0/8);
+    timer2 = al_create_timer(1.0/10);
 
     al_register_event_source(queue, al_get_timer_event_source(timer2));
 
@@ -252,6 +252,30 @@ void dessinerSorts2(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event){
 
                 }
                 if(i==5){
+                    al_draw_bitmap(sort5, 300, 300, 0);
+
+                }
+                if(i==6){
+                    al_draw_bitmap(sort0, 300, 300, 0);
+
+                }
+                if(i==7){
+                    al_draw_bitmap(sort1, 300, 300, 0);
+
+                }
+                if(i==8){
+                    al_draw_bitmap(sort2, 300, 300, 0);
+
+                }
+                if(i==9){
+                    al_draw_bitmap(sort3, 300, 300, 0);
+
+                }
+                if(i==10){
+                    al_draw_bitmap(sort4, 300, 300, 0);
+
+                }
+                if(i==11){
                     al_draw_bitmap(sort5, 300, 300, 0);
 
                 }
