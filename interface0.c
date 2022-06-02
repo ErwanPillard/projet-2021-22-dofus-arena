@@ -66,7 +66,7 @@ void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_AXES:{
                 for (int i = 0; i < 3 ;i++) {
-                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[i])){
+                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[i], 0, 0, 0)){
                         rectangleAccueil[i].color = rectangleAccueil[i].colorThickness;
                     }
                     else{
@@ -77,16 +77,16 @@ void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 for (int i = 0; i < 3; i++) {
-                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[0])){ // pour Jouer une partie
+                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[0], 0, 0, 0)){ // pour Jouer une partie
                         al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                         end = true;
                     }
-                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1])){ //charger un ancienne partie
+                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[1], 0, 0, 0)){ //charger un ancienne partie
                         al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                         end = true;
 
                     }
-                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[2])){
+                    else if(surPassageCase(event.mouse.x, event.mouse.y, rectangleAccueil[2], 0, 0, 0)){
                         //Liberation
                     }
                 }

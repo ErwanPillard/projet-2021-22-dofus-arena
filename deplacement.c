@@ -98,7 +98,7 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
                 //deplacementJoueur(event.mouse.x, event.mouse.y, coordonneeIso,joueur[donneePartie->joueurEnCours].caseX, joueur[donneePartie->joueurEnCours].caseY, joueur[donneePartie->joueurEnCours].PM, joueur, donneePartie->joueurEnCours, map);
                 deplacementJ(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, map);
                 //Si on veux changer de joueur en mode déplacement
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT], 0, 0, 0)){
                     joueur[donneePartie->joueurEnCours].PM = 3;
                     donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                     al_stop_timer(timer);
