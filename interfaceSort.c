@@ -125,6 +125,10 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
     }
 }
 
+void verifSiJoueurSurCase(int cibleX, int cibleY){
+
+}
+
 void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12], int numSort){
     bool end = false;
     bool redessiner = true;
@@ -216,7 +220,7 @@ void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Coordon
                 break;
             }
         }
-        if(i >= coordonneeIso[cibleX][cibleY].y - 30){
+        if(i >= coordonneeIso[cibleX][cibleY].y - 40){
             al_play_sample(explosion, 1.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
             end = true;
         }
