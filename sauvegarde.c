@@ -14,7 +14,7 @@ void dessinerInterfaceChargement(Rect r[]){
 
     al_draw_filled_rectangle(r[0].x, r[0].y,r[0].x + r[0].largeur,r[0].y + r[0].hauteur,r[0].color);
     al_draw_rectangle(r[0].x,r[0].y,r[0].x + r[0].largeur, r[0].y + r[0].hauteur,r[0].color,r[0].thickness);
-    al_draw_text(r[0].font, NOIR, r[0].x + 60, r[0].y + 6, 0, "SAUVER");
+    al_draw_text(r[0].font, NOIR, r[0].x + 60, r[0].y + 6, 0, "PARTIE ?");
 
     al_flip_display();
 }
@@ -97,6 +97,7 @@ int sauvegarderPartie(){
         printf ("Erreur lors de la fermeture du fichier de sauvegarde\n");
     }
 }
+
 /*
 int rechargerPlateau(FILE * myFile){
     // Recharger plateau
