@@ -170,12 +170,12 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     al_start_timer(timer);//pour réinitialiser le timer : stop puis start
                     redessiner = true;
                 }
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT1], 0, 0, 0)){
-                    sortCercle(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT1])){
+                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].type);
                     redessiner = true;
                 }
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT2], 0, 0, 0)){
-                    sortLigneDroite(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT2])){
+                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].type);
                     redessiner = true;
                 }
                 break;
@@ -184,6 +184,16 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                 joueur[donneePartie.joueurEnCours].PM = 3;
                 donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
                 redessiner = true;
+                break;
+            }
+            case ALLEGRO_EVENT_KEY_UP:{
+                switch (event.keyboard.keycode) {
+                    case ALLEGRO_KEY_ESCAPE:{
+                        //interfaceechap
+                        interfaceEchap(queue, event);
+                        break;
+                    }
+                }
                 break;
             }
         }

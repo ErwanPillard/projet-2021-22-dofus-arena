@@ -25,6 +25,9 @@
 #define NOIR al_map_rgb(0,0,0)
 
 Rect initialisationMenuEchap(Rect* r);
-void dessinerMenuEchap(ALLEGRO_BITMAP* imagePrincipal,Rect r[]);
+
+void dessinerMenuEchap();
+
 void interfaceEchap(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event);
+
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_ECHAP

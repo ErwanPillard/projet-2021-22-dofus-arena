@@ -10,6 +10,7 @@ void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int
     if(PM >= 0 && x <= 11 && y <= 11 && x >= 0 && y >= 0){
         //si il n'y a pas d'obstacle (fichier txt):
         if(map[x][y] != 1){
+
             al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLEU);
         }
 
@@ -45,7 +46,7 @@ void dessierDeplacementJoueur(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, i
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_TIMER:{
-                coordonneeIso[positionJoueurX][positionJoueurY].x += 1;
+                coordonneeIso[positionJoueurX][positionJoueurY].x += 1.97f;
                 coordonneeIso[positionJoueurX][positionJoueurY].y += 1;
 
                 dessinerArene(coordonneeIso, joueur, classe);
@@ -56,29 +57,26 @@ void dessierDeplacementJoueur(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, i
                 break;
             }
         }
-        if(x1 == x2 && y1 == y2){
+        if(coordonneeIso[positionJoueurX][positionJoueurY].x == x2 && coordonneeIso[positionJoueurX][positionJoueurY].y == y2){
 
             end = true;
         }
     }
 }
 
-void deplacementJ(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[], int joueurEnCours, int map[][12]){
-    int distanceX, distanceY;
+void deplacementJ(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[], int joueurEnCours, int map[][12], int* distanceX, int* distanceY){
     for (int i = 0; i < 12; i++) {
         for (int j = 0; j < 12; j++){
             if(mouseX >= coordonneeIso[i][j].x - 20 && mouseX <= coordonneeIso[i][j].x + 20 && mouseY >= coordonneeIso[i][j].y - 15 && mouseY <= coordonneeIso[i][j].y + 15 && map[i][j] != 1){
 
                 //Calcul la distance JOUEUR-CASE en nb de case
-                distanceX = abs(joueur[joueurEnCours].caseX - i);
-                distanceY = abs(joueur[joueurEnCours].caseY - j);
-                if ((distanceX + distanceY) <= joueur[joueurEnCours].PM){
-                    //dessierDeplacementJoueur(queue, event, distanceX, distanceY, joueur[joueurEnCours].caseX, joueur[joueurEnCours].caseY, coordonneeIso, donneePartie, joueur, classe);
-
+                *distanceX = abs(joueur[joueurEnCours].caseX - i);
+                *distanceY = abs(joueur[joueurEnCours].caseY - j);
+                if ((*distanceX + *distanceY) <= joueur[joueurEnCours].PM){
                     map[joueur[joueurEnCours].caseX][joueur[joueurEnCours].caseY] = 0;
                     joueur[joueurEnCours].caseX = i;
                     joueur[joueurEnCours].caseY = j;
-                    joueur[joueurEnCours].PM = joueur[joueurEnCours].PM - (distanceX + distanceY);
+                    joueur[joueurEnCours].PM = joueur[joueurEnCours].PM - (*distanceX + *distanceY);
                     map[i][j] = 1;
                 }
             }
@@ -86,19 +84,59 @@ void deplacementJ(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Jou
     }
 }
 
+int decompositionDeplacementJoueur(Chemin chemin[], int x1, int y1, int x2, int y2){
+    if (x1 < x2) {
+        chemin[0].x = x1 + 1;
+        chemin[0].y = x2;
+    }
+    else if (x1 > x2) {
+        chemin[0].x = x1 - 1;
+        chemin[0].y = x2;
+    }
+    else if (x1 == x2) {
+        chemin[0].x = x1;
+        chemin[0].y = x2;
+    }
+    else if (y1 < y2) {
+        chemin[0].y = y1 + 1;
+        chemin[0].x = x1;
+    }
+    else if (y1 > y2) {
+        chemin[0].y = y1 - 1;
+        chemin[0].x = x1;
+    }
+    else if (y1 == y2) {
+        chemin[0].y = y1;
+        chemin[0].x = x1;
+    }
+}
+
 void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12]){
     bool end = false;
     bool redessiner = true;
+    bool deplacer = false;
+
+    int distanceX, distanceY;
+    int positionJX = joueur[donneePartie->joueurEnCours].caseX;
+    int positionJY = joueur[donneePartie->joueurEnCours].caseY;
+
+    Chemin chemin[2]; // 3PM
+
+    decompositionDeplacementJoueur(chemin, 3, 3, 4, 6);
+
+    for (int i = 0; i < 3; i++) {
+        printf("[%d][%d]\n", chemin[i].x, chemin[i].y);
+    }
+
 
     while(!end){
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 //Si on clic sur une case en surbrillance (3PM)
-                //deplacementJoueur(event.mouse.x, event.mouse.y, coordonneeIso,joueur[donneePartie->joueurEnCours].caseX, joueur[donneePartie->joueurEnCours].caseY, joueur[donneePartie->joueurEnCours].PM, joueur, donneePartie->joueurEnCours, map);
-                deplacementJ(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, map);
+                 deplacementJ(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, map, &distanceX, &distanceY);
                 //Si on veux changer de joueur en mode déplacement
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT], 0, 0, 0)){
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])) {
                     joueur[donneePartie->joueurEnCours].PM = 3;
                     donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                     al_stop_timer(timer);
@@ -114,8 +152,30 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
                 end = true;
                 break;
             }
-        }
+            case ALLEGRO_EVENT_MOUSE_AXES:{
+                for (int i = 0; i < 12; i++) {
+                    for (int j = 0; j < 12; j++){
+                        if(event.mouse.x >= coordonneeIso[i][j].x - 20 && event.mouse.x <= coordonneeIso[i][j].x + 20 && event.mouse.y >= coordonneeIso[i][j].y - 15 && event.mouse.y <= coordonneeIso[i][j].y + 15){
+                            //(2,2) -> (3,4) = (3,2), (3,3), (3,4)
+                            distanceX = i - joueur[donneePartie->joueurEnCours].caseX;
+                            distanceY = j - joueur[donneePartie->joueurEnCours].caseY;
 
+                            for (int k = 0; k < distanceX; k++) {
+
+                            }
+
+                        }
+                    }
+                }
+                break;
+            }
+        }
+/*
+        if(deplacer == true){
+            dessierDeplacementJoueur(queue, event, distanceX, distanceY, positionJX, positionJY, coordonneeIso, *donneePartie, joueur, classe);
+            deplacer = false;
+            end = true;
+        }*/
         if(redessiner == true){
             dessinerArene(coordonneeIso, joueur, classe);
             //dessinerObsacle(map);

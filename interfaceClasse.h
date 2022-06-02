@@ -5,7 +5,6 @@
 #ifndef ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_INTERFACECLASSE_H
 #define ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_INTERFACECLASSE_H
 
-
 #include "joueur.h"
 #include "classe.h"
 #include "partie.h"
