@@ -103,18 +103,13 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
 
     Rect r[10];
 
-
-
 // 200 par 283
     //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_ENIPSA/Affichage_bouton.png"); // enipsa
     //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_SRAM/Bouton_sort_SramRedim-removebg-preview.png"); // sram
     //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_IOP/Bouton_Sort_IOPparfait.png"); // IOP
     //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_HYPP/Bouton_Sort_HYppRedim-removebg-preview.png"); // Hypp
 
-
-
     r[BOUTON2].image = al_load_bitmap("../Image/Decor/BoutonPA_PM.png"); // bitmap PA et PM
-
 
 // Bouton horloge
     //r[HORLOGE].image = al_load_bitmap("../Image/Decor/Horloge 15 s parfait.png");// bitmap Horloge 15 secondes
@@ -125,9 +120,6 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     //r[HORLOGE].image = al_load_bitmap("../Image/Decor/Horloge 10 s parfaite.png");// bitmap Horloge 10 secondes
 
     r[HORLOGE].image = al_load_bitmap("../Image/Decor/Horloge 9 s parfaite.png");// bitmap Horloge 9 secondes
-
-
-
 
     //ALLEGRO_BITMAP * ecranSorts = al_load_bitmap("../Image/Sorts/SORT_ENIPSA/1 redim.png");
 
@@ -143,9 +135,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     //al_draw_bitmap(r[BOUTON].image, 1150, 200, 0);
     al_draw_bitmap(r[BOUTON2].image, 100, 200, 0);
     al_draw_bitmap(r[HORLOGE].image, 550 , -50, 0);
-    //al_draw_bitmap(r[DEPLACER].image, (float)LARGEUR /2 - 30, (float)HAUTEUR / 2 - 125, 0);
-
-
+    al_draw_bitmap(bouton[DEPLACER].image, (float)LARGEUR /2 - 30, (float)HAUTEUR / 2 - 125, 0);
 
     al_flip_display();
 
@@ -163,7 +153,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     deplacement(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
                     redessiner = true;
                 }
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT], 0, 0, 0)){
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
                     joueur[donneePartie.joueurEnCours].PM = 3;
                     donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
                     al_stop_timer(timer);

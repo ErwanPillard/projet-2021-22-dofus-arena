@@ -4,7 +4,7 @@
 
 #include "menu.h"
 
-unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled, int i, int i1, int i2) {
+unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled) {
     if(mouse_x >= (int)rectanglefilled.x && mouse_y >= (int)rectanglefilled.y && mouse_x <= (int)rectanglefilled.x + (int)rectanglefilled.largeur && mouse_y <= (int)rectanglefilled.y + (int)rectanglefilled.hauteur){
 
         return 1;
@@ -110,22 +110,22 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
-                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[0], 0, 0, 0)) {
+                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[0])) {
                     al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     donneePartie->nbJoueurs = 2;
                     end = true;
                 }
-                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[1], 0, 0, 0)) {
+                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[1])) {
                     al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     donneePartie->nbJoueurs = 3;
                     end = true;
                 }
-                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[2], 0, 0, 0)) {
+                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[2])) {
                     al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     donneePartie->nbJoueurs = 4;
                     end = true;
                 }
-                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[3], 0, 0, 0)) {
+                if (surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[3])) {
                     al_play_sample(whoosh, 1.0f, 0.0f, 1.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     donneePartie->nbJoueurs = 1;
                     end = true;
@@ -134,7 +134,7 @@ void menu(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Partie *donneePartie)
             }
             case ALLEGRO_EVENT_MOUSE_AXES:{
                 for (int i = 0; i < NB_RECTANGLE_NBJ; i++) {
-                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[i], 0, 0, 0)){
+                    if(surPassageCase(event.mouse.x, event.mouse.y, rectangleInterfaceChoixJoueurs[i])){
                         rectangleInterfaceChoixJoueurs[i].color = rectangleInterfaceChoixJoueurs[i].colorThickness;
 
                     }

@@ -28,7 +28,7 @@
 
 #define NB_RECTANGLE_NBJ 4
 
-unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled, int i, int i1, int i2);
+unsigned char surPassageCase(int mouse_x, int mouse_y, Rect rectanglefilled);
 void dessinerFilledRectangle2(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color);
 void dessinerFilledRectangle(float x, float y, float largeur, float hauteur, ALLEGRO_COLOR color);
 
