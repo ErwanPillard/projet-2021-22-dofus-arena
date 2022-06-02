@@ -93,7 +93,7 @@ void initialiserSorts(Classe classe[]){
 
     ////////* Sorts 3*/////////////
     classe[1].sorts[2].numSort = 3;
-    classe[1].sorts[2].nombrePA = 2;
+    classe[1].sorts[2].nombrePA = 5;
     classe[1].sorts[2].nombrePVinflige = rand() % (5) + 13;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 13 et MAX = 17
     classe[1].sorts[2].image = al_load_bitmap("../Image/Sorts/Aigle-removebg-preview.png");// dans les autres sens aussi pour qu'il soit dans la bonne direction
 
@@ -103,7 +103,7 @@ void initialiserSorts(Classe classe[]){
 
     ////////* Sorts 4*/////////////
     classe[1].sorts[3].numSort = 4;
-    classe[1].sorts[3].nombrePA = 3;
+    classe[1].sorts[3].nombrePA = 8;
     classe[1].sorts[3].nombrePVinflige = rand() % (5) + 15;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 15 et MAX = 19
     classe[1].sorts[3].image = al_load_bitmap("../Image/Sorts/Explosion_feux.png");//pas encore découper mais on peut faire de plusieurs tailles
 

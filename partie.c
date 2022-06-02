@@ -119,6 +119,16 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                 redessiner = true;
                 break;
             }
+            case ALLEGRO_EVENT_KEY_UP:{
+                switch (event.keyboard.keycode) {
+                    case ALLEGRO_KEY_ESCAPE:{
+                        //interfaceechap
+                        interfaceEchap(queue, event);
+                        break;
+                    }
+                }
+                break;
+            }
         }
         if(redessiner == true){
             dessinerArene(coordonneeIso, joueur, classe);

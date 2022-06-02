@@ -13,6 +13,7 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include "menu.h"
+#include "sauvegarde.h"
 
 #define LARGEUR 1400
 #define HAUTEUR 807
@@ -25,6 +26,7 @@
 
 void initialisationInterface0(Rect *r);
 void dessinerInterface0(ALLEGRO_BITMAP *imagePrincipale, Rect r[]);
+void dessinerApresC(ALLEGRO_BITMAP *imagePrincipale, Rect r[]);
 void interface0(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event);
 
 

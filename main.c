@@ -78,12 +78,10 @@ int main(){
         //courrirIop();
         //affichageChargement();
         //interface0(queue, event);
-
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         //affichageChargement2();
         partie(event, queue, joueur, classe, donneePartie);
-        interfaceEchap(queue, event);
         end = true;
     }
 }
