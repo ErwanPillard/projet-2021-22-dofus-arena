@@ -1,6 +1,7 @@
 
 #include "interfaceClasse.h"
 
+
 unsigned char surPassage(int mouse_x, int mouse_y, int x, int y, int largeur,int hauteur){// duplication fonction à optimiser
     if(mouse_x >= x && mouse_y >= y && mouse_x <= x + largeur && mouse_y <= y + hauteur){
         return 1;
@@ -21,6 +22,7 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     interfaceC[FLECHE].y = (float)HAUTEUR /2;
     interfaceC[FLECHE].largeur = 100;
     interfaceC[FLECHE].hauteur = 80;
+
 
     interfaceC[CLASSE1].bitmap = al_load_bitmap("../Image/Classes/OmbreSrum/ombresrum1.png");
     interfaceC[CLASSE1].x = 600;
@@ -175,6 +177,7 @@ void dessinerInterfaceClasses(AffichageClasse affichageClasse[], int classeEnCou
 
     //Texte
     dessinerTexteInterfaceClasse(interfaceC, joueur, classe, nbJoueurs, joueurEnCours);
+
     al_flip_display();
 }
 
