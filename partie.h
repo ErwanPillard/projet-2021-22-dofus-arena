@@ -29,6 +29,8 @@ typedef struct{
 
 enum action{DEPLACER, SUIVANT, SORT1, SORT2};
 
+enum numSort{sort1, sort2, sort3, sort4};
+
 void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[],Partie donneePartie);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_PARTIE_H

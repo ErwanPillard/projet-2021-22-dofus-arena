@@ -99,7 +99,6 @@ void dessinerObsacle(){
 */
 void dessinerArene(CoordonneeISO coordonneeIso[12][12], Joueur joueur[4], Classe classe[]){
     ALLEGRO_BITMAP *fond = al_load_bitmap("../Image/Map3.png");
-
     al_draw_scaled_bitmap(fond, 0, 0, 1397, 807, 0, 0, LARGEUR, HAUTEUR, 0);
     ALLEGRO_BITMAP *sol = al_load_bitmap("../Image/sol.png");
     ALLEGRO_BITMAP *sol2 = al_load_bitmap("../Image/sol2.png");

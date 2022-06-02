@@ -27,6 +27,7 @@ typedef struct {
     int numSort;//sors numeroté de 1 a 4
     int nombrePA, nombrePVinflige;
     ALLEGRO_BITMAP *image;
+    int type;
 } Sort;
 
 /*

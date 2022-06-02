@@ -16,9 +16,9 @@ typedef struct Classe {
     ALLEGRO_BITMAP *skin;
     Sort sorts[4];
     bool dispo;
-    int PaTotal;
-    int PvDepart;
 } Classe;
+
+enum typeSort{CERCLE, LIGNE, ZONE};
 
 void initialiserClasses(Classe *classe);
 

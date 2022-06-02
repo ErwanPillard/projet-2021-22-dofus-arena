@@ -87,11 +87,11 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     redessiner = true;
                 }
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT1])){
-                    sortCercle(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
+                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].type);
                     redessiner = true;
                 }
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT2])){
-                    sortLigneDroite(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map);
+                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].type);
                     redessiner = true;
                 }
                 break;
