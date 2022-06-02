@@ -13,7 +13,7 @@
 #include "arene.h"
 #include "partie.h"
 
-#define BLEU al_map_rgb(0, 0, 255)
+#define BLEU al_map_rgb(106, 244, 252)
 #define ORANGE al_map_rgb(243, 111, 2)
 
 void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie* donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12]);
