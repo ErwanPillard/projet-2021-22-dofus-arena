@@ -17,9 +17,9 @@ typedef struct Classe {
     Sort sorts[4];
     ALLEGRO_BITMAP *parcheminSorts[4];
     bool dispo;
-    int PaTotal;
-    int PvDepart;
 } Classe;
+
+enum typeSort{CERCLE, LIGNE, ZONE};
 
 void initialiserClasses(Classe *classe);
 

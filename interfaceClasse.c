@@ -49,8 +49,6 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     interfaceC[CLASSE4].hauteur = 75;
     interfaceC[CLASSE4].largeur = 75;
 
-
-
     //Texte
     interfaceC[TEXTE].texte = al_load_font("../Polices/madetommy.ttf", 20, 0);
 
@@ -67,7 +65,6 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     classe[0].perso[6].image = al_load_bitmap("../Image/Classes/OmbreSrum/ombresrum7.png");
     classe[0].perso[7].image = al_load_bitmap("../Image/Classes/OmbreSrum/ombresrum8.png");
 
-
     //2eme classe
     classe[1].fondEcran = al_load_bitmap("../Image/Classes/CoeurIop/IOP.jpg");
     classe[1].infoClasse = al_load_bitmap("../Image/Classes/CoeurIop/IOP.png");
@@ -80,7 +77,6 @@ void initialisationInterfaceClasses(AffichageClasse *classe, InterfaceClasse *in
     classe[1].perso[5].image = al_load_bitmap("../Image/Classes/CoeurIop/IOP6.png");
     classe[1].perso[6].image = al_load_bitmap("../Image/Classes/CoeurIop/IOP7.png");
     classe[1].perso[7].image = al_load_bitmap("../Image/Classes/CoeurIop/IOP8.png");
-
 
     classe[2].infoClasse = al_load_bitmap("../Image/Classes/eniripsa/infoEniripsa.png");
     classe[2].fondEcran = al_load_bitmap("../Image/Classes/eniripsa/eniripsafondecran.jpg");
@@ -117,7 +113,6 @@ void dessinerImageFond(int classeEnCours, AffichageClasse classe[]){
             al_draw_scaled_bitmap(classe[1].fondEcran, 0, 0, 1920, 1080, 0, 0, LARGEUR, HAUTEUR, 0);
             al_draw_scaled_bitmap(classe[1].infoClasse, 0, 0, 882, 1250, 30, 0, 585, 826, 0);
 
-            break;
             break;
         }
         case 2:{

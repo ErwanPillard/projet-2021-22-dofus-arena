@@ -27,6 +27,7 @@ typedef struct {
     int numSort;//sors numeroté de 1 a 4
     int nombrePA, nombrePVinflige;
     ALLEGRO_BITMAP *image;
+    int type;
 } Sort;
 
 /*
@@ -48,6 +49,7 @@ typedef struct {
 void bouleDeFeux();
 void traineeFeux();
 void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event);
+void dessinerSorts2(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event);
 
 
 
