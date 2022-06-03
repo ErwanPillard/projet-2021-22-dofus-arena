@@ -47,6 +47,7 @@ void dessinerMenuEchap(){
     al_flip_display();
 }
 
+
 void interfaceEchap(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
     bool end = false;
     Rect r[NB_RECT];
@@ -67,18 +68,13 @@ void interfaceEchap(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_EVENT event){
                     al_draw_bitmap(imagePricncipale, 0, 0, 0);
                     break;
                 }
-                break;
             }
             case ALLEGRO_EVENT_MOUSE_AXES:{
                     if(event.mouse.x>300&&event.mouse.y<500){
                         al_draw_rectangle(300, 400, 400, 300, NOIR, 30);
                     }
-
                 break;
             }
         }
-
     }
 }
-
-
