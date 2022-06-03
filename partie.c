@@ -103,7 +103,7 @@ void dessinerParametreJoueur(Rect r[], Partie donneePartie, Joueur joueur[], Cla
 
 void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[], Partie donneePartie, ALLEGRO_BITMAP *tabClasses[]){
     ALLEGRO_TIMER *timer = NULL;
-
+    ALLEGRO_SAMPLE *whoosh2 = al_load_sample("../Sound/whoosh2.ogg");
     timer = al_create_timer(15);
 
     bool end = false;
@@ -147,15 +147,15 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
 
     r[SORT1].x = 600;
     r[SORT1].y = 200;
-    r[SORT1].largeur = 50;// Commentaire
-    r[SORT1].hauteur = 50;// Commentaire
-    r[SORT1].color = ORANGE;// Commentaire
+    r[SORT1].largeur = 50;
+    r[SORT1].hauteur = 50;
+    r[SORT1].color = ORANGE;
 
     r[SORT2].x = 700;
     r[SORT2].y = 200;
-    r[SORT2].largeur = 50;// Commentaire
-    r[SORT2].hauteur = 50;// Commentaire
-    r[SORT2].color = ORANGE;// Commentaire
+    r[SORT2].largeur = 50;
+    r[SORT2].hauteur = 50;
+    r[SORT2].color = ORANGE;
 /*
     HORLOGE horloge[15];
     horloge[0].image = al_load_bitmap("../Image/Decor/Horloge 1 s parfait.png");
@@ -202,24 +202,29 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     redessiner = true;
                 }
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
+                    al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie.joueurEnCours].PM = 3;
+                    joueur[donneePartie.joueurEnCours].PA = 6;
                     donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
                     al_stop_timer(timer);
                     al_start_timer(timer);//pour réinitialiser le timer : stop puis start
                     redessiner = true;
                 }
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT1])){
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT1]) && joueur[donneePartie.joueurEnCours].PA >= classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].nombrePA){
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT2])){
+                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT2]) && joueur[donneePartie.joueurEnCours].PA >= classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].nombrePA){
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].type, r2, tabClasses);
                     redessiner = true;
                 }
                 break;
             }
             case ALLEGRO_EVENT_TIMER:{
+
+                al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                 joueur[donneePartie.joueurEnCours].PM = 3;
+                joueur[donneePartie.joueurEnCours].PA = 6;
                 donneePartie.joueurEnCours = (donneePartie.joueurEnCours + 1) % donneePartie.nbJoueurs;
                 redessiner = true;
                 break;
@@ -237,7 +242,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
         if(redessiner == true){
             dessinerArene(coordonneeIso, joueur, classe);
             //dessinerObsacle(map);
-            al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, BLEU, 3);
+            al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, NOIR, 3);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
             al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
             al_draw_filled_rectangle(r[SUIVANT].x, r[SUIVANT].y, r[SUIVANT].x + r[SUIVANT].largeur,r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
