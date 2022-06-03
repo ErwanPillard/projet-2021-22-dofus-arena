@@ -14,6 +14,9 @@
 
 void choixSort(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[],Partie donneePartie, ALLEGRO_TIMER *timer, BUTTON bouton[], int map[][12], int numSort, int type, Rect r2[], ALLEGRO_BITMAP *tabClasses[]);
 
+
+void dessinerSortsVert(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, BUTTON bouton[5], int cibleX, int cibleY, Rect r2[], ALLEGRO_BITMAP *tabClasses[]);
+
 void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, BUTTON bouton[], int cibleX, int cibleY, Rect r2[], ALLEGRO_BITMAP *tabClasses[]);
 
 void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, BUTTON bouton[], int map[][12], int numSort, Rect r2[], ALLEGRO_BITMAP *tabClasses[]);

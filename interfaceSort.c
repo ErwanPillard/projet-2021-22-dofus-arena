@@ -139,6 +139,8 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
         }
         if(animation == true){
             dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie, bouton, cibleX, cibleY, r2, tabClasses);
+            //dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie, r, cibleX, cibleY, r2, tabClasses);
+            dessinerSortsVert(queue,event,coordonneeIso,joueur,classe,donneePartie, bouton, cibleX, cibleY, r2, tabClasses);
             verifSiJoueurSurCase(cibleX, cibleY, donneePartie->nbJoueurs, joueur, classe, numSort);
             redessiner = true;
             animation = false;
@@ -182,7 +184,6 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
                     al_stop_timer(timer);
                     al_start_timer(timer);//pour RAZ le timer : stop puis start
                 }
-
                 end = true;
                 break;
             }
@@ -242,6 +243,48 @@ void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Coordon
                 dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
                 dessinerTousBoutton(bouton);
                 al_draw_bitmap(sortGlace, coordonneeIso[cibleX][cibleY].x - 30, i, 0);
+
+                i = i + 20;
+
+                al_flip_display();
+                break;
+            }
+        }
+        if(i >= coordonneeIso[cibleX][cibleY].y - 40){
+            al_play_sample(explosion, 1.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
+            end = true;
+        }
+    }
+    al_destroy_timer(timer2);
+}
+
+
+
+
+void dessinerSortsVert(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, BUTTON bouton[], int cibleX, int cibleY, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
+    ALLEGRO_TIMER *timer2 = NULL;
+    float i = 0;
+    bool end = false;
+
+    ALLEGRO_BITMAP *sortVert= al_load_bitmap("../Image/sortVert.png");
+
+    ALLEGRO_SAMPLE *explosion = al_load_sample("../Sound/explosion_grenade.ogg");
+
+    timer2 = al_create_timer(1.0/60);
+    al_register_event_source(queue, al_get_timer_event_source(timer2));
+
+    al_start_timer(timer2);
+
+
+    while (!end){
+        al_wait_for_event(queue, &event);
+        switch (event.type) {
+            case ALLEGRO_EVENT_TIMER: {
+
+                dessinerArene(coordonneeIso, joueur, classe);
+                dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
+                dessinerTousBoutton(bouton);
+                al_draw_bitmap(sortVert, coordonneeIso[cibleX][cibleY].x - 30, i, 0);
 
                 i = i + 10;
 
