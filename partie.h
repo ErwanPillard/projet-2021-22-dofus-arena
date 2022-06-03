@@ -46,8 +46,6 @@ enum action{DEPLACER, SUIVANT,SORT1, SORT2, SORT3, SORT4, ATTAQUE};
 
 enum parametreJoueur{PV, PM, PA};
 
-enum decor{BOUTON, BOUTON2}; // Décor autour de l'arene
-
 enum numSort{sort1, sort2, sort3, sort4};
 
 Rect initialisationMenuEchap(Rect* r);
