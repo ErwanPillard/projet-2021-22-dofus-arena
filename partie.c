@@ -138,9 +138,6 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     initialiserCoordMilieuTuile(coordonneeIso);
     initialiserSorts(classe);
 
-    printf("x: %f | y: %f\n", coordonneeIso[0][0].x, coordonneeIso[0][0].y);
-    printf("x: %f | y: %f\n", coordonneeIso[3][0].x, coordonneeIso[3][0].y);
-
     donneePartie.joueurEnCours = 0;
 
     Rect r2[3];
@@ -187,6 +184,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                 end = true;
                 break;
             }
+
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[DEPLACER].x, bouton[DEPLACER].y, bouton[DEPLACER].largeur, bouton[DEPLACER].hauteur)){
                     deplacement(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, bouton, map, r2, tabClasses);
@@ -201,33 +199,35 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     al_start_timer(timer);//pour réinitialiser le timer : stop puis start
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT1].x,bouton[SORT1].y,bouton[SORT1].largeur,bouton[SORT1].hauteur)){
-                    printf("ok");
+
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT1].x,bouton[SORT1].y,bouton[SORT1].largeur,bouton[SORT1].hauteur) && joueur[donneePartie.joueurEnCours].PA >= classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].nombrePA){
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT2].x,bouton[SORT2].y,bouton[SORT2].largeur,bouton[SORT2].hauteur)){
-                    printf("ok");
+
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT2].x,bouton[SORT2].y,bouton[SORT2].largeur,bouton[SORT2].hauteur) && joueur[donneePartie.joueurEnCours].PA >= classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].nombrePA){
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort2, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT3].x,bouton[SORT3].y,bouton[SORT3].largeur,bouton[SORT3].hauteur)){
-                    printf("ok");
+
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT3].x,bouton[SORT3].y,bouton[SORT3].largeur,bouton[SORT3].hauteur) && joueur[donneePartie.joueurEnCours].PA >= classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort3].nombrePA){
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort3, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort3].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT4].x,bouton[SORT4].y,bouton[SORT4].largeur,bouton[SORT4].hauteur)){
-                    printf("ok");
+
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT4].x,bouton[SORT4].y,bouton[SORT4].largeur,bouton[SORT4].hauteur) && joueur[donneePartie.joueurEnCours].PA >= classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort4].nombrePA){
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort4, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort4].type, r2, tabClasses);
                     redessiner = true;
                 }
+
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[ATTAQUE].x,bouton[ATTAQUE].y,bouton[ATTAQUE].largeur,bouton[ATTAQUE].hauteur)) {
                     // A remplir attaque corps à corps
+                    redessiner = true;
                 }
                 break;
             }
-            case ALLEGRO_EVENT_TIMER:{
 
+            case ALLEGRO_EVENT_TIMER:{
                 al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                 joueur[donneePartie.joueurEnCours].PM = 3;
                 joueur[donneePartie.joueurEnCours].PA = 6;
@@ -235,6 +235,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                 redessiner = true;
                 break;
             }
+
             case ALLEGRO_EVENT_KEY_UP:{
                 switch (event.keyboard.keycode) {
                     case ALLEGRO_KEY_ESCAPE:{
@@ -244,6 +245,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                 }
                 break;
             }
+
         }
         if(redessiner == true){
             dessinerArene(coordonneeIso, joueur, classe);
