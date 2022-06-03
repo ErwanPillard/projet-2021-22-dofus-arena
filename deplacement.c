@@ -171,7 +171,7 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
             surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie->joueurEnCours].caseX, joueur[donneePartie->joueurEnCours].caseY,joueur[donneePartie->joueurEnCours].PM, map);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
             dessinerTousBoutton(bouton);
-            dessinerParametreJoueur(r2, *donneePartie, joueur, classe, tabClasses);
+            dessinerParametreJoueur(r2, *donneePartie, joueur, tabClasses);
 
             al_flip_display();
             redessiner = false;

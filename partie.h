@@ -55,6 +55,6 @@ void initialisationBoutonPartie(BUTTON *bouton);
 
 void dessinerTousBoutton(BUTTON bouton[]);
 
-void dessinerParametreJoueur(Rect r[], Partie donneePartie, Joueur joueur[], Classe classe[], ALLEGRO_BITMAP *tab[]);
+void dessinerParametreJoueur(Rect r[], Partie donneePartie, Joueur joueur[], ALLEGRO_BITMAP *tab[]);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_PARTIE_H

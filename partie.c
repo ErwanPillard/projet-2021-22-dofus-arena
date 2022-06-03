@@ -99,7 +99,7 @@ void initialiserRectangleParametreJoueurs(Rect r2[]){
     r2[PA].colorThickness = NOIR;
 }
 
-void dessinerParametreJoueur(Rect r[], Partie donneePartie, Joueur joueur[], Classe classe[], ALLEGRO_BITMAP *tab[]){
+void dessinerParametreJoueur(Rect r[], Partie donneePartie, Joueur joueur[], ALLEGRO_BITMAP *tab[]){
     for (int i = 0; i < donneePartie.nbJoueurs; i++) {
         al_draw_scaled_bitmap(tab[joueur[i].classe], 0, 0, 250, 250, 10, 10 + (80*i), 80, 80,0);
 
@@ -249,7 +249,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, NOIR, 3);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
             // Bouton
-            dessinerParametreJoueur(r2, donneePartie, joueur, classe, tabClasses);
+            dessinerParametreJoueur(r2, donneePartie, joueur, tabClasses);
 
             dessinerTousBoutton(bouton);
 

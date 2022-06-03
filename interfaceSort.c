@@ -150,7 +150,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
             surbrillanceLigneDroite(coordonneeIso, joueur, donneePartie->joueurEnCours, classe, 1);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
             dessinerTousBoutton(bouton);
-            dessinerParametreJoueur(r2, *donneePartie, joueur, classe, tabClasses);
+            dessinerParametreJoueur(r2, *donneePartie, joueur, tabClasses);
 
             al_flip_display();
             redessiner = false;
@@ -209,7 +209,7 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
             surbrillanceSortCercle(coordonneeIso, joueur, donneePartie->joueurEnCours, classe, 0);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
             dessinerTousBoutton(bouton);
-            dessinerParametreJoueur(r2, *donneePartie, joueur, classe, tabClasses);
+            dessinerParametreJoueur(r2, *donneePartie, joueur, tabClasses);
 
             al_flip_display();
             redessiner = false;
