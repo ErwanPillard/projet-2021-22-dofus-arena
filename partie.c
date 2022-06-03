@@ -7,54 +7,55 @@
 #include "interfaceClasse.h"
 
 void initialisationBoutonPartie(BUTTON *bouton){
+
     // Bouton déplacer
-    bouton[DEPLACER].image = al_load_bitmap("../Image/Decor/DeplacementBoutton.png"); // 160 par 227
+    bouton[DEPLACER].image = al_load_bitmap("../Image/Decor/BoutonDeplacerFin.png"); // 111 par 39
     bouton[DEPLACER].x = 1050;
-    bouton[DEPLACER].y = 260;
-    bouton[DEPLACER].largeur = 160;
-    bouton[DEPLACER].hauteur = 227;
+    bouton[DEPLACER].y = 270;
+    bouton[DEPLACER].largeur = 111;
+    bouton[DEPLACER].hauteur = 39;
 
     //Bouton suivant
-    bouton[SUIVANT].image = al_load_bitmap("../Image/Decor/BoutonSuivant.png"); // 160 par 227
+    bouton[SUIVANT].image = al_load_bitmap("../Image/Decor/BoutonSuivantFin.png"); // 76 par 78
     bouton[SUIVANT].x = 1200;
-    bouton[SUIVANT].y = 200;
-    bouton[SUIVANT].largeur = 160;
-    bouton[SUIVANT].hauteur = 227;
+    bouton[SUIVANT].y = 250;
+    bouton[SUIVANT].largeur = 76;
+    bouton[SUIVANT].hauteur = 78;
 
     // Bouton Sort 1
-    bouton[SORT1].image = al_load_bitmap("../Image/Decor/Sorts_1.png"); // 180 par 255
-    bouton[SORT1].x = 1040;
-    bouton[SORT1].y = 320;
-    bouton[SORT1].largeur = 180;
-    bouton[SORT1].hauteur = 255;
+    bouton[SORT1].image = al_load_bitmap("../Image/Decor/Sort1Fin.png"); // 32 par 32
+    bouton[SORT1].x = 1060;
+    bouton[SORT1].y = 400;
+    bouton[SORT1].largeur = 32;
+    bouton[SORT1].hauteur = 32;
 
     // Bouton Sort 2
-    bouton[SORT2].image = al_load_bitmap("../Image/Decor/Sort2.png"); // 180 par 255
-    bouton[SORT2].x = 1100;
-    bouton[SORT2].y = 330;
-    bouton[SORT2].largeur = 180;
-    bouton[SORT2].hauteur = 255;
+    bouton[SORT2].image = al_load_bitmap("../Image/Decor/Sorts2Fin.png"); // 34 par 34
+    bouton[SORT2].x = 1110;
+    bouton[SORT2].y = 400;
+    bouton[SORT2].largeur = 34;
+    bouton[SORT2].hauteur = 34;
 
     // Bouton Sort 3
-    bouton[SORT3].image = al_load_bitmap("../Image/Decor/SORT3.png"); // 180 par 255
-    bouton[SORT3].x = 1140;
-    bouton[SORT3].y = 290;
-    bouton[SORT3].largeur = 180;
-    bouton[SORT3].hauteur = 255;
+    bouton[SORT3].image = al_load_bitmap("../Image/Decor/Sorts3Fin.png"); // 32 par 32
+    bouton[SORT3].x = 1160;
+    bouton[SORT3].y = 400;
+    bouton[SORT3].largeur = 32;
+    bouton[SORT3].hauteur = 32;
 
     // Bouton Sort 4
-    bouton[SORT4].image = al_load_bitmap("../Image/Decor/SORT4.png");// 180 par 255
-    bouton[SORT4].x = 1230;
-    bouton[SORT4].y = 290;
-    bouton[SORT4].largeur = 180;
-    bouton[SORT4].hauteur = 255;
+    bouton[SORT4].image = al_load_bitmap("../Image/Decor/SORT4Fin.png");// 32 par 32
+    bouton[SORT4].x = 1210;
+    bouton[SORT4].y = 400;
+    bouton[SORT4].largeur = 32;
+    bouton[SORT4].hauteur = 32;
 
     // Bouton Attaque Corps à corps
-    bouton[ATTAQUE].image = al_load_bitmap("../Image/Decor/AttaqueCorpsCorps.png"); // 180 par 255
+    bouton[ATTAQUE].image = al_load_bitmap("../Image/Decor/AttaqueCorpsCorpsFin.png"); // 52 par 53
     bouton[ATTAQUE].x = 1130;
-    bouton[ATTAQUE].y = 230;
-    bouton[ATTAQUE].largeur = 180;
-    bouton[ATTAQUE].hauteur = 255;
+    bouton[ATTAQUE].y = 320;
+    bouton[ATTAQUE].largeur = 52;
+    bouton[ATTAQUE].hauteur = 53;
 
 }
 
@@ -145,36 +146,21 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     Rect r2[3];
     initialiserRectangleParametreJoueurs(r2);
 
-/*
-    HORLOGE horloge[15];
-    horloge[0].image = al_load_bitmap("../Image/Decor/Horloge 1 s parfait.png");
-    horloge[0].x = 500;
-    horloge[0].y = 50;
+    Rect r[10];
+    r[DEPLACER].x = 600;
+    r[DEPLACER].y = 100;
+    r[DEPLACER].largeur = 50;
+    r[DEPLACER].hauteur = 50;
+    r[DEPLACER].color = OR;
 
-    horloge[1].image = al_load_bitmap("../Image/Decor/Horloge 2 s parfait.png");
-    horloge[2].image = al_load_bitmap("../Image/Decor/Horloge 3 s parfait.png");
-    horloge[3].image = al_load_bitmap("../Image/Decor/Horloge 4 s parfait.png");
-    horloge[4].image = al_load_bitmap("../Image/Decor/Horloge 5 s parfait.png");
-    horloge[5].image = al_load_bitmap("../Image/Decor/Horloge 6 s parfait.png");
-    horloge[6].image = al_load_bitmap("../Image/Decor/Horloge 7 s parfait.png");
-    horloge[7].image = al_load_bitmap("../Image/Decor/Horloge 8 s parfait.png");
-    horloge[8].image = al_load_bitmap("../Image/Decor/Horloge 9 s parfait.png");
-    horloge[9].image = al_load_bitmap("../Image/Decor/Horloge 10 s parfait.png");
-    horloge[10].image = al_load_bitmap("../Image/Decor/Horloge 11 s parfait.png");
-    horloge[11].image = al_load_bitmap("../Image/Decor/Horloge 12 s parfait.png");
-    horloge[12].image = al_load_bitmap("../Image/Decor/Horloge 13 s parfait.png");
-    horloge[13].image = al_load_bitmap("../Image/Decor/Horloge 14 s parfait.png");
-    horloge[14].image = al_load_bitmap("../Image/Decor/Horloge 15 s parfait.png");
-*/
-// 200 par 283
-    //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_ENIPSA/Affichage_bouton.png"); // enipsa
-    //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_SRAM/Bouton_sort_SramRedim-removebg-preview.png"); // sram
-    //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_IOP/Bouton_Sort_IOPparfait.png"); // IOP
-    //r[BOUTON].image = al_load_bitmap("../Image/Sorts/SORT_HYPP/Bouton_Sort_HYppRedim-removebg-preview.png"); // Hypp
-
-    //r[BOUTON2].image = al_load_bitmap("../Image/Decor/BoutonPA_PM.png"); // bitmap PA et PM
+    r[SUIVANT].x = 700;
+    r[SUIVANT].y = 100;
+    r[SUIVANT].largeur = 50;
+    r[SUIVANT].hauteur = 50;
+    r[SUIVANT].color = NOIR;
 
     //ALLEGRO_BITMAP * ecranSorts = al_load_bitmap("../Image/Sorts/SORT_ENIPSA/1 redim.png");
+    ALLEGRO_BITMAP * cadreSort = al_load_bitmap("../Image/Decor/SortCadre.png");
 
     al_start_timer(timer);
 
@@ -186,11 +172,11 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                 break;
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[DEPLACER].x, bouton[DEPLACER].y, bouton[DEPLACER].largeur, bouton[DEPLACER].hauteur)){
+                if(surPassage(event.mouse.x, event.mouse.y, (int)bouton[DEPLACER].x, (int)bouton[DEPLACER].y, (int)bouton[DEPLACER].largeur, (int)bouton[DEPLACER].hauteur)){
                     deplacement(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, bouton, map, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SUIVANT].x,bouton[SUIVANT].y,bouton[SUIVANT].largeur,bouton[SUIVANT].hauteur)){
+                if(surPassage(event.mouse.x, event.mouse.y, (int)bouton[SUIVANT].x,(int)bouton[SUIVANT].y,(int)bouton[SUIVANT].largeur,(int)bouton[SUIVANT].hauteur)){
                     al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie.joueurEnCours].PM = 3;
                     joueur[donneePartie.joueurEnCours].PA = 6;
@@ -199,27 +185,27 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     al_start_timer(timer);//pour réinitialiser le timer : stop puis start
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT1].x,bouton[SORT1].y,bouton[SORT1].largeur,bouton[SORT1].hauteur)){
+                if(surPassage(event.mouse.x, event.mouse.y, (int)bouton[SORT1].x,(int)bouton[SORT1].y,(int)bouton[SORT1].largeur,(int)bouton[SORT1].hauteur)){
                     printf("ok");
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT2].x,bouton[SORT2].y,bouton[SORT2].largeur,bouton[SORT2].hauteur)){
+                if(surPassage(event.mouse.x, event.mouse.y, (int)bouton[SORT2].x,(int)bouton[SORT2].y,(int)bouton[SORT2].largeur,(int)bouton[SORT2].hauteur)){
                     printf("ok");
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort2, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT3].x,bouton[SORT3].y,bouton[SORT3].largeur,bouton[SORT3].hauteur)){
+                if(surPassage(event.mouse.x, event.mouse.y, (int)bouton[SORT3].x,(int)bouton[SORT3].y,(int)bouton[SORT3].largeur,(int)bouton[SORT3].hauteur)){
                     printf("ok");
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort3, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort3].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT4].x,bouton[SORT4].y,bouton[SORT4].largeur,bouton[SORT4].hauteur)){
+                if(surPassage(event.mouse.x, event.mouse.y, (int)bouton[SORT4].x,(int)bouton[SORT4].y,(int)bouton[SORT4].largeur,(int)bouton[SORT4].hauteur)){
                     printf("ok");
                     choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort4, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort4].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[ATTAQUE].x,bouton[ATTAQUE].y,bouton[ATTAQUE].largeur,bouton[ATTAQUE].hauteur)) {
+                if(surPassage(event.mouse.x, event.mouse.y, (int)bouton[ATTAQUE].x,(int)bouton[ATTAQUE].y,(int)bouton[ATTAQUE].largeur,(int)bouton[ATTAQUE].hauteur)) {
                     // A remplir attaque corps à corps
                 }
                 break;
@@ -250,12 +236,16 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
             // Bouton
             dessinerParametreJoueur(r2, donneePartie, joueur, classe, tabClasses);
+            al_draw_bitmap(cadreSort, 1030, 240,0);
 
             dessinerTousBoutton(bouton);
 
-            al_flip_display();
-            redessiner = false;
+                    al_flip_display();
+                    redessiner = false;
+                }
+                //dessinerCompteur((int)al_get_timer_count(timer), compteur);
+                //al_flip_display();
         }
+        al_destroy_timer(timer);
     }
-    al_destroy_timer(timer);
-}
+
