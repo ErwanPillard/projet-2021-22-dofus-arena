@@ -12,6 +12,7 @@ void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int
         if(map[x][y] != 1){
 
             al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLEU);
+
         }
 
         surbrillanceDeplacementJoueur(coordonneeIso, x + 1, y, PM - 1, map);

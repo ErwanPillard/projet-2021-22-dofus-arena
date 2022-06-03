@@ -175,6 +175,7 @@ void courrirIop(){
 
 }
 
+
 void dessinerSorts2(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event){
     ALLEGRO_TIMER *timer2 = NULL;
     int i = 0;
@@ -187,8 +188,7 @@ void dessinerSorts2(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event){
     ALLEGRO_BITMAP *sort4= al_load_bitmap("../Image/test5.png");
     ALLEGRO_BITMAP *sort5= al_load_bitmap("../Image/test6.png");
 
-    timer2 = al_create_timer(1.0/10);
-
+    timer2 = al_create_timer(1.0/15);
     al_register_event_source(queue, al_get_timer_event_source(timer2));
 
     al_start_timer(timer2);
