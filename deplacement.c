@@ -10,8 +10,8 @@ void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int
     if(PM >= 0 && x <= 11 && y <= 11 && x >= 0 && y >= 0){
         //si il n'y a pas d'obstacle (fichier txt):
         if(map[x][y] != 1){
-
             al_draw_filled_ellipse(coordonneeIso[x][y].x, coordonneeIso[x][y].y, 20, 15, BLEU);
+
         }
 
         surbrillanceDeplacementJoueur(coordonneeIso, x + 1, y, PM - 1, map);
@@ -115,6 +115,7 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
     bool end = false;
     bool redessiner = true;
     bool deplacer = false;
+    ALLEGRO_SAMPLE *whoosh2 = al_load_sample("../Sound/whoosh2.ogg");
 
     int distanceX, distanceY;
     int positionJX = joueur[donneePartie->joueurEnCours].caseX;
@@ -137,7 +138,9 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
                  deplacementJ(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, map, &distanceX, &distanceY);
                 //Si on veux changer de joueur en mode déplacement
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])) {
+                    al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie->joueurEnCours].PM = 3;
+                    joueur[donneePartie->joueurEnCours].PA = 6;
                     donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                     al_stop_timer(timer);
                     al_start_timer(timer);//pour RAZ le timer : stop puis start
@@ -147,26 +150,11 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
             }
             case ALLEGRO_EVENT_TIMER:{
                 //Joueur suivant
+                al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                 joueur[donneePartie->joueurEnCours].PM = 3;
+                joueur[donneePartie->joueurEnCours].PA = 6;
                 donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                 end = true;
-                break;
-            }
-            case ALLEGRO_EVENT_MOUSE_AXES:{
-                for (int i = 0; i < 12; i++) {
-                    for (int j = 0; j < 12; j++){
-                        if(event.mouse.x >= coordonneeIso[i][j].x - 20 && event.mouse.x <= coordonneeIso[i][j].x + 20 && event.mouse.y >= coordonneeIso[i][j].y - 15 && event.mouse.y <= coordonneeIso[i][j].y + 15){
-                            //(2,2) -> (3,4) = (3,2), (3,3), (3,4)
-                            distanceX = i - joueur[donneePartie->joueurEnCours].caseX;
-                            distanceY = j - joueur[donneePartie->joueurEnCours].caseY;
-
-                            for (int k = 0; k < distanceX; k++) {
-
-                            }
-
-                        }
-                    }
-                }
                 break;
             }
         }

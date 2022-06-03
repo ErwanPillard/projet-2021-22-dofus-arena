@@ -59,9 +59,6 @@ void dessinerObsacle(int map[][12]){
     }
 }
 
-void dessinerCompteur(int tmp, ALLEGRO_FONT *compteur){
-    al_draw_textf(compteur, BLEU, 10,10, 0, "%d", tmp);
-}
 
 /*
 void dessinerObsacle(){

@@ -61,6 +61,7 @@ int applicationSortCercle(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][
                 if ((distanceX + distanceY) <= classe[joueur[joueurEnCours].classe].sorts[numSort].porteeMax && (distanceX + distanceY) >= classe[joueur[joueurEnCours].classe].sorts[numSort].porteeMin){
                     *cibleX = i;
                     *cibleY = j;
+                    joueur[joueurEnCours].PA = joueur[joueurEnCours].PA -  classe[joueur[joueurEnCours].classe].sorts[numSort].nombrePA;
                     return 1;
                 }
             }
@@ -69,14 +70,14 @@ int applicationSortCercle(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][
     return 0;
 }
 int applicationSortLigne(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][12], Joueur joueur[], int joueurEnCours, Classe classe[], int numSort, int* cibleX, int* cibleY){
-    int distanceX, distanceY;
     //Ligne 1
     for (int i = joueur[joueurEnCours].caseX - classe[joueur[joueurEnCours].classe].sorts[numSort].porteeMax; i <= joueur[joueurEnCours].caseX + classe[joueur[joueurEnCours].classe].sorts[numSort].porteeMax; i++) {
         if(i <= 11 && i >= 0 && classe[joueur[joueurEnCours].classe].sorts[numSort].porteeMin <= abs(joueur[joueurEnCours].caseX - i)){
             if(mouseX >= coordonneeIso[i][joueur[joueurEnCours].caseY].x - 20 && mouseX <= coordonneeIso[i][joueur[joueurEnCours].caseY].x + 20 && mouseY >= coordonneeIso[i][joueur[joueurEnCours].caseY].y - 15 && mouseY <= coordonneeIso[i][joueur[joueurEnCours].caseY].y + 15){
                 *cibleX = i;
                 *cibleY = joueur[joueurEnCours].caseY;
-                return 1;
+                joueur[joueurEnCours].PA = joueur[joueurEnCours].PA -  classe[joueur[joueurEnCours].classe].sorts[numSort].nombrePA;
+                return true;
             }
         }
     }
@@ -87,13 +88,15 @@ int applicationSortLigne(int mouseX, int mouseY, CoordonneeISO coordonneeIso[][1
             if(mouseX >= coordonneeIso[joueur[joueurEnCours].caseX][i].x - 20 && mouseX <= coordonneeIso[joueur[joueurEnCours].caseX][i].x + 20 && mouseY >= coordonneeIso[joueur[joueurEnCours].caseX][i].y - 15 && mouseY <= coordonneeIso[joueur[joueurEnCours].caseX][i].y + 15){
                 *cibleX = joueur[joueurEnCours].caseX;
                 *cibleY = i;
-                return 1;
+                joueur[joueurEnCours].PA = joueur[joueurEnCours].PA -  classe[joueur[joueurEnCours].classe].sorts[numSort].nombrePA;
+                return true;
             }
         }
     }
+    return false;
 }
 
-void verifSiJoueurSurCase(int cibleX, int cibleY, int map[][12], int nbJoueurs, Joueur joueur[], Classe classe[], int numSort){
+void verifSiJoueurSurCase(int cibleX, int cibleY,int nbJoueurs, Joueur joueur[], Classe classe[], int numSort){
     for (int i = 0; i < nbJoueurs; i++) {
         if (joueur[i].caseX == cibleX && joueur[i].caseY == cibleY){
             joueur[i].PV = joueur[i].PV - classe[joueur[i].classe].sorts[numSort].nombrePVinflige;
@@ -105,6 +108,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
     bool end = false;
     bool redessiner = true;
     bool animation = false;
+    ALLEGRO_SAMPLE *whoosh2 = al_load_sample("../Sound/whoosh2.ogg");
 
     int cibleX, cibleY;
 
@@ -114,9 +118,11 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
 
                 animation = applicationSortLigne(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, classe, numSort, &cibleX, &cibleY);
-
+                printf("%d | %d", cibleX, cibleY);
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
+                    al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie->joueurEnCours].PM = 3;
+                    joueur[donneePartie->joueurEnCours].PA = 6;
                     donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                     al_stop_timer(timer);
                     al_start_timer(timer);//pour réinitialiser le timer : stop puis start
@@ -125,7 +131,9 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
                 break;
             }
             case ALLEGRO_EVENT_TIMER:{
+                al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                 joueur[donneePartie->joueurEnCours].PM = 3;
+                joueur[donneePartie->joueurEnCours].PA = 6;
                 donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                 end = true;
                 break;
@@ -133,7 +141,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
         }
         if(animation == true){
             dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie, r, cibleX, cibleY, r2, tabClasses);
-            verifSiJoueurSurCase(cibleX, cibleY,map, donneePartie->nbJoueurs, joueur, classe, numSort);
+            verifSiJoueurSurCase(cibleX, cibleY, donneePartie->nbJoueurs, joueur, classe, numSort);
             redessiner = true;
             animation = false;
             end = true;
@@ -147,9 +155,6 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
             al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
             al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
             al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
-            //al_draw_bitmap(r[BOUTON].image, 1150, 200, 0);
-            //al_draw_bitmap(r[BOUTON2].image, 100, 200, 0);
-            //al_draw_bitmap(r[HORLOGE].image, 550 , 10, 0);
 
             dessinerParametreJoueur(r2, *donneePartie, joueur, classe, tabClasses);
 
@@ -163,6 +168,7 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
     bool end = false;
     bool redessiner = true;
     bool animation = false;
+    ALLEGRO_SAMPLE *whoosh2 = al_load_sample("../Sound/whoosh2.ogg");
 
     int cibleX, cibleY;
 
@@ -175,7 +181,9 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
                 animation = applicationSortCercle(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, classe, numSort, &cibleX, &cibleY);
 
                 if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
+                    al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie->joueurEnCours].PM = 3;
+                    joueur[donneePartie->joueurEnCours].PA = 6;
                     donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                     al_stop_timer(timer);
                     al_start_timer(timer);//pour réinitialiser le timer : stop puis start
@@ -184,7 +192,9 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
                 break;
             }
             case ALLEGRO_EVENT_TIMER:{
+                al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                 joueur[donneePartie->joueurEnCours].PM = 3;
+                joueur[donneePartie->joueurEnCours].PA = 6;
                 donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                 end = true;
                 break;
@@ -193,7 +203,7 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
 
         if(animation == true){
             dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie,r, cibleX, cibleY, r2, tabClasses);
-            verifSiJoueurSurCase(cibleX, cibleY,map, donneePartie->nbJoueurs, joueur, classe, numSort);
+            verifSiJoueurSurCase(cibleX, cibleY, donneePartie->nbJoueurs, joueur, classe, numSort);
             redessiner = true;
             animation = false;
             end = true;

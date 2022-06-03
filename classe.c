@@ -45,7 +45,7 @@ void initialiserSorts(Classe classe[]){
     classe[0].sorts[1].nombrePVinflige = rand() % (5) + 10;// rand() % ((MAX - MIN)+1) + MIN avec MIN= 10 et MAX = 14
     classe[0].sorts[1].image = al_load_bitmap("../Image/Sorts/trainéefeu1.png");// trainée de feux
 
-    classe[0].sorts[1].porteeMax = 3;
+    classe[0].sorts[1].porteeMax = 4;
     classe[0].sorts[1].porteeMin = 2;
     classe[0].sorts[1].type = LIGNE;
 

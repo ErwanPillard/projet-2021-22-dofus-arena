@@ -20,5 +20,5 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
 
 void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12], int numSort, Rect r2[], ALLEGRO_BITMAP *tabClasses[]);
 
-void verifSiJoueurSurCase(int cibleX, int cibleY, int map[][12], int nbJoueurs, Joueur joueur[], Classe classe[], int numSort);
+void verifSiJoueurSurCase(int cibleX, int cibleY, int nbJoueurs, Joueur joueur[], Classe classe[], int numSort);
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_INTERFACESORT_H
