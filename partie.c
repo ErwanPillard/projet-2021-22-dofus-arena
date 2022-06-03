@@ -7,54 +7,55 @@
 #include "interfaceClasse.h"
 
 void initialisationBoutonPartie(BUTTON *bouton){
+
     // Bouton déplacer
-    bouton[DEPLACER].image = al_load_bitmap("../Image/Decor/DeplacementBoutton.png"); // 160 par 227
+    bouton[DEPLACER].image = al_load_bitmap("../Image/Decor/BoutonDeplacerFin.png"); // 111 par 39
     bouton[DEPLACER].x = 1050;
-    bouton[DEPLACER].y = 260;
-    bouton[DEPLACER].largeur = 160;
-    bouton[DEPLACER].hauteur = 227;
+    bouton[DEPLACER].y = 270;
+    bouton[DEPLACER].largeur = 111;
+    bouton[DEPLACER].hauteur = 39;
 
     //Bouton suivant
-    bouton[SUIVANT].image = al_load_bitmap("../Image/Decor/BoutonSuivant.png"); // 160 par 227
+    bouton[SUIVANT].image = al_load_bitmap("../Image/Decor/BoutonSuivantFin.png"); // 76 par 78
     bouton[SUIVANT].x = 1200;
-    bouton[SUIVANT].y = 200;
-    bouton[SUIVANT].largeur = 160;
-    bouton[SUIVANT].hauteur = 227;
+    bouton[SUIVANT].y = 250;
+    bouton[SUIVANT].largeur = 76;
+    bouton[SUIVANT].hauteur = 78;
 
     // Bouton Sort 1
-    bouton[SORT1].image = al_load_bitmap("../Image/Decor/Sorts_1.png"); // 180 par 255
-    bouton[SORT1].x = 1040;
-    bouton[SORT1].y = 320;
-    bouton[SORT1].largeur = 180;
-    bouton[SORT1].hauteur = 255;
+    bouton[SORT1].image = al_load_bitmap("../Image/Decor/Sort1Fin.png"); // 32 par 32
+    bouton[SORT1].x = 1060;
+    bouton[SORT1].y = 400;
+    bouton[SORT1].largeur = 32;
+    bouton[SORT1].hauteur = 32;
 
     // Bouton Sort 2
-    bouton[SORT2].image = al_load_bitmap("../Image/Decor/Sort2.png"); // 180 par 255
-    bouton[SORT2].x = 1100;
-    bouton[SORT2].y = 330;
-    bouton[SORT2].largeur = 180;
-    bouton[SORT2].hauteur = 255;
+    bouton[SORT2].image = al_load_bitmap("../Image/Decor/Sorts2Fin.png"); // 34 par 34
+    bouton[SORT2].x = 1110;
+    bouton[SORT2].y = 400;
+    bouton[SORT2].largeur = 34;
+    bouton[SORT2].hauteur = 34;
 
     // Bouton Sort 3
-    bouton[SORT3].image = al_load_bitmap("../Image/Decor/SORT3.png"); // 180 par 255
-    bouton[SORT3].x = 1140;
-    bouton[SORT3].y = 290;
-    bouton[SORT3].largeur = 180;
-    bouton[SORT3].hauteur = 255;
+    bouton[SORT3].image = al_load_bitmap("../Image/Decor/Sorts3Fin.png"); // 32 par 32
+    bouton[SORT3].x = 1160;
+    bouton[SORT3].y = 400;
+    bouton[SORT3].largeur = 32;
+    bouton[SORT3].hauteur = 32;
 
     // Bouton Sort 4
-    bouton[SORT4].image = al_load_bitmap("../Image/Decor/SORT4.png");// 180 par 255
-    bouton[SORT4].x = 1230;
-    bouton[SORT4].y = 290;
-    bouton[SORT4].largeur = 180;
-    bouton[SORT4].hauteur = 255;
+    bouton[SORT4].image = al_load_bitmap("../Image/Decor/SORT4Fin.png");// 32 par 32
+    bouton[SORT4].x = 1210;
+    bouton[SORT4].y = 400;
+    bouton[SORT4].largeur = 32;
+    bouton[SORT4].hauteur = 32;
 
     // Bouton Attaque Corps à corps
-    bouton[ATTAQUE].image = al_load_bitmap("../Image/Decor/AttaqueCorpsCorps.png"); // 180 par 255
+    bouton[ATTAQUE].image = al_load_bitmap("../Image/Decor/AttaqueCorpsCorpsFin.png"); // 52 par 53
     bouton[ATTAQUE].x = 1130;
-    bouton[ATTAQUE].y = 230;
-    bouton[ATTAQUE].largeur = 180;
-    bouton[ATTAQUE].hauteur = 255;
+    bouton[ATTAQUE].y = 320;
+    bouton[ATTAQUE].largeur = 52;
+    bouton[ATTAQUE].hauteur = 53;
 
 }
 
@@ -175,6 +176,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     //r[BOUTON2].image = al_load_bitmap("../Image/Decor/BoutonPA_PM.png"); // bitmap PA et PM
 
     //ALLEGRO_BITMAP * ecranSorts = al_load_bitmap("../Image/Sorts/SORT_ENIPSA/1 redim.png");
+    ALLEGRO_BITMAP * cadreSort = al_load_bitmap("../Image/Decor/SortCadre.png");
 
     al_start_timer(timer);
 
@@ -250,6 +252,8 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
             // Bouton
             dessinerParametreJoueur(r2, donneePartie, joueur, tabClasses);
+            dessinerParametreJoueur(r2, donneePartie, joueur, tabClasses);
+            al_draw_bitmap(cadreSort, 1030, 240,0);
 
             dessinerTousBoutton(bouton);
 

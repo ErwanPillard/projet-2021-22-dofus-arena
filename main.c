@@ -90,6 +90,11 @@ int main(){
     }
 }
 
+
+
+
+
+
 /*
 //Libération de la mémoire
 al_destroy_display(display);
