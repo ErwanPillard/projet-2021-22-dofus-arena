@@ -62,6 +62,12 @@ int main(){
 
     //al_play_sample_instance(musicInstance);
 
+    ALLEGRO_BITMAP *tabClasse[4];
+    tabClasse[0] = al_load_bitmap("../Image/Classes/OmbreSrum/ombresrum1.png");
+    tabClasse[1] = al_load_bitmap("../Image/Classes/CoeurIop/IOP1.png");
+    tabClasse[2] = al_load_bitmap("../Image/Classes/eniripsa/eniripsa1.png");
+    tabClasse[3] = al_load_bitmap("../Image/Classes/huppermage/hup1.png");
+
     Partie donneePartie = {0};
     Joueur joueur[4];
     Classe classe[4];
@@ -81,7 +87,7 @@ int main(){
         menu(queue, event, &donneePartie);
         interfaceClasse(event, queue, joueur, donneePartie, classe);
         //affichageChargement2();
-        partie(event, queue, joueur, classe, donneePartie);
+        partie(event, queue, joueur, classe, donneePartie, tabClasse);
         end = true;
     }
 }

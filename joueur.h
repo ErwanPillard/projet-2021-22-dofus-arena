@@ -28,6 +28,7 @@ typedef struct{
     int caseY;
     int PM;
     int PA;
+    int PV;
     ALLEGRO_BITMAP* sprite[NB_IMAGES];
 }Joueur;
 

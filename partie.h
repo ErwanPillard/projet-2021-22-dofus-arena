@@ -36,17 +36,27 @@ typedef struct{
     float largeur, hauteur;
 }BUTTON;
 
+typedef struct {
+    ALLEGRO_BITMAP *image;
+    float x, y;
+    float largeur, hauteur;
+}HORLOGE;
+
 enum action{DEPLACER, SUIVANT,SORT1, SORT2, SORT3, SORT4, ATTAQUE};
 
-enum decor{BOUTON, BOUTON2, HORLOGE}; // Décor autour de l'arene
+enum parametreJoueur{PV, PM, PA};
+
+enum decor{BOUTON, BOUTON2}; // Décor autour de l'arene
 
 enum numSort{sort1, sort2, sort3, sort4};
 
 Rect initialisationMenuEchap(Rect* r);
 
-void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[],Partie donneePartie);
+void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], Classe classe[],Partie donneePartie, ALLEGRO_BITMAP *tabClasses[]);
 void initialisationBoutonPartie(BUTTON *bouton);
-void dessinerBoutonDeplacer(BUTTON bouton[] );
+
 void dessinerTousBoutton(BUTTON bouton[]);
+
+void dessinerParametreJoueur(Rect r[], Partie donneePartie, Joueur joueur[], Classe classe[], ALLEGRO_BITMAP *tab[]);
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_AA_PARTIE_H

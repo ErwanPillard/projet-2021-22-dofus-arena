@@ -25,6 +25,7 @@
 #define OR2 al_map_rgb(255,235,20)
 #define BLANC al_map_rgb(255,255,255)
 #define NOIR al_map_rgb(0,0,0)
+#define BLEUfonce al_map_rgb(49,38,162)
 
 #define NB_RECTANGLE_NBJ 4
 
