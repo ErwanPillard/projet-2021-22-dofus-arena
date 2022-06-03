@@ -145,30 +145,6 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
     Rect r2[3];
     initialiserRectangleParametreJoueurs(r2);
 
-    Rect r[10];
-    r[DEPLACER].x = 600;
-    r[DEPLACER].y = 100;
-    r[DEPLACER].largeur = 50;
-    r[DEPLACER].hauteur = 50;
-    r[DEPLACER].color = OR;
-
-    r[SUIVANT].x = 700;
-    r[SUIVANT].y = 100;
-    r[SUIVANT].largeur = 50;
-    r[SUIVANT].hauteur = 50;
-    r[SUIVANT].color = NOIR;
-
-    r[SORT1].x = 600;
-    r[SORT1].y = 200;
-    r[SORT1].largeur = 50;
-    r[SORT1].hauteur = 50;
-    r[SORT1].color = ORANGE;
-
-    r[SORT2].x = 700;
-    r[SORT2].y = 200;
-    r[SORT2].largeur = 50;
-    r[SORT2].hauteur = 50;
-    r[SORT2].color = ORANGE;
 /*
     HORLOGE horloge[15];
     horloge[0].image = al_load_bitmap("../Image/Decor/Horloge 1 s parfait.png");
@@ -211,11 +187,10 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[DEPLACER].x, bouton[DEPLACER].y, bouton[DEPLACER].largeur, bouton[DEPLACER].hauteur)){
-                    deplacement(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map, r2, tabClasses);
+                    deplacement(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, bouton, map, r2, tabClasses);
                     redessiner = true;
                 }
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[SUIVANT].x,bouton[SUIVANT].y,bouton[SUIVANT].largeur,bouton[SUIVANT].hauteur)){
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
                     al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie.joueurEnCours].PM = 3;
                     joueur[donneePartie.joueurEnCours].PA = 6;
@@ -225,27 +200,27 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
                     redessiner = true;
                 }
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT1].x,bouton[SORT1].y,bouton[SORT1].largeur,bouton[SORT1].hauteur)){
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT1]) && joueur[donneePartie.joueurEnCours].PA >= classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].nombrePA){
-                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].type, r2, tabClasses);
+                    printf("ok");
+                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort1].type, r2, tabClasses);
                     redessiner = true;
                 }
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT2].x,bouton[SORT2].y,bouton[SORT2].largeur,bouton[SORT2].hauteur)){
-                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort2, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].type, r2, tabClasses);
+                    printf("ok");
+                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort2, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].type, r2, tabClasses);
                     redessiner = true;
                 }
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT3].x,bouton[SORT3].y,bouton[SORT3].largeur,bouton[SORT3].hauteur)){
-                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort3, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort3].type, r2, tabClasses);
+                    printf("ok");
+                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort3, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort3].type, r2, tabClasses);
                     redessiner = true;
                 }
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[SORT4].x,bouton[SORT4].y,bouton[SORT4].largeur,bouton[SORT4].hauteur)){
-                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort4, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort4].type, r2, tabClasses);
+                    printf("ok");
+                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, bouton, map, sort4, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort4].type, r2, tabClasses);
                     redessiner = true;
                 }
-                if(surPassage(event.mouse.x, event.mouse.y, bouton[ATTAQUE].x,bouton[ATTAQUE].y,bouton[ATTAQUE].largeur,bouton[ATTAQUE].hauteur)){
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[ATTAQUE].x,bouton[ATTAQUE].y,bouton[ATTAQUE].largeur,bouton[ATTAQUE].hauteur)) {
                     // A remplir attaque corps à corps
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SORT2]) && joueur[donneePartie.joueurEnCours].PA >= classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].nombrePA){
-                    choixSort(event, queue, coordonneeIso, joueur, classe, donneePartie, timer, r, map, sort1, classe[joueur[donneePartie.joueurEnCours].classe].sorts[sort2].type, r2, tabClasses);
-                    redessiner = true;
                 }
                 break;
             }
@@ -273,14 +248,7 @@ void partie(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Joueur joueur[4], C
             //dessinerObsacle(map);
             al_draw_ellipse(coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].x, coordonneeIso[joueur[donneePartie.joueurEnCours].caseX][joueur[donneePartie.joueurEnCours].caseY].y, 20, 15, NOIR, 3);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie.nbJoueurs);
-            al_draw_filled_rectangle(r[DEPLACER].x, r[DEPLACER].y, r[DEPLACER].x + r[DEPLACER].largeur,r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
-            al_draw_filled_rectangle(r[SUIVANT].x, r[SUIVANT].y, r[SUIVANT].x + r[SUIVANT].largeur,r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
-            al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
-            al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
             // Bouton
-            al_draw_bitmap(bouton[DEPLACER].image, bouton[DEPLACER].x, bouton[DEPLACER].y, 0);
-            al_draw_bitmap(bouton[SUIVANT].image, bouton[SUIVANT].x, bouton[SUIVANT].y, 0);
-
             dessinerParametreJoueur(r2, donneePartie, joueur, classe, tabClasses);
 
             dessinerTousBoutton(bouton);

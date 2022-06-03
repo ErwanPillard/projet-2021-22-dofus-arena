@@ -4,6 +4,7 @@
 
 #include "deplacement.h"
 #include "menu.h"
+#include "interfaceClasse.h"
 
 void surbrillanceDeplacementJoueur(CoordonneeISO coordonneeIso[][12], int x, int y, int PM, int map[][12]){
 
@@ -111,7 +112,7 @@ int decompositionDeplacementJoueur(Chemin chemin[], int x1, int y1, int x2, int 
     }
 }
 
-void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12], Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
+void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, BUTTON bouton[], int map[][12], Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
     bool end = false;
     bool redessiner = true;
     bool deplacer = false;
@@ -137,7 +138,7 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
                 //Si on clic sur une case en surbrillance (3PM)
                  deplacementJ(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, map, &distanceX, &distanceY);
                 //Si on veux changer de joueur en mode déplacement
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])) {
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[SUIVANT].x,bouton[SUIVANT].y,bouton[SUIVANT].largeur,bouton[SUIVANT].hauteur)){
                     al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie->joueurEnCours].PM = 3;
                     joueur[donneePartie->joueurEnCours].PA = 6;
@@ -169,11 +170,7 @@ void deplacement(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO 
             //dessinerObsacle(map);
             surbrillanceDeplacementJoueur(coordonneeIso, joueur[donneePartie->joueurEnCours].caseX, joueur[donneePartie->joueurEnCours].caseY,joueur[donneePartie->joueurEnCours].PM, map);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
-            al_draw_filled_rectangle(r[DEPLACER].x,r[DEPLACER].y,r[DEPLACER].x + r[DEPLACER].largeur, r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
-            al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
-            al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
-            al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
-
+            dessinerTousBoutton(bouton);
             dessinerParametreJoueur(r2, *donneePartie, joueur, classe, tabClasses);
 
             al_flip_display();

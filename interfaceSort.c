@@ -36,14 +36,14 @@ void surbrillanceLigneDroite(CoordonneeISO coordonneeIso[][12], Joueur joueur[],
     }
 }
 
-void choixSort(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[],Partie donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12], int numSort, int type, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
+void choixSort(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[],Partie donneePartie, ALLEGRO_TIMER *timer, BUTTON bouton[], int map[][12], int numSort, int type, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
     switch (type) {
         case CERCLE:{
-            sortCercle(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map, numSort, r2, tabClasses);
+            sortCercle(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, bouton, map, numSort, r2, tabClasses);
             break;
         }
         case LIGNE:{
-            sortLigneDroite(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, r, map, numSort, r2, tabClasses);
+            sortLigneDroite(event, queue, coordonneeIso, joueur, classe, &donneePartie, timer, bouton, map, numSort, r2, tabClasses);
             break;
         }
     }
@@ -104,7 +104,7 @@ void verifSiJoueurSurCase(int cibleX, int cibleY,int nbJoueurs, Joueur joueur[],
     }
 }
 
-void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12], int numSort, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
+void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, BUTTON bouton[], int map[][12], int numSort, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
     bool end = false;
     bool redessiner = true;
     bool animation = false;
@@ -118,15 +118,13 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
 
                 animation = applicationSortLigne(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, classe, numSort, &cibleX, &cibleY);
-                printf("%d | %d", cibleX, cibleY);
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[SUIVANT].x,bouton[SUIVANT].y,bouton[SUIVANT].largeur,bouton[SUIVANT].hauteur)){
                     al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie->joueurEnCours].PM = 3;
                     joueur[donneePartie->joueurEnCours].PA = 6;
                     donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                     al_stop_timer(timer);
-                    al_start_timer(timer);//pour réinitialiser le timer : stop puis start
-                    end = true;
+                    al_start_timer(timer);//pour RAZ le timer : stop puis start
                 }
                 break;
             }
@@ -140,7 +138,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
             }
         }
         if(animation == true){
-            dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie, r, cibleX, cibleY, r2, tabClasses);
+            dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie, bouton, cibleX, cibleY, r2, tabClasses);
             verifSiJoueurSurCase(cibleX, cibleY, donneePartie->nbJoueurs, joueur, classe, numSort);
             redessiner = true;
             animation = false;
@@ -151,11 +149,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
             dessinerArene(coordonneeIso, joueur, classe);
             surbrillanceLigneDroite(coordonneeIso, joueur, donneePartie->joueurEnCours, classe, 1);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
-            al_draw_filled_rectangle(r[DEPLACER].x,r[DEPLACER].y,r[DEPLACER].x + r[DEPLACER].largeur, r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
-            al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
-            al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
-            al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
-
+            dessinerTousBoutton(bouton);
             dessinerParametreJoueur(r2, *donneePartie, joueur, classe, tabClasses);
 
             al_flip_display();
@@ -164,7 +158,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
     }
 }
 
-void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, Rect r[5], int map[][12], int numSort, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
+void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, ALLEGRO_TIMER *timer, BUTTON bouton[], int map[][12], int numSort, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
     bool end = false;
     bool redessiner = true;
     bool animation = false;
@@ -180,14 +174,15 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
 
                 animation = applicationSortCercle(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, classe, numSort, &cibleX, &cibleY);
 
-                if(surPassageCase(event.mouse.x, event.mouse.y, r[SUIVANT])){
+                if(surPassage(event.mouse.x, event.mouse.y, bouton[SUIVANT].x,bouton[SUIVANT].y,bouton[SUIVANT].largeur,bouton[SUIVANT].hauteur)){
                     al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie->joueurEnCours].PM = 3;
                     joueur[donneePartie->joueurEnCours].PA = 6;
                     donneePartie->joueurEnCours = (donneePartie->joueurEnCours + 1) % donneePartie->nbJoueurs;
                     al_stop_timer(timer);
-                    al_start_timer(timer);//pour réinitialiser le timer : stop puis start
+                    al_start_timer(timer);//pour RAZ le timer : stop puis start
                 }
+
                 end = true;
                 break;
             }
@@ -202,7 +197,7 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
         }
 
         if(animation == true){
-            dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie,r, cibleX, cibleY, r2, tabClasses);
+            dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie,bouton, cibleX, cibleY, r2, tabClasses);
             verifSiJoueurSurCase(cibleX, cibleY, donneePartie->nbJoueurs, joueur, classe, numSort);
             redessiner = true;
             animation = false;
@@ -213,11 +208,7 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
             dessinerArene(coordonneeIso, joueur, classe);
             surbrillanceSortCercle(coordonneeIso, joueur, donneePartie->joueurEnCours, classe, 0);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
-            al_draw_filled_rectangle(r[DEPLACER].x,r[DEPLACER].y,r[DEPLACER].x + r[DEPLACER].largeur, r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
-            al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
-            al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
-            al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
-
+            dessinerTousBoutton(bouton);
             dessinerParametreJoueur(r2, *donneePartie, joueur, classe, tabClasses);
 
             al_flip_display();
@@ -226,7 +217,7 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
     }
 }
 
-void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, Rect r[5], int cibleX, int cibleY, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
+void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, CoordonneeISO coordonneeIso[][12], Joueur joueur[], Classe classe[], Partie *donneePartie, BUTTON bouton[5], int cibleX, int cibleY, Rect r2[], ALLEGRO_BITMAP *tabClasses[]){
     ALLEGRO_TIMER *timer2 = NULL;
     float i = 0;
     bool end = false;
@@ -249,11 +240,7 @@ void dessinerSortsGlace(ALLEGRO_EVENT_QUEUE *queue, ALLEGRO_EVENT event, Coordon
 
                 dessinerArene(coordonneeIso, joueur, classe);
                 dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
-                al_draw_filled_rectangle(r[DEPLACER].x,r[DEPLACER].y,r[DEPLACER].x + r[DEPLACER].largeur, r[DEPLACER].y + r[DEPLACER].hauteur, r[DEPLACER].color);
-                al_draw_filled_rectangle(r[SUIVANT].x,r[SUIVANT].y,r[SUIVANT].x + r[SUIVANT].largeur, r[SUIVANT].y + r[SUIVANT].hauteur, r[SUIVANT].color);
-                al_draw_filled_rectangle(r[SORT1].x,r[SORT1].y,r[SORT1].x + r[SORT1].largeur, r[SORT1].y + r[SORT1].hauteur, r[SORT1].color);
-                al_draw_filled_rectangle(r[SORT2].x,r[SORT2].y,r[SORT2].x + r[SORT2].largeur, r[SORT2].y + r[SORT2].hauteur, r[SORT2].color);
-
+                dessinerTousBoutton(bouton);
                 al_draw_bitmap(sortGlace, coordonneeIso[cibleX][cibleY].x - 30, i, 0);
 
                 i = i + 10;
