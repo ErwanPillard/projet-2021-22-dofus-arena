@@ -116,7 +116,6 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
-
                 animation = applicationSortLigne(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, classe, numSort, &cibleX, &cibleY);
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[SUIVANT].x,bouton[SUIVANT].y,bouton[SUIVANT].largeur,bouton[SUIVANT].hauteur)){
                     al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
@@ -129,6 +128,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
                 end = true;
                 break;
             }
+
             case ALLEGRO_EVENT_TIMER:{
                 al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                 joueur[donneePartie->joueurEnCours].PM = 3;
@@ -138,6 +138,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
                 break;
             }
         }
+
         if(animation == true){
             dessinerSortsGlace(queue,event,coordonneeIso,joueur,classe,donneePartie, bouton, cibleX, cibleY, r2, tabClasses);
 
@@ -150,7 +151,7 @@ void sortLigneDroite(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, Coordonnee
 
         if(redessiner == true){
             dessinerArene(coordonneeIso, joueur, classe);
-            surbrillanceLigneDroite(coordonneeIso, joueur, donneePartie->joueurEnCours, classe, 1);
+            surbrillanceLigneDroite(coordonneeIso, joueur, donneePartie->joueurEnCours, classe, numSort);
             dessinerJoueurs(coordonneeIso, joueur, classe, donneePartie->nbJoueurs);
             dessinerTousBoutton(bouton);
             dessinerParametreJoueur(r2, *donneePartie, joueur, tabClasses);
@@ -174,7 +175,6 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
         switch (event.type) {
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:{
                 animation = applicationSortCercle(event.mouse.x, event.mouse.y, coordonneeIso, joueur, donneePartie->joueurEnCours, classe, numSort, &cibleX, &cibleY);
-
                 if(surPassage(event.mouse.x, event.mouse.y, bouton[SUIVANT].x,bouton[SUIVANT].y,bouton[SUIVANT].largeur,bouton[SUIVANT].hauteur)){
                     al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                     joueur[donneePartie->joueurEnCours].PM = 3;
@@ -186,6 +186,7 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
                 end = true;
                 break;
             }
+
             case ALLEGRO_EVENT_TIMER:{
                 al_play_sample(whoosh2, 10.0f, 0.0f, 2.0f, ALLEGRO_PLAYMODE_ONCE, 0);
                 joueur[donneePartie->joueurEnCours].PM = 3;
@@ -214,6 +215,7 @@ void sortCercle(ALLEGRO_EVENT event, ALLEGRO_EVENT_QUEUE *queue, CoordonneeISO c
             al_flip_display();
             redessiner = false;
         }
+
     }
 }
 
